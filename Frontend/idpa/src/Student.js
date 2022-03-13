@@ -14,14 +14,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Student() {
     const paperStyle = { padding: '50px 20px', width: 600, margin: "20px auto" }
-    const [name, setName] = useState('')
-    const [address, setAddress] = useState('')
+    const [firstname, setFirstname] = useState('')
+    const [lastname, setLastname] = useState('')
+    const [email, setEmail] = useState('')
+    const [age, setAge] = useState('')
     const [students, setStudents] = useState([])
     const classes = useStyles();
 
     const handleClick = (e) => {
         e.preventDefault()
-        const student = { name, address }
+        const student = { firstname, lastname, email, age }
         console.log(student)
         fetch("http://localhost:8080/student/add", {
             method: "POST",
@@ -48,15 +50,23 @@ export default function Student() {
                 <h1 style={{ color: "blue" }}><u>Add Student</u></h1>
 
                 <form className={classes.root} noValidate autoComplete="off">
-
                     <TextField id="outlined-basic" label="Student Name" variant="outlined" fullWidth
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        value={firstname}
+                        onChange={(e) => setFirstname(e.target.value)}
                     />
-                    <TextField id="outlined-basic" label="Student Adress" variant="outlined" fullWidth
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
+                    <TextField id="outlined-basic" label="Student Name" variant="outlined" fullWidth
+                        value={lastname}
+                        onChange={(e) => setLastname(e.target.value)}
                     />
+                    <TextField id="outlined-basic" label="Student Name" variant="outlined" fullWidth
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <TextField id="outlined-basic" label="Student Name" variant="outlined" fullWidth
+                        value={age}
+                        onChange={(e) => setAge(e.target.value)}
+                    />
+
                     <Button variant="contained" color="secondary" onClick={handleClick}>
                         Submit
                     </Button>
@@ -70,8 +80,8 @@ export default function Student() {
                 {students.map(student => (
                     <Paper elevation={6} style={{ margin: "10px", padding: "15px", textAlign: "left" }} key={student.id}>
                         Id:{student.id}<br />
-                        Name:{student.name}<br />
-                        Address:{student.address}
+                        Firstname:{student.firstname}<br />
+
 
                     </Paper>
                 ))
