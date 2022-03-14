@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Student from './pages/Student';
 import Kategorie from './pages/Kategorie';
-import Kapitel from './components/Kapitel';
+import Kapitel from './pages/Kapitel';
 
 import {
   BrowserRouter as Router,
