@@ -1,14 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
-import Student from './Student';
-import Kategorie from './Kategorie';
+import Student from './pages/Student';
+import Kategorie from './pages/Kategorie';
 import {
   BrowserRouter as Router,
   Route,
   Routes,
   useNavigate,
 } from "react-router-dom";
-import Navbar from './Navbar';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
