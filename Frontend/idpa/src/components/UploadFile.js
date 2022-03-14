@@ -12,9 +12,11 @@ export default function UploadFile() {
 
     return (
 
-        <Container>
-            <FileUpload value={files} onChange={setFiles} />
+        <div>
+            <p>hallo</p>
+        </div>
 
-        </Container>
+
+
     );
 }
