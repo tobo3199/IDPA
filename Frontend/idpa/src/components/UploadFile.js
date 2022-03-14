@@ -15,7 +15,9 @@ const useStyles = makeStyles((theme) => ({
 export default function UploadFile() {
 
     return (
+        <div>
         <p>Kapitel</p>
-
+        <p>Upload</p>
+        </div>
     );
 }
