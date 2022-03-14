@@ -2,19 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { Container, Paper, Button } from '@material-ui/core';
-import FileUpload from "react-material-file-upload";
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        '& > *': {
+            margin: theme.spacing(1),
+
+        },
+    },
+}));
 
 export default function Kapitel() {
 
-    const [files, setFiles] = useState < File > ([]);
-
-
-
     return (
+        <p>Kapitel</p>
 
-        <Container>
-            <FileUpload value={files} onChange={setFiles} />
-
-        </Container>
     );
 }

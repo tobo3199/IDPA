@@ -3,19 +3,18 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { Container, Paper, Button } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        '& > *': {
-            margin: theme.spacing(1),
-
-        },
-    },
-}));
-
 export default function Student() {
+    const [input, setInput] = useState("");
+
+    const handleSubmit = e => {
+        e.preventDefault();
+    }
     
     return (   
-        <p>Kategorie</p>
+        <form className='todo-form' onSubmit={handleSubmit}>
+            <input type="text" placeholder="add category" value={input} name="category" className="cat-input"></input>
+            <button className='cat-button'>Add Category</button>
+        </form>
             
     );
 }
