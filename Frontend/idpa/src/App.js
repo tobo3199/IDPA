@@ -4,6 +4,7 @@ import './App.css';
 import Student from './pages/Student';
 import Kategorie from './pages/Kategorie';
 import Kapitel from './pages/Kapitel';
+import Aufgabe from './pages/Aufgabe';
 
 import {
   BrowserRouter as Router,
@@ -25,6 +26,7 @@ function App() {
         <Route path="/kategorie" element={<Kategorie />} />
         <Route path="/kapitel" element={<Kapitel />} />
         <Route path='/kategorie/:text' element={<KategorieInhalt/>}/>
+        <Route path='/kategorie/:text/aufgabe/:aufgabe' element={<Aufgabe/>}/>
       </Routes>
     </div>
   );
