@@ -52,7 +52,7 @@
 }
 
 .task{
-  position: absolute;
+  position: relative;
   width: 500px;
   height: 200px;
   border-style: solid;
@@ -60,6 +60,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 50px;
 }
 
 .task-container{
