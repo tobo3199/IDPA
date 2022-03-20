@@ -111,17 +111,20 @@ export default function Aufgabe(props){
         <div>
           <h1>Aufgabe</h1>
           
-          {tasks.map((t, index) => (
+          {tasks[0] ? tasks.map((t, index) => (
               <div className="task" key={index}>
                   <p>Aufgabe {index + 1}</p>
                   <p>{t.a}</p>
                   <p>Lösung:</p>
                   <input type="text"></input>
               </div>
-          ))}
+          )) :  
+          <div className="task">
+          <p>No Aufgabe yet</p>
+          </div>}
           <br/>
           <div>
-          <div><AddAufgabe /></div>
+          <div className="ce"><AddAufgabe /></div>
           </div>
           </div>
     );
