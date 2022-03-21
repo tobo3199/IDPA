@@ -28,15 +28,26 @@ function UploadFile() {
     const fileUploadHandler = () => {
         const fd = new FormData();
         fd.append('image', selectedFile, selectedFile.name);
-        axios.post('https://myrenting-default-rtdb.europe-west1.firebasedatabase.app/', fd)
-            .then(res => {
-                console.log(res);
-            });
+        fetch('http://localhost:8080/fileData/uploadFile',
+            {
+                method: 'POST',
+                body: fd,
+            }
+        )
+            .then((res) => res.json())
+            .then((result) => {
+                console.log('Sucess', result);
+            })
+            .catch((error) => {
+                console.error('Error', error)
+            })
+
+
     }
 
     return (
         <div>
-            <input type="file" onChange={fileSelectedHandler} />
+            <input type="file" onChange={(e) => setSelectedFile(e.target.files[0])} />
             <button onClick={fileUploadHandler}>Upload</button>
         </div>
     );

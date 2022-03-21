@@ -3,6 +3,7 @@ package idpa.project.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 import java.util.Arrays;
 
@@ -18,13 +19,25 @@ import static javax.persistence.GenerationType.SEQUENCE;
 public class FileData {
 
     @Id
+    @SequenceGenerator(
+            name = "file_sequence",
+            sequenceName = "file_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = SEQUENCE,
+            generator = "file_sequence"
+    )
     private Long id;
     private byte[] content;
-    private int size;
+    private long size;
     private String type;
     private String filename;
 
-    public FileData(Long id, byte[] content, int size, String type, String filename) {
+    public FileData(){
+
+    };
+    public FileData(Long id, byte[] content, long size, String type, String filename) {
         this.id = id;
         this.content = content;
         this.size = size;
@@ -48,11 +61,11 @@ public class FileData {
         this.content = content;
     }
 
-    public int getSize() {
+    public long getSize() {
         return size;
     }
 
-    public void setSize(int size) {
+    public void setSize(long size) {
         this.size = size;
     }
 
