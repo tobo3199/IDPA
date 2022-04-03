@@ -27,11 +27,12 @@ function UploadFile() {
 
     const fileUploadHandler = () => {
         const fd = new FormData();
-        fd.append('image', selectedFile, selectedFile.name);
-        fetch('http://localhost:8080/fileData/uploadFile',
+        fd.append('file', selectedFile, selectedFile.name);
+        fetch('http://localhost:3000/api/fileData/uploadFile',
             {
                 method: 'POST',
                 body: fd,
+                // headers: { "Content-Type": "multipart/form-data, boundary=----WebKitFormBoundaryZgPNpTjXugZbGrkX" }
             }
         )
             .then((res) => res.json())
@@ -46,10 +47,12 @@ function UploadFile() {
     }
 
     return (
+
         <div>
             <input type="file" onChange={(e) => setSelectedFile(e.target.files[0])} />
             <button onClick={fileUploadHandler}>Upload</button>
         </div>
+
     );
 }
 

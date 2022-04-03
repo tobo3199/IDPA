@@ -28,4 +28,9 @@ public class FileDataServiceImpl implements FileDataService {
     public List<FileData> getAllFileData(){
         return fileDataRepository.findAll();
     }
+
+    @Override
+    public FileData getFileData(Long id) {
+        return fileDataRepository.getById(id);
+    }
 }

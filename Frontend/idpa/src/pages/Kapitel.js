@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { Container, Paper, Button } from '@material-ui/core';
 import UploadFile from '../components/UploadFile';
+import GetFiles from '../components/GetFiles';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,6 +22,7 @@ export default function Kapitel() {
         <Container>
             <p>Kapitel</p>
             <UploadFile></UploadFile>
+            <GetFiles></GetFiles>
         </Container>
     );
 }

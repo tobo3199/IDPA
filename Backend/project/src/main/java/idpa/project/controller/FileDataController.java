@@ -5,6 +5,10 @@ import idpa.project.model.FileDataResponse;
 import idpa.project.service.FileDataService;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -17,13 +21,13 @@ import java.util.stream.Collectors;
 
 /**
  * Klasse:FileDataController
- * https://www.pluralsight.com/guides/uploading-files-with-reactjs
+ *
  *
  * @author: Tobias Sauter
  * @version:19.03.2022
  */
 @RestController
-@RequestMapping("/fileData")
+@RequestMapping("/api/fileData")
 @CrossOrigin
 public class FileDataController {
 
@@ -48,6 +52,29 @@ public class FileDataController {
         List<FileData> fileDataList = fileDataService.getAllFileData();
         return fileDataList.stream().map(it -> new FileDataResponse(it.getFilename(), it.getId()))
                 .collect(Collectors.toList());
+    }
+
+    @RequestMapping(path = "/download/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Resource> download(@PathVariable("id") Long id) throws IOException {
+
+        FileData fileData = fileDataService.getFileData(id);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + fileData.getFilename());
+        headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
+        headers.add("Pragma", "no-cache");
+        headers.add("Expires", "0");
+
+        //Path path = Paths.get(file.getAbsolutePath());
+        ByteArrayResource resource = new ByteArrayResource(fileData.getContent());
+
+        return ResponseEntity.ok()
+                .headers(headers)
+                .contentLength(fileData.getSize())
+                .contentType(MediaType.parseMediaType(fileData.getType()))
+                .body(resource);
+
+
     }
 
 }

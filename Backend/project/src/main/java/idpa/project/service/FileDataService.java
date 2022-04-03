@@ -8,5 +8,6 @@ import java.util.List;
 public interface FileDataService {
     public FileData saveFileData(FileData fileData);
     public List<FileData> getAllFileData();
+    public FileData getFileData(Long id);
 
 }
