@@ -54,7 +54,13 @@ public class FileDataController {
                 .collect(Collectors.toList());
     }
 
-    @RequestMapping(path = "/download/{id}", method = RequestMethod.GET)
+    @DeleteMapping("/files/{id}")
+    public String deleteFile(@PathVariable Long id){
+        fileDataService.deleteFileData(id);
+        return "File deleted";
+    }
+
+    @RequestMapping(path = "/files/{id}", method = RequestMethod.GET)
     public ResponseEntity<Resource> download(@PathVariable("id") Long id) throws IOException {
 
         FileData fileData = fileDataService.getFileData(id);

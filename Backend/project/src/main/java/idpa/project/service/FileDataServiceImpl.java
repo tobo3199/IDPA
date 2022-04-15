@@ -33,4 +33,11 @@ public class FileDataServiceImpl implements FileDataService {
     public FileData getFileData(Long id) {
         return fileDataRepository.getById(id);
     }
+
+    @Override
+    public void deleteFileData(Long id) {
+        fileDataRepository.deleteById(id);
+    }
+
+
 }
