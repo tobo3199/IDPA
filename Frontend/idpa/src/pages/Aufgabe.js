@@ -220,6 +220,10 @@ export default function Aufgabe(props){
                             <Dropdown.Item><button onClick={renderSwitch(2)}>Gap Text</button></Dropdown.Item>
                             <Dropdown.Item><button onClick={renderSwitch(3)}>Multiple Choice</button></Dropdown.Item>
                         </DropdownButton>   
+
+                        <button onClick={() => setNumber(1)}>Sentence Transformation</button>
+                        <button onClick={() => setNumber(2)}>Gap Text</button>
+                        <button onClick={() => setNumber(3)}>Multiple Choice</button>
     */
 
     function AddAufgabe() {
@@ -244,9 +248,6 @@ export default function Aufgabe(props){
                             <Dropdown.Item><button onClick={() => setNumber(2)}>Gap Text</button></Dropdown.Item>
                             <Dropdown.Item><button onClick={() => setNumber(3)}>Multiple Choice</button></Dropdown.Item>
                         </DropdownButton>   
-                        <button onClick={() => setNumber(1)}>Sentence Transformation</button>
-                        <button onClick={() => setNumber(2)}>Gap Text</button>
-                        <button onClick={() => setNumber(3)}>Multiple Choice</button>
                         <RenderSwitch/>
                         
                         
