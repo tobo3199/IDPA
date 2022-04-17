@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * Klasse:
+ * Klasse:StudentController
  *
  * @author: Tobias Sauter
- * @version:
+ * @version:10.03.2022
  */
 
 @RestController
