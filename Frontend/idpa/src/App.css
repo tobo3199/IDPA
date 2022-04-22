@@ -54,13 +54,18 @@
 .task{
   position: relative;
   width: 500px;
-  height: 200px;
   border-style: solid;
-  left: 540px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 50px;
+  padding: 20px;
+  position:relative;
+  margin:0 auto;
+  margin-top: 50px;
+  clear:left;
+  height:auto;
+  z-index: 0;
 }
 
 .task-container{
@@ -75,14 +80,76 @@
   flex-direction: column  ;
   justify-content: center;
   align-items: center;
-  top: 200px;
-  left: 750px;
+  position:relative;
+  margin:0 auto;
+  margin-top: 50px;
+  clear:left;
+  height:auto;
+  z-index: 0;
+  text-align:center;/* Add This*/
+  margin-bottom: 20px;
 }
 
 .sameLine{
+  position: relative;
+  height: 50%;
+  width: 50%;
   display: inline-block;
 }
 
 .checkbox{
   float: right;
+}
+
+.border{
+  border: solid;
+  position:relative;
+    margin:0 auto;
+    margin-top: 10px;
+    clear:left;
+    height:auto;
+    z-index: 0;
+    text-align:center;/* Add This*/
+    width: 100%;
+}
+
+.text{
+  left: 0px;
+  margin-left: 0px;
+}
+
+.btn btn-danger{
+  padding: 50px;
+}
+
+.pin{
+  position: relative;
+  padding: 10px;
+  margin-right: 100px;
+    clear:left;
+    height:auto;
+    z-index: 0;
+    text-align:left;/* Add This*/
+    border: none;
+}
+
+.button{
+  position: relative;
+  padding-left: 100px;
+  right: 0px;
+}
+
+.todo-form{
+  position:relative;
+    margin:0 auto;
+    margin-top: 50px;
+    clear:left;
+    height:auto;
+    z-index: 0;
+    text-align:center;/* Add This*/
+    margin-bottom: 20px;
+}
+
+.right{
+  right: 0px;
 }

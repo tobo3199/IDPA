@@ -53,6 +53,13 @@ export default function KategorieInhalt(props, {param, RemoveParam}){
       setAufgabe(e.target.value);
     }
 
+    /*
+                <div key={index}>
+                    <Link to={`/kategorie/${text}/aufgabe/${t.theorie}`}>{t.theorie}</Link>
+                    <button className='button-border' type="button" class="btn btn-danger">Delete</button>
+                </div>
+    */
+
 
 
     return (
@@ -67,12 +74,29 @@ export default function KategorieInhalt(props, {param, RemoveParam}){
             <input type="text" placeholder="add aufgaben" value={aufg} name="theorie" className="cat-input" onChange={handleAufgabe}></input>
             <button className='cat-button'>Add Aufgabe</button>
           </form>
+
+          <div>
+                <table className="table">
+                    
+                <tr>
+                    <th>Übersicht</th>
+                    <th>Aufgabe:</th>
+                    <th></th>
+                </tr>
+                
           {theorieArray?.map((t, index) => (
-                <div key={index}>
-                    <Link to={`/kategorie/${text}/aufgabe/${t.theorie}`}>{t.theorie}</Link>
-                    <button className='button-border' type="button" class="btn btn-danger">Remove</button>
-                </div>
+            <>
+            <tr key={index}>
+              <td></td>
+            <td><Link to={`/kategorie/${text}/aufgabe/${t.theorie}`}>{t.theorie}</Link></td>
+            <td><button className='button-border' type="button" class="btn btn-danger">Delete</button></td>
+            </tr>
+        
+
+                </>
             ))}
+            </table>
+            </div>
         </div>
       </div>
     );

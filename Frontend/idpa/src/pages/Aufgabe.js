@@ -333,10 +333,14 @@ export default function Aufgabe(props){
           <h1>Aufgabe</h1>
           {tasks[0] || mTasks[0] ? tasks.map((t, index)=> (
               <div className="task" key={index}>
-                  <p>Aufgabe {index + 1}</p>
+                  <h4>Aufgabe {index + 1}</h4>
+                  <br/>
+                  <h6>Aufgabenstellung</h6>
                   <p>{t.a}</p>
-                  <p>Lösung:</p>
+                  <h6>Lösung:</h6>
                   <p>{t.l}</p>
+                  <h6>Alternative Lösung:</h6>
+                  <p>{t.l2}</p>
               </div>
           )):  
           <div className="task">
