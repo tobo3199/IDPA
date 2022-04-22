@@ -37,7 +37,8 @@ export default function Kategorie({param, RemoveParam}) {
         //console.log( ...categorys, cat);
     }
 
-    const removeCategory = cat => {
+
+    const removeCatergory = cat => {
         var tCat = categorys;
         console.log(tCat);
         var index = categorys.indexOf(cat);
@@ -47,6 +48,10 @@ export default function Kategorie({param, RemoveParam}) {
         setCategorys(tCat);
         //categorys.splice(index, 1);
         console.log(categorys);
+    }
+
+    const removeCategory = (cat) => {
+        console.log(cat);
     }
 
     const handleChange = e => {

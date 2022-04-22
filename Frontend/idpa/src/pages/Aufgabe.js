@@ -8,10 +8,12 @@ import { useEffect } from "react";
 import { AddAlarmRounded, LocalSeeSharp } from "@mui/icons-material";
 import { Dropdown } from "react-bootstrap";
 import { DropdownButton } from "react-bootstrap";
+import { useNavigate} from "react-router";
 
 
 
-export default function Aufgabe(props){
+export default function Aufgabe(props) {
+    let navigate = useNavigate();
     const { aufgabe } = useParams();
     const [tasks, setTasks] = useState([]);
     const [mTasks, setMTasks] = useState([]);
@@ -23,6 +25,15 @@ export default function Aufgabe(props){
     const [Aloesung, setALoesung] = useState("");
     const [loesung2, setLoesung2] = useState("");
     const [loesung3, setLoesung3] = useState("");
+    var auf = "";
+    var l1 = "";
+    var l2 = "";
+
+    var mauf = "";
+    var ml1 = "";
+    var ml2 = "";
+    var ml3 = "";
+    var l = 0;
 
     const [check, setCheck] = useState(false);
     const handleCheck = () => setCheck(true);
@@ -41,6 +52,7 @@ export default function Aufgabe(props){
     const [checkloesung, setCheckLosesung] = useState();
 
     const handleAufgabe = e => {
+        console.log("submit");
         e.preventDefault();
         setBem("");
         setLoesung("");
@@ -48,9 +60,9 @@ export default function Aufgabe(props){
         handleClose();
 
         const object = {
-            a : bem,
-            l : loesung,
-            l2: Aloesung
+            a: auf,
+            l: l1,
+            l2: l2
         };
 
         addArr(object);
@@ -68,11 +80,11 @@ export default function Aufgabe(props){
         setCheckLosesung("");
 
         const mobject = {
-            a : bem,
-            1 : loesung,
-            2 : loesung2,
-            3 : loesung3,
-            c : checkloesung
+            a: mauf,
+            1: ml1,
+            2: ml2,
+            3: ml3,
+            c: l
         }
 
         addArrM(mobject)
@@ -94,58 +106,97 @@ export default function Aufgabe(props){
     }
 
     const handleChangeAufgabe = (e) => {
-        e.preventDefault();
-        setBem(e.target.value);
+        //setBem(e.target.value);
+        auf = e.target.value;
+
+    }
+
+    const handleChangeAufgaben = (e) => {
+        //setBem(e.target.value);
+        mauf = e.target.value;
 
     }
 
     const handleChangeLoesung = (e) => {
-        e.preventDefault();
-        setLoesung(e.target.value);
+        //setLoesung(e.target.value);
+        l1 = e.target.value;
     }
 
     const handleChangeALoesung = (e) => {
-        e.preventDefault();
-        setALoesung(e.target.value);
+        //setALoesung(e.target.value);
+        l2 = e.target.value;
+    }
+
+    const handleChangeLoesung1 = (e) => {
+        //setLoesung2(e.target.value);
+        ml1 = e.target.value;
     }
 
     const handleChangeLoesung2 = (e) => {
-        e.preventDefault();
-        setLoesung2(e.target.value);
+        //setLoesung2(e.target.value);
+        ml2 = e.target.value;
     }
 
     const handleChangeLoesung3 = (e) => {
-        e.preventDefault();
-        setLoesung3(e.target.value);
+        //setLoesung3(e.target.value);
+        ml3 = e.target.value;
     }
 
     const handleCheckLoesung = (e) => {
-        e.preventDefault();
-        setCheckLosesung(e.target.value);
+        //setCheckLosesung(e.target.value);
+        l = e.target.value;
     }
 
+    const deleteTask = (index) => {
+        var temp = tasks;
+        console.log(temp);
+        tasks.splice(index, 1);
+        setTasks(temp);
+        console.log(tasks);
+    }
+
+    useEffect(() => {
+        let authToken = sessionStorage.getItem("Auth Token");
+    
+        if (!authToken) {
+          navigate("/login");
+        }
+      }, []);
+
+    /*
+    const editTask = (task) => {
+        console.log(task);
+        handleShow(true);
+        setNumber(1);
+        auf = task.a,
+        l1 = task.l1,
+        l2 = task.l2
+    }
+    */
+
+    /*
     //Checkbox 1
     const handleCheckers = (e) => {
-        if(check === false){
+        if (check === false) {
             handleCheck();
-        } else if(check === true){
+        } else if (check === true) {
             unhandleCheck();
         }
     }
     //Checkbox 2
     const handleCheckers1 = (e) => {
-        if(check1 === false){
+        if (check1 === false) {
             handleCheck1();
-        } else if(check1 === true){
+        } else if (check1 === true) {
             unhandleCheck1();
         }
     }
 
     //Checkbox 3
     const handleCheckers2 = (e) => {
-        if(check2 === false){
+        if (check2 === false) {
             handleCheck2();
-        } else if(check2 === true){
+        } else if (check2 === true) {
             unhandleCheck2();
         }
     }
@@ -153,120 +204,106 @@ export default function Aufgabe(props){
     console.log("check2 : " + check1);
     console.log("check3 : " + check2);
 
-    function RenderSwitch( ) {
-        switch(number ){
-            case 1:
-                console.log("Sentence Transformation clicked");
-                return(
-                    <form onSubmit={handleAufgabe}>
-                    <div>
-                        <label htmlFor="recipient-name" className="col-form-label">Sentence Transformation </label>
-                        <br/>
-                        <label htmlFor="recipient-name" className="col-form-label">Aufgabe: </label>
-                        <input type="text" className="form-control" id="bem" onChange={(e) => handleChangeAufgabe(e)} value={bem} ></input>
-                    </div>
-                    <div>
-                        <label htmlFor="recipient-name" className="col-form-label">Lösung: </label>
-                        <input type="text" className="form-control" id="bem" onChange={(e) => handleChangeLoesung(e)} value={loesung} ></input>
-                    </div>
-                    <div>
-                        <label htmlFor="recipient-name" className="col-form-label">Alternative Lösung: </label>
-                        <input type="text" className="form-control" id="bem" onChange={(e) => handleChangeALoesung(e)} value={Aloesung} ></input>
-                    </div>
-                    {/*
-                        <div>
-                            <label htmlFor="recipient-name" className="col-form-label">Status: </label>
-                            <input type="text" value={" Status: " + (todo.status)} class="form-control"/>
-                        </div>
-                        */}
-                    </form>
-                );
-            case 2:
-                console.log("Gap-Text clicked");
-                return(
-                    
-                    <form onSubmit={handleAufgabe}>
-                    <div>
-                    <label htmlFor="recipient-name" className="col-form-label">Gap-Text: </label>
-                    <br/>
-                        <label htmlFor="recipient-name" className="col-form-label">Aufgabe: </label>
-                        <input type="text" className="form-control" id="bem" onChange={handleChangeAufgabe} value={bem} ></input>
-                    </div>
-                    <div>
-                        <label htmlFor="recipient-name" className="col-form-label">Lösung: </label>
-                        <input type="text" className="form-control" id="bem" onChange={handleChangeLoesung} value={loesung} ></input>
-                    </div>
-                    {/*
-                        <div>
-                            <label htmlFor="recipient-name" className="col-form-label">Status: </label>
-                            <input type="text" value={" Status: " + (todo.status)} class="form-control"/>
-                        </div>
-                        */}
-                    </form>
-                );
-            case 3:
-                console.log("Multiple-Choice clicked");
-                return(
-                    
-                    <form onSubmit={handleMultipleChoice}>
-                    <div>
-                    <label htmlFor="recipient-name" className="col-form-label">Multiple-Choice: </label>
-                    <br/>
-                        <label htmlFor="recipient-name" className="col-form-label">Aufgabenstellung: </label>
-                        <input type="text" className="form-control" id="bem" onChange={handleChangeAufgabe} value={bem} ></input>
-                    </div>
-                    <div>
-                        <label htmlFor="recipient-name" className="col-form-label">Mögliche Antwort 1: </label>
-                        <input type="text" className="form-control" id="bem" onChange={handleChangeLoesung} value={loesung} ></input>
-                        <label htmlFor="recipient-name" className="col-form-label">Mögliche Antwort 2: </label>
-                        <input type="text" className="form-control" id="bem" onChange={handleChangeLoesung2} value={loesung2} ></input>
-                        <label htmlFor="recipient-name" className="col-form-label">Mögliche Antwort 3: </label>
-                        <input type="text" className="form-control" id="bem" onChange={handleChangeLoesung3} value={loesung3} ></input>
-                        <label htmlFor="recipient-name" className="col-form-label">Richtige Antwort: </label>
-                        <br/>
-                        <input type="number" id="bem" onChange={handleCheckLoesung} value={checkloesung} min="1" max="3" ></input>
+    */
 
-                        
+    function RenderSwitch() {
 
+
+        console.log("Sentence Transformation clicked");
+        return (
+            <div>
+                {number === 1 ?
+                    <form onSubmit={() => handleAufgabe()}>
+                        <div>
+                            <label htmlFor="recipient-name" className="col-form-label">Sentence Transformation </label>
+                            <br />
+                            <label htmlFor="recipient-name" className="col-form-label">Aufgabe: </label>
+                            <input type="text" className="form-control" id="bem" onChange={(e) => handleChangeAufgabe(e)}></input>
+                        </div>
+                        <div>
+                            <label htmlFor="recipient-name" className="col-form-label">Lösung: </label>
+                            <input type="text" className="form-control" id="bem" onChange={(e) => handleChangeLoesung(e)}  ></input>
+                        </div>
+                        <div>
+                            <label htmlFor="recipient-name" className="col-form-label">Alternative Lösung: </label>
+                            <input type="text" className="form-control" id="bem" onChange={(e) => handleChangeALoesung(e)}  ></input>
+                        </div>
                         {/*
-                        <input type="checkbox" className="form-control" id="bem" onChange={handleCheckers} checked={check} ></input>
-                        <input type="checkbox" className="form-control" id="bem" onChange={handleCheckers1} checked={check1} ></input>
-                        <input type="checkbox" className="form-control" id="bem" onChange={handleCheckers2} checked={check2} ></input>
-                        */}
-                        
-                        
-                    </div>
-                    {/*
                         <div>
                             <label htmlFor="recipient-name" className="col-form-label">Status: </label>
                             <input type="text" value={" Status: " + (todo.status)} class="form-control"/>
                         </div>
                         */}
                     </form>
-                );
-            default :
-            console.log("Default")
-            return(
-                <form onSubmit={handleAufgabe}>
-                    <div>
-                        <label htmlFor="recipient-name" className="col-form-label"> </label>
-                        <label htmlFor="recipient-name" className="col-form-label">Aufgabe: </label>
-                        <input type="text" className="form-control" id="bem" onChange={handleChangeAufgabe} value={bem} ></input>
-                    </div>
-                    <div>
-                        <label htmlFor="recipient-name" className="col-form-label">Lösung: </label>
-                        <input type="text" className="form-control" id="bem" onChange={handleChangeLoesung} value={loesung} ></input>
-                    </div>
-                    {/*
+                    : number === 2 ?
+                        <form onSubmit={handleAufgabe}>
+                            <div>
+                                <label htmlFor="recipient-name" className="col-form-label">Gap-Text: </label>
+                                <br />
+                                <label htmlFor="recipient-name" className="col-form-label">Aufgabe: </label>
+                                <input type="text" className="form-control" id="bem" onChange={handleChangeAufgabe} value={bem} ></input>
+                            </div>
+                            <div>
+                                <label htmlFor="recipient-name" className="col-form-label">Lösung: </label>
+                                <input type="text" className="form-control" id="bem" onChange={handleChangeLoesung} value={loesung} ></input>
+                            </div>
+                            {/*
                         <div>
                             <label htmlFor="recipient-name" className="col-form-label">Status: </label>
                             <input type="text" value={" Status: " + (todo.status)} class="form-control"/>
                         </div>
                         */}
-                    </form>
-            )
-        }
+                        </form>
+
+                        : number === 3 ?
+                            <form onSubmit={handleMultipleChoice}>
+                                <div>
+                                    <label htmlFor="recipient-name" className="col-form-label">Multiple-Choice: </label>
+                                    <br />
+                                    <label htmlFor="recipient-name" className="col-form-label">Aufgabenstellung: </label>
+                                    <input type="text" className="form-control" id="bem" onChange={handleChangeAufgaben} ></input>
+                                </div>
+                                <div>
+                                    <label htmlFor="recipient-name" className="col-form-label">Mögliche Antwort 1: </label>
+                                    <input type="text" className="form-control" id="bem" onChange={handleChangeLoesung1}></input>
+                                    <label htmlFor="recipient-name" className="col-form-label">Mögliche Antwort 2: </label>
+                                    <input type="text" className="form-control" id="bem" onChange={handleChangeLoesung2}></input>
+                                    <label htmlFor="recipient-name" className="col-form-label">Mögliche Antwort 3: </label>
+                                    <input type="text" className="form-control" id="bem" onChange={handleChangeLoesung3} ></input>
+                                    <label htmlFor="recipient-name" className="col-form-label">Richtige Antwort: </label>
+                                    <br />
+                                    <input type="number" id="bem" onChange={handleCheckLoesung} min="1" max="3" ></input>
+
+
+
+                                    {/*
+                                <input type="checkbox" className="form-control" id="bem" onChange={handleCheckers} checked={check} ></input>
+                                <input type="checkbox" className="form-control" id="bem" onChange={handleCheckers1} checked={check1} ></input>
+                                <input type="checkbox" className="form-control" id="bem" onChange={handleCheckers2} checked={check2} ></input>
+                                */}
+
+
+                                </div>
+                                {/*
+                                <div>
+                                    <label htmlFor="recipient-name" className="col-form-label">Status: </label>
+                                    <input type="text" value={" Status: " + (todo.status)} class="form-control"/>
+                                </div>
+                                */}
+                            </form>
+                            : number === 0 ? 
+                            <p>Please select a excercise type</p>
+
+                            :
+                            <p>Please select a excercise type</p>
+                }
+            </div>
+
+
+        );
+
     }
+
 
     //
     /*
@@ -275,7 +312,7 @@ export default function Aufgabe(props){
                             <Dropdown.Item><button onClick={renderSwitch(2)}>Gap Text</button></Dropdown.Item>
                             <Dropdown.Item><button onClick={renderSwitch(3)}>Multiple Choice</button></Dropdown.Item>
                         </DropdownButton>   
-
+    
                         <button onClick={() => setNumber(1)}>Sentence Transformation</button>
                         <button onClick={() => setNumber(2)}>Gap Text</button>
                         <button onClick={() => setNumber(3)}>Multiple Choice</button>
@@ -295,17 +332,17 @@ export default function Aufgabe(props){
                     keyboard={false}
                 >
                     <Modal.Header closeButton>
-                    <Modal.Title>Aufgaben-Typ wählen</Modal.Title>
+                        <Modal.Title>Aufgaben-Typ wählen</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <DropdownButton id="dropdown-basic-button" title="Aufgaben-Typ">
-                            <Dropdown.Item><button onClick={() => setNumber(1)}>Sentence Transformation</button></Dropdown.Item>
+                            <Dropdown.Item defaultChecked><button onClick={() => setNumber(1)}>Sentence Transformation</button></Dropdown.Item>
                             <Dropdown.Item><button onClick={() => setNumber(2)}>Gap Text</button></Dropdown.Item>
                             <Dropdown.Item><button onClick={() => setNumber(3)}>Multiple Choice</button></Dropdown.Item>
-                        </DropdownButton>   
-                        <RenderSwitch/>
-                        
-                        
+                        </DropdownButton>
+                        <RenderSwitch />
+
+
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>Schliessen</Button>
@@ -317,8 +354,32 @@ export default function Aufgabe(props){
         );
     }
 
+    //onClick={() => editTask(t)}
+
+    function DisplayTasks() {
+        return(
+        tasks[0] || mTasks[0] ? tasks.map((t, index) => (
+            <div className="task" key={index}>
+                <h4>Aufgabe {index + 1}</h4>
+                <br />
+                <h6>Aufgabenstellung</h6>
+                <p>{t.a}</p>
+                <h6>Lösung:</h6>
+                <p>{t.l}</p>
+                <h6>Alternative Lösung:</h6>
+                <p>{t.l2}</p>
+                <Button className="editButton" >Edit</Button>
+                <Button className="deleteButton" onClick={() => deleteTask(index)}>Delete</Button>
+            </div>
+        )) :
+            <div className="task">
+                <p>No Aufgabe yet</p>
+            </div>
+        );
+    }
+
     /*
-<div className="task">
+    <div className="task">
               <p>Aufgabe</p>
               <p>My name is _____________ .</p>
               <p>Lösung:</p>
@@ -330,26 +391,12 @@ export default function Aufgabe(props){
 
     return (
         <div>
-          <h1>Aufgabe</h1>
-          {tasks[0] || mTasks[0] ? tasks.map((t, index)=> (
-              <div className="task" key={index}>
-                  <h4>Aufgabe {index + 1}</h4>
-                  <br/>
-                  <h6>Aufgabenstellung</h6>
-                  <p>{t.a}</p>
-                  <h6>Lösung:</h6>
-                  <p>{t.l}</p>
-                  <h6>Alternative Lösung:</h6>
-                  <p>{t.l2}</p>
-              </div>
-          )):  
-          <div className="task">
-          <p>No Aufgabe yet</p>
-          </div>}
-          <br/>
-          <div>
-          <div className="ce"><AddAufgabe /></div>
-          </div>
-          </div>
+            <h1>Aufgabe</h1>
+            <DisplayTasks/>
+            <br />
+            <div>
+                <div className="ce"><AddAufgabe /></div>
+            </div>
+        </div>
     );
 }

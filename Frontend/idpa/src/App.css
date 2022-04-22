@@ -153,3 +153,11 @@
 .right{
   right: 0px;
 }
+
+.deleteButton{
+  position: absolute;
+  /*background-color: red;
+  color: white;*/
+  right: 20px;
+  bottom: 10px;
+}
