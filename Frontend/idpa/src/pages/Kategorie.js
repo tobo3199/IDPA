@@ -5,10 +5,12 @@ import { Container, Paper, Button } from '@material-ui/core';
 import { getThemeProps } from '@mui/system';
 import { indigo } from '@mui/material/colors';
 import { Link } from 'react-router-dom';
+import { useNavigate, useParams } from "react-router";
 
-export default function Kategorie() {
+export default function Kategorie({param, RemoveParam}) {
     const [input, setInput] = useState("");
     const [categorys, setCategorys] = useState([]);
+    let navigate = useNavigate();
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -35,6 +37,15 @@ export default function Kategorie() {
     const handleChange = e => {
         setInput(e.target.value);
     }
+
+    useEffect(() => {
+        let authToken = sessionStorage.getItem("Auth Token");
+    
+        if (!authToken) {
+          navigate("/login");
+        }
+      }, []);
+    
     
     return (   
         <div>
@@ -46,6 +57,7 @@ export default function Kategorie() {
             {categorys.map((cat, index) => (
                 <div key={index}>
                     <Link to={`/kategorie/${cat.text}`}>{cat.text}</Link>
+                    <button type="button" className="btn btn-danger" onClick={(e) => RemoveParam(param, e)}>Remove</button>
                 </div>
             ))}
         </div>

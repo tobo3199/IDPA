@@ -14,11 +14,13 @@ import { DropdownButton } from "react-bootstrap";
 export default function Aufgabe(props){
     const { aufgabe } = useParams();
     const [tasks, setTasks] = useState([]);
+    const [mTasks, setMTasks] = useState([]);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [bem, setBem] = useState("");
     const [loesung, setLoesung] = useState("");
+    const [Aloesung, setALoesung] = useState("");
     const [loesung2, setLoesung2] = useState("");
     const [loesung3, setLoesung3] = useState("");
 
@@ -36,15 +38,19 @@ export default function Aufgabe(props){
 
     const [number, setNumber] = useState(0);
 
+    const [checkloesung, setCheckLosesung] = useState();
+
     const handleAufgabe = e => {
         e.preventDefault();
         setBem("");
         setLoesung("");
+        setALoesung("");
         handleClose();
 
         const object = {
             a : bem,
-            l : loesung
+            l : loesung,
+            l2: Aloesung
         };
 
         addArr(object);
@@ -53,10 +59,38 @@ export default function Aufgabe(props){
 
     }
 
+    const handleMultipleChoice = e => {
+        e.preventDefault();
+        setBem("");
+        setLoesung("")
+        setLoesung2("");
+        setLoesung3("");
+        setCheckLosesung("");
+
+        const mobject = {
+            a : bem,
+            1 : loesung,
+            2 : loesung2,
+            3 : loesung3,
+            c : checkloesung
+        }
+
+        addArrM(mobject)
+
+        console.log(mobject);
+    }
+
     const addArr = (object) => {
         const newTask = [...tasks, object];
         setTasks(newTask);
         console.log(tasks);
+    }
+
+    const addArrM = (object) => {
+        const newTaskM = [...mTasks, object];
+        setMTasks(newTaskM);
+        console.log("M Array:")
+        console.log(mTasks);
     }
 
     const handleChangeAufgabe = (e) => {
@@ -70,6 +104,11 @@ export default function Aufgabe(props){
         setLoesung(e.target.value);
     }
 
+    const handleChangeALoesung = (e) => {
+        e.preventDefault();
+        setALoesung(e.target.value);
+    }
+
     const handleChangeLoesung2 = (e) => {
         e.preventDefault();
         setLoesung2(e.target.value);
@@ -78,6 +117,11 @@ export default function Aufgabe(props){
     const handleChangeLoesung3 = (e) => {
         e.preventDefault();
         setLoesung3(e.target.value);
+    }
+
+    const handleCheckLoesung = (e) => {
+        e.preventDefault();
+        setCheckLosesung(e.target.value);
     }
 
     //Checkbox 1
@@ -125,6 +169,10 @@ export default function Aufgabe(props){
                         <label htmlFor="recipient-name" className="col-form-label">Lösung: </label>
                         <input type="text" className="form-control" id="bem" onChange={(e) => handleChangeLoesung(e)} value={loesung} ></input>
                     </div>
+                    <div>
+                        <label htmlFor="recipient-name" className="col-form-label">Alternative Lösung: </label>
+                        <input type="text" className="form-control" id="bem" onChange={(e) => handleChangeALoesung(e)} value={Aloesung} ></input>
+                    </div>
                     {/*
                         <div>
                             <label htmlFor="recipient-name" className="col-form-label">Status: </label>
@@ -160,18 +208,25 @@ export default function Aufgabe(props){
                 console.log("Multiple-Choice clicked");
                 return(
                     
-                    <form onSubmit={handleAufgabe}>
+                    <form onSubmit={handleMultipleChoice}>
                     <div>
                     <label htmlFor="recipient-name" className="col-form-label">Multiple-Choice: </label>
                     <br/>
-                        <label htmlFor="recipient-name" className="col-form-label">Aufgabe: </label>
+                        <label htmlFor="recipient-name" className="col-form-label">Aufgabenstellung: </label>
                         <input type="text" className="form-control" id="bem" onChange={handleChangeAufgabe} value={bem} ></input>
                     </div>
                     <div>
-                        <label htmlFor="recipient-name" className="col-form-label">Lösung: </label>
+                        <label htmlFor="recipient-name" className="col-form-label">Mögliche Antwort 1: </label>
                         <input type="text" className="form-control" id="bem" onChange={handleChangeLoesung} value={loesung} ></input>
+                        <label htmlFor="recipient-name" className="col-form-label">Mögliche Antwort 2: </label>
                         <input type="text" className="form-control" id="bem" onChange={handleChangeLoesung2} value={loesung2} ></input>
+                        <label htmlFor="recipient-name" className="col-form-label">Mögliche Antwort 3: </label>
                         <input type="text" className="form-control" id="bem" onChange={handleChangeLoesung3} value={loesung3} ></input>
+                        <label htmlFor="recipient-name" className="col-form-label">Richtige Antwort: </label>
+                        <br/>
+                        <input type="number" id="bem" onChange={handleCheckLoesung} value={checkloesung} min="1" max="3" ></input>
+
+                        
 
                         {/*
                         <input type="checkbox" className="form-control" id="bem" onChange={handleCheckers} checked={check} ></input>
@@ -254,7 +309,7 @@ export default function Aufgabe(props){
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>Schliessen</Button>
-                        <Button type="submit" onClick={handleAufgabe} variant="primary">Speichern</Button>
+                        <Button type="submit" onClick={number === 1 ? handleAufgabe : handleMultipleChoice} variant="primary">Speichern</Button>
 
                     </Modal.Footer>
                 </Modal>
@@ -272,18 +327,18 @@ export default function Aufgabe(props){
           </div>
     */
 
+
     return (
         <div>
           <h1>Aufgabe</h1>
-          
-          {tasks[0] ? tasks.map((t, index) => (
+          {tasks[0] || mTasks[0] ? tasks.map((t, index)=> (
               <div className="task" key={index}>
                   <p>Aufgabe {index + 1}</p>
                   <p>{t.a}</p>
                   <p>Lösung:</p>
-                  <input type="text"></input>
+                  <p>{t.l}</p>
               </div>
-          )) :  
+          )):  
           <div className="task">
           <p>No Aufgabe yet</p>
           </div>}

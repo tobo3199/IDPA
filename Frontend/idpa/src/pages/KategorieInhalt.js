@@ -1,18 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import '../App.css';
 import React from "react";
 
-
-export default function KategorieInhalt(props){
+export default function KategorieInhalt(props, {param, RemoveParam}){
     const { text } = useParams();
     const { theorie } = useParams();
     const [aufg, setAufgabe]  = useState();
-    const [theorieArray, setTheorieArray] = useState([{text: 123}]);
+    const [theorieArray, setTheorieArray] = useState([]);
 
-    console.log(text);
-    console.log(props);
+
+    useEffect(() => {
+      param = text;
+
+      console.log(text);
+      console.log("Param App: " + param);
+      console.log(props);
+    }, []);
+    
+
+
 
     const handleSubmit = e => {
       e.preventDefault();
@@ -62,6 +70,7 @@ export default function KategorieInhalt(props){
           {theorieArray?.map((t, index) => (
                 <div key={index}>
                     <Link to={`/kategorie/${text}/aufgabe/${t.theorie}`}>{t.theorie}</Link>
+                    <button className='button-border' type="button" class="btn btn-danger">Remove</button>
                 </div>
             ))}
         </div>

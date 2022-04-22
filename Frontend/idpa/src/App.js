@@ -28,19 +28,30 @@ function App() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState("");
+  const [param, setParam] = useState();
 
   const handleAction = (e) => {
     e.preventDefault();
     console.log(email, password);
     setUserEmail(email);
     if (email === "admin@kbw.ch") {
-      createUserWithEmailAndPassword(auth, email, password)
-        //signInWithEmailAndPassword(auth, email, password)
+      //createUserWithEmailAndPassword(auth, email, password)
+        signInWithEmailAndPassword(auth, email, password)
         .then((response) => {
           navigate("/kategorie");
-          sessionStorage.setItem("User", email);
+          sessionStorage.setItem("Auth Token", email);
           console.log(response);
           const user = response.user;
+          toast.success("Logged in succesfully!", {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
         });
     } else {
       console.log("Wrong email").catch((error) => {
@@ -59,6 +70,13 @@ function App() {
     }
   };
 
+  const RemoveParam = (param, e) => {
+    console.log("Remove Param param: ")
+    console.log(param);
+  };
+
+
+
   return (
     <div className="app">
       <Navbar />
@@ -66,8 +84,8 @@ function App() {
         <Route path="/student" element={<Student />} />
         <Route path="/kategorie" element={<Kategorie />} />
         <Route path="/kapitel" element={<Kapitel />} />
-        <Route path="/kategorie/:text" element={<KategorieInhalt />} />
-        <Route path="/kategorie/:text/aufgabe/:aufgabe" element={<Aufgabe />} />
+        <Route path="/kategorie/:text" element={<KategorieInhalt param = {param} removeParam = {(e) => RemoveParam(e)}/>} />
+        <Route path="/kategorie/:text/aufgabe/:aufgabe" element={<Aufgabe param = {param} removeParam = {(e) => RemoveParam(e)} />} />
         <Route
           path="/login"
           element={

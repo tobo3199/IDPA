@@ -8,6 +8,7 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate } from "react-router-dom";
 
+
 export default function ButtonAppBar() {
   const navigate = useNavigate();
 
@@ -25,6 +26,11 @@ export default function ButtonAppBar() {
 
   const navigateLogin = () => {
     navigate("/login");
+  };
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("Auth Token");
+    navigate("/student")
   };
 
   return (
@@ -69,6 +75,14 @@ export default function ButtonAppBar() {
             onClick={navigateLogin}
           >
             Login
+          </Typography>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1 }}
+            onClick={handleLogout}
+          >
+            Logout
           </Typography>
         </Toolbar>
       </AppBar>
