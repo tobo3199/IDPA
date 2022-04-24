@@ -155,6 +155,9 @@ export default function Aufgabe(props) {
         console.log(tasks);
     }
 
+    const handleEdit = () => {
+    }
+
     useEffect(() => {
         let authToken = sessionStorage.getItem("Auth Token");
     
@@ -368,7 +371,7 @@ export default function Aufgabe(props) {
                 <p>{t.l}</p>
                 <h6>Alternative Lösung:</h6>
                 <p>{t.l2}</p>
-                <Button className="editButton" >Edit</Button>
+                <Button className="editButton" onClick={handleEdit}>Edit</Button>
                 <Button className="deleteButton" onClick={() => deleteTask(index)}>Delete</Button>
             </div>
         )) :
