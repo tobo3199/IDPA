@@ -35,4 +35,9 @@ public class SentenceTransformationServiceImpl implements SentenceTransformation
     public void deleteSentenceTransformation(long id) {
         sentenceTransformationRepository.deleteById(id);
     }
+
+    @Override
+    public void findSentenceTransformation(long id) {
+        sentenceTransformationRepository.findById(id);
+    }
 }

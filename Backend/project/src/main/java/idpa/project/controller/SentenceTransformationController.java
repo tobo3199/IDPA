@@ -1,9 +1,6 @@
 package idpa.project.controller;
 
-import idpa.project.model.GrammatikThema;
-import idpa.project.model.Multiplechoice;
-import idpa.project.model.SentenceTransformation;
-import idpa.project.model.Uebung;
+import idpa.project.model.*;
 import idpa.project.service.SentenceTransformationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -44,5 +41,14 @@ public class SentenceTransformationController {
     public String deleteSentenceTransformation(@PathVariable long id){
         sentenceTransformationService.deleteSentenceTransformation(id);
         return "Sentencetransformation gelöscht";
+    }
+
+    @PostMapping ("/check")
+    public boolean checkSentenceTransformation(@RequestBody AntwortS antwortS){
+        SentenceTransformation sentenceTransformation = new SentenceTransformation(3);
+        String losung = "losung";
+        sentenceTransformationService.findSentenceTransformation(antwortS.getId());
+        return antwortS.getEingabe().equals(sentenceTransformation.getLoesung1());
+
     }
 }

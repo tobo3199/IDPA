@@ -44,4 +44,15 @@ public class MultiplechoiceController {
         multiplechoiceService.deleteMultiplechoice(id);
         return "Multiplechoice gelöscht";
     }
+
+    @GetMapping("/check")
+    public boolean checkMultiplechoice(@RequestBody int antwort){
+
+        Multiplechoice multiplechoice = new Multiplechoice(1);
+        if(antwort == multiplechoice.getKorrekteAntwort()){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

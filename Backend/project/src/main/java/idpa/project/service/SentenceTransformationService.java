@@ -11,4 +11,5 @@ public interface SentenceTransformationService {
     public SentenceTransformation saveSentenceTransformation(SentenceTransformation sentenceTransformation);
     public List<SentenceTransformation> getAllSentencetransformation(Uebung uebung);
     public void deleteSentenceTransformation(long id);
+    public void findSentenceTransformation(long id);
 }
