@@ -1,7 +1,8 @@
 package idpa.project.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Klasse:
@@ -10,19 +11,33 @@ import javax.persistence.Id;
  * @version:
  */
 @Entity
-public class Grammatikthema {
-    @Id
+public class GrammatikThema {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private long id;
     private String name;
+
     private int pin;
 
-    public Grammatikthema(String name, int pin) {
+    public GrammatikThema() {
+    }
+
+    public GrammatikThema(long id) {
+        this.id = id;
+    }
+
+    public GrammatikThema(String name, int pin) {
         this.name = name;
         this.pin = pin;
     }
 
-    public Grammatikthema() {
+    public long getId() {
+        return id;
+    }
 
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
