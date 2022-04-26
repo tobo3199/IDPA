@@ -226,6 +226,26 @@ export default function Aufgabe(props) {
         window.location.reload();
     }
 
+    const deleteMTask = (id, e) => {
+        /*
+        var temp = tasks;
+        console.log(temp);
+        tasks.splice(index, 1);
+        setTasks(temp);
+        console.log(tasks);
+        */
+        console.log(id);
+
+        fetch('http://localhost:3000/api/sentenceTransformation/' + id, {
+            method: 'DELETE'
+        })
+            .then(() => {
+                console.log("Sentence Transformation " + id + " deleted")
+            })
+
+        window.location.reload();
+    }
+
     const handleEdit = () => {
     }
 
@@ -496,7 +516,7 @@ export default function Aufgabe(props) {
                     <h6>Richtige Antwort:</h6>
                     <p>{t.korrekteAntwort}</p>
                     <Button className="editButton" onClick={handleEdit}>Edit</Button>
-                    <Button className="deleteButton" onClick={() => deleteTask(t.id)}>Delete</Button>
+                    <Button className="deleteButton" onClick={() => deleteMTask(t.id)}>Delete</Button>
                 </div>
             )) :
                 <div className="task">
