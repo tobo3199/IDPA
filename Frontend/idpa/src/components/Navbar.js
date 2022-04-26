@@ -34,7 +34,7 @@ export default function Navbar() {
 
   const handleLogout = () => {
     sessionStorage.removeItem("Auth Token");
-    navigate("/student")
+    navigate("/login")
   };
 
   const handleStart = () => {
@@ -103,8 +103,8 @@ export default function Navbar() {
   return (
     <div className="nav container">
       <a onClick={handleStart}><img src={navbarlogo} alt="" className="navimg" ></img></a>
-      <a className="btn">Administration</a>
-      <a className="btn">Logout</a>
+      <a onClick={navigateLogin} className="btn">Administration</a>
+      <a onClick={handleLogout} className="btn">Logout</a>
     </div>
   );
 }

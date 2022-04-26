@@ -24,6 +24,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import Landing from "./pages/Landing";
 import { Nav } from "react-bootstrap";
+import Schueler from "./pages/Schueler";
 
 function App() {
   const [email, setEmail] = useState("");
@@ -38,7 +39,7 @@ function App() {
     setUserEmail(email);
     if (email === "admin@kbw.ch") {
       //createUserWithEmailAndPassword(auth, email, password)
-        signInWithEmailAndPassword(auth, email, password)
+      signInWithEmailAndPassword(auth, email, password)
         .then((response) => {
           navigate("/thema");
           sessionStorage.setItem("Auth Token", email);
@@ -77,20 +78,25 @@ function App() {
     console.log(param);
   };
 
-//<Navbar />
+  //<Navbar />
 
   return (
     <div className="app">
       <>
-      {  window.location.pathname === "/" ? <Landing/> : <Navbar/>  }
+        {window.location.pathname === "/" ? <Landing /> : <Navbar />}
       </>
-      
+
       <Routes>
         <Route path="/student" element={<Student />} />
         <Route path="/thema" element={<Kategorie />} />
         <Route path="/kapitel" element={<Kapitel />} />
-        <Route path="/thema/:ide" element={<KategorieInhalt param = {param} removeParam = {(e) => RemoveParam(e)}/>} />
-        <Route path="/thema/:ide/aufgabe/:aufgabe" element={<Aufgabe param = {param} removeParam = {(e) => RemoveParam(e)} />} />
+        <Route path="/schueler-login" element={<Schueler
+          title="Login"
+          setEmail={setEmail}
+          setPassword={setPassword}
+          handleAction={(e) => handleAction(e)} />} />
+        <Route path="/thema/:ide" element={<KategorieInhalt param={param} removeParam={(e) => RemoveParam(e)} />} />
+        <Route path="/thema/:ide/aufgabe/:aufgabe" element={<Aufgabe param={param} removeParam={(e) => RemoveParam(e)} />} />
         <Route
           path="/login"
           element={
@@ -99,7 +105,7 @@ function App() {
               setEmail={setEmail}
               setPassword={setPassword}
               handleAction={(e) => handleAction(e)}
-              //toast={ToastContainer}
+            //toast={ToastContainer}
             />
           }
         />
@@ -115,8 +121,8 @@ function App() {
         draggable
         pauseOnHover
       />
-        
-        
+
+
     </div>
   );
 }
