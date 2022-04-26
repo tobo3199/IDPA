@@ -22,7 +22,8 @@ export default function Landing() {
       };
 
     return (
-        <div className="main-container">
+        <body className='body-landing'>
+          <div className="main-container" >
             <div className="left-container">
                 <img src={title} alt="Titlepic"></img>
                 <button className="button-landing" onClick={handleStart}>Start</button>
@@ -45,6 +46,7 @@ export default function Landing() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div>  
+        </body>  
     );
 }

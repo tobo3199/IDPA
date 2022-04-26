@@ -8,6 +8,7 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate } from "react-router-dom";
 import "../Landing.css";
+import "../login.css";
 import logo from "../images/logo.png";
 import navbarlogo from "../images/navbar.png";
 
@@ -103,8 +104,11 @@ export default function Navbar() {
   return (
     <div className="nav container">
       <a onClick={handleStart}><img src={navbarlogo} alt="" className="navimg" ></img></a>
-      <a onClick={navigateLogin} className="btn">Administration</a>
-      <a onClick={handleLogout} className="btn">Logout</a>
+      <div className="second-container">
+        <a onClick={navigateLogin} className="btn-nav">Administration</a>
+      <a onClick={handleLogout} className="btn-nav">Logout</a>
+      </div>
+      
     </div>
   );
 }

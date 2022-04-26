@@ -1,8 +1,11 @@
-/*
-*{
+
+/* * .body-landing{
+    overflow: hidden;
+} */
+html {
+    height: 100%;
     overflow: hidden;
 }
-*/
 
 .body-landing {
     margin:0;
@@ -14,7 +17,7 @@
   
   .main-container {
       display: flex;
-      overflow: hidden;
+      /* overflow: hidden; */
   }
   
   .left-container {
@@ -26,7 +29,8 @@
       justify-content: center;
       align-items: center;
       flex-flow: column;
-      overflow-y: hidden;
+      overflow: hidden;
+      /* background: #fff; */
   }
   .right-container {
       width: 30%;
@@ -34,7 +38,7 @@
       height: 100%;
       /* border: 1px solid green; */
       background: #FADB61;
-      overflow-y: hidden;
+      overflow: hidden;
   }
   
   .right-container .login-box {
@@ -114,4 +118,27 @@
     object-position: 50% 50%;
     margin-left: 50px;
 
+}
+
+.btn-nav {
+    padding: 8px 22px;
+    background: #4E4EEC;
+    color: #fff;
+    border-radius: 5rem;
+    transition: .5s;
+}
+
+.btn-nav:hover {
+    background: #fff;
+    color: var(--main-color);
+    background: var(--second-color);
+    box-shadow: 0 0 2px #FADB61,
+                0 0 8px #FADB61,
+                0 0 16px #FADB61,
+                0 0 32px #FADB61;
+}
+
+.second-container {
+    display: flex;
+    justify-content: space-between;
 }
