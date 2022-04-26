@@ -6,6 +6,7 @@ import { getThemeProps } from '@mui/system';
 import { indigo } from '@mui/material/colors';
 import { Link } from 'react-router-dom';
 import { useNavigate, useParams } from "react-router";
+import "../kategorie.css";
 
 export default function Kategorie({param, RemoveParam}) {
     const [input, setInput] = useState("");
@@ -84,8 +85,12 @@ export default function Kategorie({param, RemoveParam}) {
         <>
         <div>
         <form className='todo-form' onSubmit={handleSubmit}>
-            <input type="text" placeholder="add category" value={input} name="category" className="cat-input" onChange={handleChange}></input>
-            <input type="text" placeholder="pin" value={pin} name="category" className="cat-input" onChange={handlePin}></input>
+            <label className='custom-field two'>
+                <input type="text" placeholder="Add Category" value={input} name="category" className="cat-input" onChange={handleChange}></input>
+            </label>
+            <label className='custom-field two'>
+                <input type="text" placeholder="New Pin" value={pin} name="category" className="cat-input" onChange={handlePin}></input>            
+            </label>
             <button className='cat-button'>Add Category</button>
         </form>
                 <div>

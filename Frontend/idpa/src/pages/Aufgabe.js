@@ -9,6 +9,7 @@ import { AddAlarmRounded, LocalSeeSharp } from "@mui/icons-material";
 import { Dropdown } from "react-bootstrap";
 import { DropdownButton } from "react-bootstrap";
 import { useNavigate} from "react-router";
+import "../aufgabe.css";
 
 
 
@@ -391,7 +392,7 @@ export default function Aufgabe(props) {
 
     return (
         <div>
-            <h1>Aufgabe</h1>
+            <h1 className="task-title">Aufgaben</h1>
             <DisplayTasks/>
             <br />
             <div>

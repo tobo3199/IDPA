@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import '../App.css';
 import React from "react";
 import { useNavigate} from "react-router";
+import "../kategorieinhalt.css";
 
 export default function KategorieInhalt(props, { param, RemoveParam }) {
   const { text } = useParams();
@@ -73,15 +74,20 @@ export default function KategorieInhalt(props, { param, RemoveParam }) {
 
 
   return (
-    <div>
+    <div className="body-theorie">
       <h1>Theorie</h1>
       <div className="file">
-        <p>File upload</p>
+        <form action="/action_page.php">
+          <input type="file" id="myFile" name="filename"></input>
+          <input type="submit"></input>
+        </form>
       </div>
       <h1>Aufgaben</h1>
       <div className="theorie">
         <form className='todo-form' onSubmit={handleSubmit}>
-          <input type="text" placeholder="add aufgaben" value={aufg} name="theorie" className="cat-input" onChange={handleAufgabe}></input>
+          <label className='custom-field two'>
+            <input type="text" placeholder="add aufgaben" value={aufg} name="theorie" className="cat-input" onChange={handleAufgabe}></input>            
+          </label>
           <button className='cat-button'>Add Aufgabe</button>
         </form>
 
