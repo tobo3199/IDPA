@@ -3,8 +3,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { Container, Paper, Button } from "@material-ui/core";
 import "../login.css";
+import { useNavigate } from "react-router";
 
 export default function Login({ title, setEmail, setPassword, handleAction }) {
+  const navigate = useNavigate();
   /*<form onSubmit={handleAction}>
         <h2>Login:</h2>
         <input
@@ -23,6 +25,17 @@ export default function Login({ title, setEmail, setPassword, handleAction }) {
         <br />
         <button type="submit">Login</button>
       </form>*/
+
+      useEffect(() => {
+        let authToken = sessionStorage.getItem("Auth Token");
+
+        /*
+        if(authToken && authToken === "admin@kbw.ch"){
+          navigate("/kategorie")
+        }
+        */
+  
+      }, []);
   return (
 
         <div className="login-box">

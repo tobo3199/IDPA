@@ -11,11 +11,14 @@ import "../Landing.css";
 import "../login.css";
 import logo from "../images/logo.png";
 import navbarlogo from "../images/navbar.png";
+import { useEffect } from "react";
+import { useState } from "react";
 
 
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const [token, setToken] = useState("");
 
   const navigateStudent = () => {
     navigate("/student");
@@ -33,9 +36,13 @@ export default function Navbar() {
     navigate("/login");
   };
 
+  const navigateSchueler = () => {
+    navigate("/schueler-login");
+  }
+
   const handleLogout = () => {
     sessionStorage.removeItem("Auth Token");
-    navigate("/login")
+    navigate("/schueler-login")
   };
 
   const handleStart = () => {
@@ -101,14 +108,27 @@ export default function Navbar() {
 
   */
 
+  useEffect(() => {
+    let authToken = sessionStorage.getItem("Auth Token");
+
+    if (!authToken) {
+      setToken("false");
+
+    }
+
+    if (authToken) {
+      setToken("true");
+    }
+  }, []);
+
   return (
     <div className="nav container">
       <a onClick={handleStart}><img src={navbarlogo} alt="" className="navimg" ></img></a>
       <div className="second-container">
-        <a onClick={navigateLogin} className="btn-nav">Administration</a>
-      <a onClick={handleLogout} className="btn-nav">Logout</a>
+        {window.location.pathname === "/schueler-login" ? <a onClick={navigateLogin} className="btn-nav">Administration</a> : <a onClick={navigateSchueler} className="btn-nav">Schüler</a>}
+        {window.location.pathname != "/schueler-login" && window.location.pathname != "/login" ? <a onClick={handleLogout} className="btn-nav">Logout</a> : <a></a>}
       </div>
-      
+
     </div>
   );
 }

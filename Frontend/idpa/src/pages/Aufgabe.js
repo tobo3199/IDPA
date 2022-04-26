@@ -540,8 +540,18 @@ export default function Aufgabe(props) {
     // {number === 1 ? <DisplayTasks /> : number === 2 ? <DisplayMultipleChoices /> : <DisplayTasks />}
     return (
         <div>
-            <h1 className="task-title">Aufgaben</h1>
-            <DisplayTasks/>
+            <h1>Aufgabe</h1>
+            <div>
+                <br />
+                <h4>Sentence Transformations: </h4>
+                <DisplayTasks />
+            </div>
+            <br />
+            <div>
+                <br />
+                <h4>Mutlitple Choices: </h4>
+                <DisplayMultipleChoices />
+            </div>
             <br />
             <div>
                 <div className="ce"><AddAufgabe /></div>
