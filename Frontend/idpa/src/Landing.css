@@ -1,0 +1,117 @@
+/*
+*{
+    overflow: hidden;
+}
+*/
+
+.body-landing {
+    margin:0;
+    padding:0;
+    font-family: sans-serif;
+    background: #fff;
+    overflow: hidden;
+  }
+  
+  .main-container {
+      display: flex;
+      overflow: hidden;
+  }
+  
+  .left-container {
+      width: 70%;
+      min-height: 1000px;
+      height: 100%;
+      /* border: 1px solid red; */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-flow: column;
+      overflow-y: hidden;
+  }
+  .right-container {
+      width: 30%;
+      min-height: 1000px;
+      height: 100%;
+      /* border: 1px solid green; */
+      background: #FADB61;
+      overflow-y: hidden;
+  }
+  
+  .right-container .login-box {
+      transition: 2s ease;
+      position: absolute;
+  }
+  
+  .right-container .login-box:hover {
+      transform: translateY(-200px);
+       transform: translateX(-50px); 
+  }
+  
+  .left-container img {
+      height: 100%;
+      width: 600px;
+  }
+  
+  .left-container .button-landing {
+      background: #4E4EEC;
+      color: #fff;
+      border-radius: 5rem;
+      transition: .8s;
+      margin-top: 40px;
+      font-size: 25px;
+      padding: 10px 65px 10px 65px;
+  }
+  
+  .left-container .button-landing:hover {
+      color: #4E4EEC;
+      background: #FADB61;
+      box-shadow: 0 0 2px #FADB61,
+                  0 0 8px #FADB61,
+                  0 0 16px #FADB61,
+                  0 0 32px #FADB61;
+  }
+  
+  .landing {
+      margin-left: 25%;
+  }
+  
+  .user-box p {
+      color: #D8D8D8;
+      padding-bottom: 20px;
+      padding-left: 30px;
+  }
+  
+  .user-box img {
+      height: 32px;
+      width: 32px;
+  }
+  
+  .login-box h1 {
+      color: #fff;
+      font-weight: 700;
+      padding-bottom: 10px;
+      font-size: 26px;
+      padding-bottom: 30px;
+  }
+  
+  .login-box h3 {
+      text-transform: uppercase;
+      color: #fff;
+      letter-spacing: 10px;
+      font-weight: 400;
+      padding-bottom: 10px;
+      font-size: 16px;
+  }
+  
+  .flexbox {
+      display: flex;
+  }
+
+  .navimg {
+    width: 200px;
+    height: 100%;
+    object-fit:cover;
+    object-position: 50% 50%;
+    margin-left: 50px;
+
+}

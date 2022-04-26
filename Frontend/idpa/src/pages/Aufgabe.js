@@ -8,7 +8,8 @@ import { useEffect } from "react";
 import { AddAlarmRounded, LocalSeeSharp } from "@mui/icons-material";
 import { Dropdown } from "react-bootstrap";
 import { DropdownButton } from "react-bootstrap";
-import { useNavigate } from "react-router";
+import { useNavigate} from "react-router";
+import "../aufgabe.css";
 
 
 
@@ -539,18 +540,8 @@ export default function Aufgabe(props) {
     // {number === 1 ? <DisplayTasks /> : number === 2 ? <DisplayMultipleChoices /> : <DisplayTasks />}
     return (
         <div>
-            <h1>Aufgabe</h1>
-            <div>
-                <br />
-                <h4>Sentence Transformations: </h4>
-                <DisplayTasks />
-            </div>
-            <br />
-            <div>
-                <br />
-                <h4>Mutlitple Choices: </h4>
-                <DisplayMultipleChoices />
-            </div>
+            <h1 className="task-title">Aufgaben</h1>
+            <DisplayTasks/>
             <br />
             <div>
                 <div className="ce"><AddAufgabe /></div>

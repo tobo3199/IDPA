@@ -1,0 +1,72 @@
+.body-theorie{
+    margin: 40px;
+    margin-bottom: 50px;
+}
+
+.file {
+    margin-bottom: 40px;
+}
+
+#myFile .btn {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #1976D2;
+  background: #fff;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 20px;
+  letter-spacing: 4px;
+  border-radius: 5rem;
+  border: none;
+  width: 100%;
+}
+
+.custom-field {
+    position: relative;
+    font-size: 14px;
+    border-top: 20px solid transparent;
+    margin-bottom: 5px;
+    --field-padding: 12px;
+    background: none;
+  }
+  
+  .custom-field input {
+    border: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* background: #f2f2f2; */
+    padding: var(--field-padding);
+    border-radius: 3px;
+    width: 250px;
+    outline: none;
+    font-size: 14px;
+    margin-right: 20px;
+    padding-bottom: 5px;
+  }
+  
+  .custom-field.two input {
+      border-radius: 0;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+      background:
+        linear-gradient(90deg, #1976D2, #1976D2) center bottom/0 0.15em no-repeat,
+        linear-gradient(90deg, #afc5da, #afc5da) left bottom/100% 0.15em no-repeat,
+        linear-gradient(90deg, #fafafa, #fafafa) left bottom/100% no-repeat;
+      transition: background-size 0.3s ease;
+    }
+    
+    .custom-field.two input.dirty,
+    .custom-field.two input:not(:placeholder-shown),
+    .custom-field.two input:focus {
+      background-size: 100% 0.15em, 100% 0.1em, 100%;
+    }
+
+    .table{
+      overflow: scroll;
+    }

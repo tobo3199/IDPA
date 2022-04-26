@@ -22,6 +22,8 @@ import { auth } from "./firebase-config";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import Landing from "./pages/Landing";
+import { Nav } from "react-bootstrap";
 
 function App() {
   const [email, setEmail] = useState("");
@@ -75,11 +77,14 @@ function App() {
     console.log(param);
   };
 
-
+//<Navbar />
 
   return (
     <div className="app">
-      <Navbar />
+      <>
+      {  window.location.pathname === "/" ? <Landing/> : <Navbar/>  }
+      </>
+      
       <Routes>
         <Route path="/student" element={<Student />} />
         <Route path="/thema" element={<Kategorie />} />
@@ -110,6 +115,8 @@ function App() {
         draggable
         pauseOnHover
       />
+        
+        
     </div>
   );
 }

@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 import '../App.css';
 import React from "react";
 import { useNavigate } from "react-router";
+import "../kategorieinhalt.css";
+import GetFiles from '../components/GetFiles';
+import UploadFile from '../components/UploadFile';
+import { Container, Row, Col } from "react-bootstrap";
 
 export default function KategorieInhalt(props, { param, RemoveParam }) {
   const { ide } = useParams();
@@ -157,20 +161,34 @@ export default function KategorieInhalt(props, { param, RemoveParam }) {
 
 
 
-
+  /*
+  <form action="/action_page.php">
+            <input type="file" id="myFile" name="filename"></input>
+            <input type="submit"></input>
+          </form>
+  */
 
 
 
   return (
-    <div>
+    <div className="body-theorie">
       <h1>Theorie</h1>
       <div className="file">
-        <p>File upload</p>
+        <Container>
+          <Row>
+            <UploadFile />
+          </Row>
+          <Row>
+            <GetFiles />
+          </Row>
+        </Container>
       </div>
       <h1>Aufgaben</h1>
       <div className="theorie">
         <form className='todo-form' onSubmit={handleSubmit}>
-          <input type="text" placeholder="add aufgaben" value={aufg} name="theorie" className="cat-input" onChange={handleAufgabe}></input>
+          <label className='custom-field two'>
+            <input type="text" placeholder="add aufgaben" value={aufg} name="theorie" className="cat-input" onChange={handleAufgabe}></input>
+          </label>
           <button className='cat-button'>Add Aufgabe</button>
         </form>
 
