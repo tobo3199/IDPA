@@ -3,58 +3,113 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import '../App.css';
 import React from "react";
-import { useNavigate} from "react-router";
+import { useNavigate } from "react-router";
 
 export default function KategorieInhalt(props, { param, RemoveParam }) {
-  const { text } = useParams();
+  const { ide } = useParams();
   const { theorie } = useParams();
   const [aufg, setAufgabe] = useState();
   const [theorieArray, setTheorieArray] = useState([]);
+  const [grammatikthemas, setGrammatikthemas] = useState([]);
+  const [fetchObject, setFetchObject] = useState();
+  const [objectid, setObjectid] = useState(ide - 1);
   let navigate = useNavigate();
 
 
+  /*
   useEffect(() => {
-    param = text;
+    
+    param = id;
 
-    console.log(text);
+    console.log(id);
     console.log("Param App: " + param);
     console.log(props);
+    
   }, []);
-
+  */
 
 
 
   const handleSubmit = e => {
-    e.preventDefault();
+
     console.log(e.target.value);
 
 
-    const object = {
-      theorie: aufg
+    /*
+    fetch('http://localhost:3000/api/uebung/id/' + ide, {
+      method: 'GET'
+    })
+      .then(res => res.json())
+      .then((result) => {
+        console.log(result);
+        setFetchObject(result);
+      }
+      )
+      */
+
+    const uebung = {
+      name: aufg,
+      grammatikThema: {
+        id: fetchObject.id,
+        name: fetchObject.name,
+        pin: fetchObject.pin
+      }
+
+      /*
+      grammatikthema : {
+        name : fetchObject.name,
+        pin : fetchObject.pin
+      }
+      */
     }
 
     setAufgabe("");
 
-    console.log(object);
+    console.log(uebung);
 
-    addArray(object);
+    addArray(uebung);
+
+    fetch("http://localhost:3000/api/uebung/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(uebung)
+
+    }).then(() => {
+      console.log("New Uebung added")
+    })
+
+    window.location.reload();
   }
 
   const addArray = auf => {
+    /*
     console.log("Object:")
     console.log(auf);
+
+    
 
     const newAuf = [...theorieArray, auf];
     setTheorieArray(newAuf);
     console.log("Array:")
     console.log(...theorieArray, auf);
+    */
   }
 
   const handleAufgabe = e => {
-    console.log("called")
     setAufgabe(e.target.value);
   }
 
+  const handleDelete = (id, e) => {
+
+    fetch('http://localhost:3000/api/uebung/' + id, {
+      method: 'DELETE'
+    })
+      .then(() => {
+        console.log("Uebung " + id + " deleted")
+      })
+
+    window.location.reload();
+  }
   /*
               <div key={index}>
                   <Link to={`/kategorie/${text}/aufgabe/${t.theorie}`}>{t.theorie}</Link>
@@ -68,7 +123,41 @@ export default function KategorieInhalt(props, { param, RemoveParam }) {
     if (!authToken) {
       navigate("/login");
     }
+
+    const getUebungen = () => {
+
+    }
+
+
+    //Umändern!!!
+
+    fetch('http://localhost:3000/api/grammatikthema/id/' + ide, {
+      method: 'GET'
+    })
+      .then(res => res.json())
+      .then((result) => {
+        console.log(result);
+        setFetchObject(result);
+      }
+      )
+
+    fetch("http://localhost:3000/api/uebung/" + ide)
+      .then(res => res.json())
+      .then((result) => {
+        setTheorieArray(result);
+        console.log("TheorieArray GET:");
+        console.log(theorieArray);
+      }
+      )
+
+
+
+
   }, []);
+
+
+
+
 
 
 
@@ -98,8 +187,8 @@ export default function KategorieInhalt(props, { param, RemoveParam }) {
               <>
                 <tr key={index}>
                   <td></td>
-                  <td><Link to={`/kategorie/${text}/aufgabe/${t.theorie}`}>{t.theorie}</Link></td>
-                  <td><button className='button-border' type="button" class="btn btn-danger">Delete</button></td>
+                  <td><Link to={`/thema/${ide}/aufgabe/${t.id}`}>{t.name}</Link></td>
+                  <td><button className='button-border' type="button" class="btn btn-danger" onClick={() => handleDelete(t.id)}>Delete</button></td>
                 </tr>
 
 

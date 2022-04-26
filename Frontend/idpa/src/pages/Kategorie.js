@@ -7,24 +7,39 @@ import { indigo } from '@mui/material/colors';
 import { Link } from 'react-router-dom';
 import { useNavigate, useParams } from "react-router";
 
-export default function Kategorie({param, RemoveParam}) {
-    const [input, setInput] = useState("");
+export default function Kategorie({ param, RemoveParam }) {
+    const [name, setName] = useState("");
     const [pin, setPin] = useState("");
     const [categorys, setCategorys] = useState([]);
     let navigate = useNavigate();
 
     const handleSubmit = e => {
-        e.preventDefault();
+        window.location.reload();
 
+        /*
         const object = {
-            text: input,
+            text: name,
             p: pin
         }
+        */
 
-        setInput("");
+        setName("");
         setPin("");
 
-        addArr(object);
+        //addArr(object);
+
+        e.preventDefault()
+        const grammatikthema = { name, pin }
+        console.log(grammatikthema)
+
+        fetch("http://localhost:3000/api/grammatikthema/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(grammatikthema)
+
+        }).then(() => {
+            console.log("New Grammatikthema added")
+        })
     }
 
     const addArr = cat => {
@@ -33,29 +48,12 @@ export default function Kategorie({param, RemoveParam}) {
 
         const newCats = [...categorys, cat];
         setCategorys(newCats);
-        //console.log("Array:")
-        //console.log( ...categorys, cat);
-    }
-
-
-    const removeCatergory = cat => {
-        var tCat = categorys;
-        console.log(tCat);
-        var index = categorys.indexOf(cat);
-        console.log("index");
-        console.log(index);
-        tCat.splice(index, 1);
-        setCategorys(tCat);
-        //categorys.splice(index, 1);
-        console.log(categorys);
-    }
-
-    const removeCategory = (cat) => {
-        console.log(cat);
+        console.log("Array:")
+        console.log(...categorys, cat);
     }
 
     const handleChange = e => {
-        setInput(e.target.value);
+        setName(e.target.value);
     }
 
     const handlePin = e => {
@@ -64,50 +62,74 @@ export default function Kategorie({param, RemoveParam}) {
 
     useEffect(() => {
         let authToken = sessionStorage.getItem("Auth Token");
-    
+
         if (!authToken) {
-          navigate("/login");
+            navigate("/login");
         }
-      }, []);
-    
-      /*
-                <div className='border' key={index}>
-                    <Link className='text' to={`/kategorie/${cat.text}`}>{cat.text}</Link>
-                    <div className="sameLine">
-                        <input className='pin' type="text" value={"Pin: " + cat.p }></input>
-                        <button className="button" type="button" class="btn btn-danger" onClick={() => removeCategory(cat)}>Delete</button>
-                    </div>
-                </div>
-      */
-    
-    return (   
+
+        fetch("http://localhost:3000/api/grammatikthema/")
+            .then(res => res.json())
+            .then((result) => {
+                setCategorys(result);
+            }
+            )
+    }, []);
+
+    const refresh = () => {
+        window.location.reload();
+    }
+
+    const handleDelete = (id, e) => {
+        window.location.reload();
+        console.log("ID: " + id);
+        fetch('http://localhost:3000/api/grammatikthema/' + id, {
+            method: 'DELETE'
+        })
+            .then(() => {
+                console.log("Grammatikthema " + id + " deleted")
+            })
+    }
+
+    /*
+              <div className='border' key={index}>
+                  <Link className='text' to={`/kategorie/${cat.text}`}>{cat.text}</Link>
+                  <div className="sameLine">
+                      <input className='pin' type="text" value={"Pin: " + cat.p }></input>
+                      <button className="button" type="button" class="btn btn-danger" onClick={() => removeCategory(cat)}>Delete</button>
+                  </div>
+              </div>
+
+              onClick={() => removeCategory(cat)}
+    */
+
+    return (
         <>
-        <div>
-        <form className='todo-form' onSubmit={handleSubmit}>
-            <input type="text" placeholder="add category" value={input} name="category" className="cat-input" onChange={handleChange}></input>
-            <input type="text" placeholder="pin" value={pin} name="category" className="cat-input" onChange={handlePin}></input>
-            <button className='cat-button'>Add Category</button>
-        </form>
+            <div>
+                <form className='todo-form' onSubmit={handleSubmit}>
+                    <input type="text" placeholder="add category" value={name} name="category" className="cat-input" onChange={handleChange}></input>
+                    <input type="text" placeholder="pin" value={pin} name="category" className="cat-input" onChange={handlePin}></input>
+                    <button className='cat-button'>Add Category</button>
+                </form>
                 <div>
-                <table className="table">
-                    
-                <tr>
-                    <th>Category:</th>
-                    <th>PIN:</th>
-                    <th></th>
-                </tr>
-                {categorys.map((cat, index) => (
-                    <>
-                    <tr key={index}>
-                    <td><Link className='text' to={`/kategorie/${cat.text}`}>{cat.text}</Link></td>
-                    <td><input className='pin' type="text" value={"Pin: " + cat.p }></input></td>
-                    <td><button className="button" type="button" class="btn btn-danger" onClick={() => removeCategory(cat)}>Delete</button></td>
-                    </tr>
-                </>
-            ))}
-            </table>
+                    <table className="table">
+
+                        <tr>
+                            <th>Category:</th>
+                            <th>PIN:</th>
+                            <th></th>
+                        </tr>
+                        {categorys.map((cat, index) => (
+                            <>
+                                <tr onChange={refresh} key={cat.id}>
+                                    <td><Link className='text' to={`/thema/${cat.id}`}>{cat.name}</Link></td>
+                                    <td><input className='pin' type="text" value={"Pin: " + cat.pin}></input></td>
+                                    <td><button className="button" type="button" class="btn btn-danger" onClick={(e) => handleDelete(cat.id, e)} >Delete</button></td>
+                                </tr>
+                            </>
+                        ))}
+                    </table>
+                </div>
             </div>
-        </div>
         </>
     );
 }

@@ -17,7 +17,7 @@ export default function ButtonAppBar() {
   };
 
   const navigateKategorie = () => {
-    navigate("/kategorie");
+    navigate("/thema");
   };
 
   const navigateKapitel = () => {

@@ -8,13 +8,14 @@ import { useEffect } from "react";
 import { AddAlarmRounded, LocalSeeSharp } from "@mui/icons-material";
 import { Dropdown } from "react-bootstrap";
 import { DropdownButton } from "react-bootstrap";
-import { useNavigate} from "react-router";
+import { useNavigate } from "react-router";
 
 
 
 export default function Aufgabe(props) {
     let navigate = useNavigate();
     const { aufgabe } = useParams();
+    const [uebungO, setUebungO] = useState();
     const [tasks, setTasks] = useState([]);
     const [mTasks, setMTasks] = useState([]);
     const [show, setShow] = useState(false);
@@ -52,22 +53,51 @@ export default function Aufgabe(props) {
     const [checkloesung, setCheckLosesung] = useState();
 
     const handleAufgabe = e => {
-        console.log("submit");
         e.preventDefault();
         setBem("");
         setLoesung("");
         setALoesung("");
         handleClose();
 
+        /*
         const object = {
             a: auf,
             l: l1,
             l2: l2
         };
+        */
+
+
+
+        const object = {
+            aufgabenstellung: auf,
+            loesung1: l1,
+            loesung2: l2,
+            uebung: {
+                id: uebungO.id,
+                grammatikThema: {
+                    id: uebungO.grammatikThema.id,
+                },
+
+            }
+        }
+
+        // ändern zu grammatikthema id -> und backend herausfinden wie machen
 
         addArr(object);
 
         console.log(object);
+
+        fetch("http://localhost:3000/api/sentenceTransformation/add", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(object)
+
+        }).then(() => {
+            console.log("New Sentence Transformation added")
+        })
+
+        window.location.reload();
 
     }
 
@@ -87,15 +117,44 @@ export default function Aufgabe(props) {
             c: l
         }
 
-        addArrM(mobject)
+        const object = {
+            aufgabenstellung: mauf,
+            antwort1: ml1,
+            antwort2: ml2,
+            antwort3: ml3,
+            korrekteAntwort: l,
+            uebung: {
+                id: uebungO.id,
+                grammatikThema: {
+                    id: uebungO.grammatikThema.id,
+                },
 
-        console.log(mobject);
+            }
+        }
+
+        //addArrM(mobject)
+
+        fetch("http://localhost:3000/api/multiplechoice/add", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(object)
+
+        }).then(() => {
+            console.log("New Multiple-Choice added ")
+            console.log(object);
+        })
+
+        window.location.reload();
+
+
     }
 
     const addArr = (object) => {
+        /*
         const newTask = [...tasks, object];
         setTasks(newTask);
         console.log(tasks);
+        */
     }
 
     const addArrM = (object) => {
@@ -147,24 +206,63 @@ export default function Aufgabe(props) {
         l = e.target.value;
     }
 
-    const deleteTask = (index) => {
+    const deleteTask = (id, e) => {
+        /*
         var temp = tasks;
         console.log(temp);
         tasks.splice(index, 1);
         setTasks(temp);
         console.log(tasks);
+        */
+        console.log(id);
+
+        fetch('http://localhost:3000/api/sentenceTransformation/' + id, {
+            method: 'DELETE'
+        })
+            .then(() => {
+                console.log("Sentence Transformation " + id + " deleted")
+            })
+
+        window.location.reload();
     }
 
     const handleEdit = () => {
     }
 
+
+
     useEffect(() => {
         let authToken = sessionStorage.getItem("Auth Token");
-    
+
         if (!authToken) {
-          navigate("/login");
+            navigate("/login");
         }
-      }, []);
+
+        fetch('http://localhost:3000/api/uebung/id/' + aufgabe, {
+            method: 'GET'
+        })
+            .then(res => res.json())
+            .then((result) => {
+                console.log(result);
+                setUebungO(result);
+
+            }
+            )
+
+        fetch("http://localhost:3000/api/sentenceTransformation/" + aufgabe)
+            .then(res => res.json())
+            .then((result) => {
+                setTasks(result);
+            }
+            )
+
+        fetch("http://localhost:3000/api/multiplechoice/" + aufgabe)
+            .then(res => res.json())
+            .then((result) => {
+                setMTasks(result);
+            }
+            )
+    }, []);
 
     /*
     const editTask = (task) => {
@@ -294,11 +392,11 @@ export default function Aufgabe(props) {
                                 </div>
                                 */}
                             </form>
-                            : number === 0 ? 
-                            <p>Please select a excercise type</p>
+                            : number === 0 ?
+                                <p>Please select a excercise type</p>
 
-                            :
-                            <p>Please select a excercise type</p>
+                                :
+                                <p>Please select a excercise type</p>
                 }
             </div>
 
@@ -360,24 +458,50 @@ export default function Aufgabe(props) {
     //onClick={() => editTask(t)}
 
     function DisplayTasks() {
-        return(
-        tasks[0] || mTasks[0] ? tasks.map((t, index) => (
-            <div className="task" key={index}>
-                <h4>Aufgabe {index + 1}</h4>
-                <br />
-                <h6>Aufgabenstellung</h6>
-                <p>{t.a}</p>
-                <h6>Lösung:</h6>
-                <p>{t.l}</p>
-                <h6>Alternative Lösung:</h6>
-                <p>{t.l2}</p>
-                <Button className="editButton" onClick={handleEdit}>Edit</Button>
-                <Button className="deleteButton" onClick={() => deleteTask(index)}>Delete</Button>
-            </div>
-        )) :
-            <div className="task">
-                <p>No Aufgabe yet</p>
-            </div>
+        return (
+            tasks[0] ? tasks.map((t, index) => (
+                <div className="task" key={index}>
+                    <h4>Aufgabe {index + 1}</h4>
+                    <br />
+                    <h6>Aufgabenstellung</h6>
+                    <p>{t.aufgabenstellung}</p>
+                    <h6>Lösung:</h6>
+                    <p>{t.loesung1}</p>
+                    <h6>Alternative Lösung:</h6>
+                    <p>{t.loesung2}</p>
+                    <Button className="editButton" onClick={handleEdit}>Edit</Button>
+                    <Button className="deleteButton" onClick={() => deleteTask(t.id)}>Delete</Button>
+                </div>
+            )) :
+                <div className="task">
+                    <p>No Aufgabe yet</p>
+                </div>
+        );
+    }
+
+    function DisplayMultipleChoices() {
+        return (
+            mTasks[0] ? mTasks.map((t, index) => (
+                <div className="task" key={index}>
+                    <h4>Aufgabe {index + 1}</h4>
+                    <br />
+                    <h6>Aufgabenstellung</h6>
+                    <p>{t.aufgabenstellung}</p>
+                    <h6>Antwort 1:</h6>
+                    <p>{t.antwort1}</p>
+                    <h6>Antwort 2:</h6>
+                    <p>{t.antwort2}</p>
+                    <h6>Antwort 3:</h6>
+                    <p>{t.antwort3}</p>
+                    <h6>Richtige Antwort:</h6>
+                    <p>{t.korrekteAntwort}</p>
+                    <Button className="editButton" onClick={handleEdit}>Edit</Button>
+                    <Button className="deleteButton" onClick={() => deleteTask(t.id)}>Delete</Button>
+                </div>
+            )) :
+                <div className="task">
+                    <p>No Aufgabe yet</p>
+                </div>
         );
     }
 
@@ -392,10 +516,21 @@ export default function Aufgabe(props) {
     */
 
 
+    // {number === 1 ? <DisplayTasks /> : number === 2 ? <DisplayMultipleChoices /> : <DisplayTasks />}
     return (
         <div>
             <h1>Aufgabe</h1>
-            <DisplayTasks/>
+            <div>
+                <br />
+                <h4>Sentence Transformations: </h4>
+                <DisplayTasks />
+            </div>
+            <br />
+            <div>
+                <br />
+                <h4>Mutlitple Choices: </h4>
+                <DisplayMultipleChoices />
+            </div>
             <br />
             <div>
                 <div className="ce"><AddAufgabe /></div>

@@ -38,7 +38,7 @@ function App() {
       //createUserWithEmailAndPassword(auth, email, password)
         signInWithEmailAndPassword(auth, email, password)
         .then((response) => {
-          navigate("/kategorie");
+          navigate("/thema");
           sessionStorage.setItem("Auth Token", email);
           console.log(response);
           const user = response.user;
@@ -82,10 +82,10 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/student" element={<Student />} />
-        <Route path="/kategorie" element={<Kategorie />} />
+        <Route path="/thema" element={<Kategorie />} />
         <Route path="/kapitel" element={<Kapitel />} />
-        <Route path="/kategorie/:text" element={<KategorieInhalt param = {param} removeParam = {(e) => RemoveParam(e)}/>} />
-        <Route path="/kategorie/:text/aufgabe/:aufgabe" element={<Aufgabe param = {param} removeParam = {(e) => RemoveParam(e)} />} />
+        <Route path="/thema/:ide" element={<KategorieInhalt param = {param} removeParam = {(e) => RemoveParam(e)}/>} />
+        <Route path="/thema/:ide/aufgabe/:aufgabe" element={<Aufgabe param = {param} removeParam = {(e) => RemoveParam(e)} />} />
         <Route
           path="/login"
           element={
