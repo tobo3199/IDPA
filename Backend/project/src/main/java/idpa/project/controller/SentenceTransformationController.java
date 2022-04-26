@@ -45,10 +45,15 @@ public class SentenceTransformationController {
 
     @PostMapping ("/check")
     public boolean checkSentenceTransformation(@RequestBody AntwortS antwortS){
-        SentenceTransformation sentenceTransformation = new SentenceTransformation(3);
+        SentenceTransformation sentenceTransformation = sentenceTransformationService.findSentenceTransformationById(antwortS.getId());
         String losung = "losung";
-        sentenceTransformationService.findSentenceTransformation(antwortS.getId());
-        return antwortS.getEingabe().equals(sentenceTransformation.getLoesung1());
 
+        if (antwortS.getEingabe().equals(sentenceTransformation.getLoesung1())){
+            return true;
+        } else if(antwortS.getEingabe().equals(sentenceTransformation.getLoesung2())){
+            return true;
+        } else {
+            return false;
+        }
     }
 }

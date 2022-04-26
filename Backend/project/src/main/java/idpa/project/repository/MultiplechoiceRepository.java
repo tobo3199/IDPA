@@ -11,4 +11,5 @@ import java.util.List;
 @Repository
 public interface MultiplechoiceRepository extends JpaRepository<Multiplechoice, Long> {
     List<Multiplechoice> findAllByUebung(Uebung uebung);
+    Multiplechoice findById(long id);
 }

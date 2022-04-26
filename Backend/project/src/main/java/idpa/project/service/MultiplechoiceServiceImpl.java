@@ -35,4 +35,9 @@ public class MultiplechoiceServiceImpl implements MultiplechoiceService {
     public void deleteMultiplechoice(long id) {
         multiplechoiceRepository.deleteById(id);
     }
+
+    @Override
+    public Multiplechoice findMultiplechoiceById(long id) {
+        return multiplechoiceRepository.findById(id);
+    }
 }

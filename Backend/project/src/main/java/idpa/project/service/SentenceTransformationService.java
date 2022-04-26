@@ -12,4 +12,5 @@ public interface SentenceTransformationService {
     public List<SentenceTransformation> getAllSentencetransformation(Uebung uebung);
     public void deleteSentenceTransformation(long id);
     public void findSentenceTransformation(long id);
+    public SentenceTransformation findSentenceTransformationById(long id);
 }

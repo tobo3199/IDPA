@@ -10,5 +10,6 @@ import java.util.List;
 @Repository
 public interface SentenceTransformationRepository extends JpaRepository<SentenceTransformation, Long> {
     List<SentenceTransformation> findAllByUebung(Uebung uebung);
+    SentenceTransformation findById(long id);
 
 }

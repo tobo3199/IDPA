@@ -1,5 +1,6 @@
 package idpa.project.controller;
 
+import idpa.project.model.AntwortM;
 import idpa.project.model.Multiplechoice;
 import idpa.project.model.SentenceTransformation;
 import idpa.project.model.Uebung;
@@ -45,11 +46,11 @@ public class MultiplechoiceController {
         return "Multiplechoice gelöscht";
     }
 
-    @GetMapping("/check")
-    public boolean checkMultiplechoice(@RequestBody int antwort){
+    @PostMapping("/check")
+    public boolean checkMultiplechoice(@RequestBody AntwortM antwortM){
 
-        Multiplechoice multiplechoice = new Multiplechoice(1);
-        if(antwort == multiplechoice.getKorrekteAntwort()){
+        Multiplechoice multiplechoice = multiplechoiceService.findMultiplechoiceById(antwortM.getId());
+        if(antwortM.getEingabe() == multiplechoice.getKorrekteAntwort()){
             return true;
         } else {
             return false;
