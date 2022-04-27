@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * Klasse:
@@ -23,7 +24,12 @@ public class GrammatikThemaController {
 
     @PostMapping("/")
     public GrammatikThema add(@RequestBody GrammatikThema grammatikThema) {
-        GrammatikThema thema = grammatikThemaService.saveGrammatikThema(grammatikThema);
+        //GrammatikThema thema = grammatikThemaService.saveGrammatikThema(grammatikThema);
+        GrammatikThema thema = new GrammatikThema();
+        Random random = new Random();
+        thema.setName(grammatikThema.getName());
+        thema.setPin(random.nextInt(1000000-1000)+1000);
+        grammatikThemaService.saveGrammatikThema(thema);
         return thema;
     }
 

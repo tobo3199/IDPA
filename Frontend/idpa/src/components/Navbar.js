@@ -43,10 +43,12 @@ export default function Navbar() {
   const handleLogout = () => {
     sessionStorage.removeItem("Auth Token");
     navigate("/")
+    window.location.reload();
   };
 
   const handleStart = () => {
     navigate("/");
+    window.location.reload();
   }
 
   /*

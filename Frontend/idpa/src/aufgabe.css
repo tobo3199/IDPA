@@ -1,3 +1,27 @@
 .task-title {
     margin: 40px;
 }
+
+.button-check {
+    background: #4E4EEC;
+    color: #fff;
+    border-radius: 5rem;
+    transition: .8s;
+    margin-top: 40px;
+    font-size: 25px;
+    padding: 5px 30px 5px 30px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 50px;
+    clear: left;
+    height: auto;
+    z-index: 0;
+    text-align: center;
+    /* Add This*/
+    margin-bottom: 20px;
+}

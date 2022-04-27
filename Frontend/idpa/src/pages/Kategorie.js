@@ -104,6 +104,12 @@ export default function Kategorie({ param, RemoveParam }) {
               onClick={() => removeCategory(cat)}
     */
 
+              /*
+<label className='custom-field two'>
+                <input type="text" placeholder="New Pin" value={pin} name="category" className="cat-input" onChange={handlePin}></input>            
+            </label>
+              */
+
     return (
         <>
         <div>
@@ -111,9 +117,7 @@ export default function Kategorie({ param, RemoveParam }) {
             <label className='custom-field two'>
                 <input type="text" placeholder="Add Category" value={name} name="category" className="cat-input" onChange={handleChange}></input>
             </label>
-            <label className='custom-field two'>
-                <input type="text" placeholder="New Pin" value={pin} name="category" className="cat-input" onChange={handlePin}></input>            
-            </label>
+            
             <button className='cat-button'>Add Category</button>
         </form>
                 <div>

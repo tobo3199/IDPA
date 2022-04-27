@@ -32,7 +32,7 @@ export default function Landing() {
         }
 
         if (authToken && authToken !== "admin@kbw.ch") {
-            setUrl("/student");
+            setUrl("/schueler-login");
         }
     }, []);
 
