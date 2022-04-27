@@ -42,7 +42,7 @@ export default function Navbar() {
 
   const handleLogout = () => {
     sessionStorage.removeItem("Auth Token");
-    navigate("/schueler-login")
+    navigate("/")
   };
 
   const handleStart = () => {
