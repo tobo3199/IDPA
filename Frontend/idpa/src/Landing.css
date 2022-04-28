@@ -3,7 +3,9 @@
     overflow: hidden;
 } */
 
-
+/* * {
+    color: #FFF;
+} */
 
 html {
     height: 100%;
@@ -51,14 +53,18 @@ html {
   }
   
   .right-container .login-box:hover {
-      transform: translateY(-200px);
-       transform: translateX(-50px); 
+        transform: translateY(-200px);
+        /* transform: translateX(-50px);  */
   }
   
   .left-container img {
       height: 100%;
       width: 600px;
   }
+
+  /* a {
+      color: #fff;
+  } */
   
   .left-container .button-landing {
       background: #4E4EEC;
@@ -70,6 +76,11 @@ html {
       margin-top: 40px;
       font-size: 25px;
       padding: 10px 65px 10px 65px;
+      text-decoration: none;
+      /* text-decoration: line-through;
+      text-decoration-color: #fff; */
+      outline: none;
+      border: none;
   }
   
   .left-container .button-landing:hover {
@@ -127,11 +138,16 @@ html {
 }
 
 .btn-nav {
-    padding: 8px 22px;
+    padding: 12px 50px;
     background: #4E4EEC;
     color: #fff;
     border-radius: 5rem;
     transition: .5s;
+    outline: none;
+    border: none;
+    margin-right: 20px;
+    font-size: 18px;
+    
 }
 
 .btn-nav:hover {

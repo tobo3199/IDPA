@@ -117,8 +117,10 @@ export default function Kategorie({ param, RemoveParam }) {
             <label className='custom-field two'>
                 <input type="text" placeholder="Add Category" value={name} name="category" className="cat-input" onChange={handleChange}></input>
             </label>
-            
-            <button className='cat-button'>Add Category</button>
+            <label className='custom-field two'>
+                <input type="text" placeholder="New Pin" value={pin} name="category" className="cat-input" onChange={handlePin}></input>            
+            </label>
+            <button className='btn-add'>Add Category</button>
         </form>
                 <div>
                     <table className="table">
@@ -133,7 +135,7 @@ export default function Kategorie({ param, RemoveParam }) {
                                 <tr onChange={refresh} key={cat.id}>
                                     <td><Link className='text' to={`/thema/${cat.id}`}>{cat.name}</Link></td>
                                     <td><input className='pin' type="text" value={"Pin: " + cat.pin}></input></td>
-                                    <td><button className="button" type="button" class="btn btn-danger" onClick={(e) => handleDelete(cat.id, e)} >Delete</button></td>
+                                    <td><button className="btn-delete" type="button" class="btn btn-danger" onClick={(e) => handleDelete(cat.id, e)} >Delete</button></td>
                                 </tr>
                             </>
                         ))}
