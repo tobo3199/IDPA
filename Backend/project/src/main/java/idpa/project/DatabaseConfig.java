@@ -14,6 +14,8 @@ import javax.sql.DataSource;
  * @author: Tobias Sauter
  * @version:
  */
+
+/*
 @Configuration
 public class DatabaseConfig {
 
@@ -27,3 +29,4 @@ public class DatabaseConfig {
         return new HikariDataSource(config);
     }
 }
+ */

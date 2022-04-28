@@ -64,6 +64,8 @@ html {
       background: #4E4EEC;
       color: #fff;
       border-radius: 5rem;
+      outline: none;
+      border: none;
       transition: .8s;
       margin-top: 40px;
       font-size: 25px;
