@@ -135,7 +135,7 @@ export default function Kategorie({ param, RemoveParam }) {
                                 <tr onChange={refresh} key={cat.id}>
                                     <td><Link className='text' to={`/thema/${cat.id}`}>{cat.name}</Link></td>
                                     <td><input className='pin' type="text" value={"Pin: " + cat.pin}></input></td>
-                                    <td><button className="btn-delete" type="button" class="btn btn-danger" onClick={(e) => handleDelete(cat.id, e)} >Delete</button></td>
+                                    <td><button class="btn-delete" type="button" onClick={(e) => handleDelete(cat.id, e)} >Delete</button></td>
                                 </tr>
                             </>
                         ))}
