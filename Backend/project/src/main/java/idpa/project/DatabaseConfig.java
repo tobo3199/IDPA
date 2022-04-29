@@ -14,6 +14,7 @@ import javax.sql.DataSource;
  * @author: Tobias Sauter
  * @version:
  */
+/*
 @Configuration
 public class DatabaseConfig {
 
@@ -26,4 +27,4 @@ public class DatabaseConfig {
         config.setJdbcUrl(dbUrl);
         return new HikariDataSource(config);
     }
-}
+}*/
