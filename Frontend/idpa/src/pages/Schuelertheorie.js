@@ -9,15 +9,17 @@ import GetFiles from '../components/GetFiles';
 import UploadFile from '../components/UploadFile';
 import { Container, Row, Col } from "react-bootstrap";
 
-export default function KategorieInhalt(props, { param, RemoveParam }) {
+export default function Schuelertheorie(props) {
   const { ide } = useParams();
-  const { theorie } = useParams();
+  //const { grammarTopic } = useParams();
   const [aufg, setAufgabe] = useState();
   const [theorieArray, setTheorieArray] = useState([]);
   const [grammatikthemas, setGrammatikthemas] = useState([]);
   const [fetchObject, setFetchObject] = useState();
-  const [objectid, setObjectid] = useState(ide - 1);
+  //const [objectid, setObjectid] = useState(ide - 1);
   let navigate = useNavigate();
+  
+  console.log(ide);
 
 
   /*
@@ -103,6 +105,7 @@ export default function KategorieInhalt(props, { param, RemoveParam }) {
     setAufgabe(e.target.value);
   }
 
+  /*
   const handleDelete = (id, e) => {
 
     fetch('http://localhost:3000/api/uebung/' + id, {
@@ -114,6 +117,7 @@ export default function KategorieInhalt(props, { param, RemoveParam }) {
 
     window.location.reload();
   }
+  */
   /*
               <div key={index}>
                   <Link to={`/kategorie/${text}/aufgabe/${t.theorie}`}>{t.theorie}</Link>
@@ -131,15 +135,11 @@ export default function KategorieInhalt(props, { param, RemoveParam }) {
       navigate("/login");
     }
     */
-    
-
-    const getUebungen = () => {
-
-    }
 
 
     //Umändern!!!
 
+    /*
     fetch('http://localhost:3000/api/grammatikthema/id/' + ide, {
       method: 'GET'
     })
@@ -149,15 +149,18 @@ export default function KategorieInhalt(props, { param, RemoveParam }) {
         setFetchObject(result);
       }
       )
+      */
 
     fetch("http://localhost:3000/api/uebung/" + ide)
       .then(res => res.json())
       .then((result) => {
         setTheorieArray(result);
-        console.log("TheorieArray GET:");
-        console.log(theorieArray);
+        console.log("Übungen GET:");
       }
       )
+
+      console.log(theorieArray);
+      
 
 
 
@@ -181,40 +184,27 @@ export default function KategorieInhalt(props, { param, RemoveParam }) {
       <div className="file">
         <Container>
           <Row>
-            <UploadFile />
-          </Row>
-          <Row>
             <GetFiles />
           </Row>
         </Container>
       </div>
       <h1>Aufgaben</h1>
       <div className="theorie">
-        <form className='todo-form' onSubmit={handleSubmit}>
-          <label className='custom-field two'>
-            <input type="text" placeholder="add aufgaben" value={aufg} name="theorie" className="cat-input" onChange={handleAufgabe}></input>
-          </label>
-          <button className='cat-button'>Add Aufgabe</button>
-        </form>
-
+        <br/>
         <div>
           <table className="table">
 
             <tr>
               <th>Übersicht</th>
               <th>Aufgabe:</th>
-              <th></th>
             </tr>
 
             {theorieArray?.map((t, index) => (
               <>
                 <tr key={index}>
                   <td></td>
-                  <td><Link to={`/thema/${ide}/aufgabe/${t.id}`}>{t.name}</Link></td>
-                  <td><button className='button-border' type="button" class="btn btn-danger" onClick={() => handleDelete(t.id)}>Delete</button></td>
+                  <td><Link to={`/grammartopic/${ide}/exercise/${t.id}`}>{t.name}</Link></td>
                 </tr>
-
-
               </>
             ))}
           </table>

@@ -93,12 +93,14 @@
   margin-bottom: 20px;
 }
 
+/*
 .sameLine{
   position: relative;
   height: 50%;
   width: 50%;
   display: inline-block;
 }
+*/
 
 .checkbox{
   float: right;
@@ -168,3 +170,4 @@
 .table{
   overflow: scroll;
 }
+

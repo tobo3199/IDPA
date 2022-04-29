@@ -9,6 +9,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate } from "react-router-dom";
 import "../Landing.css";
 import "../login.css";
+import "../navbar.css";
 import logo from "../images/logo.png";
 import navbarlogo from "../images/navbar.png";
 import { useEffect } from "react";
@@ -43,10 +44,12 @@ export default function Navbar() {
   const handleLogout = () => {
     sessionStorage.removeItem("Auth Token");
     navigate("/")
+    window.location.reload();
   };
 
   const handleStart = () => {
     navigate("/");
+    window.location.reload();
   }
 
   /*
@@ -125,8 +128,8 @@ export default function Navbar() {
     <div className="nav container">
       <a onClick={handleStart}><img src={navbarlogo} alt="" className="navimg" ></img></a>
       <div className="second-container">
-        {window.location.pathname === "/schueler-login" ? <a onClick={navigateLogin} className="btn-nav">Administration</a> : <a onClick={navigateSchueler} className="btn-nav">Schüler</a>}
-        {window.location.pathname != "/schueler-login" && window.location.pathname != "/login" ? <a onClick={handleLogout} className="btn-nav">Logout</a> : <a></a>}
+        {window.location.pathname === "/schueler-login" ? <button onClick={navigateLogin} className="btn-nav">Administration</button> : <button onClick={navigateSchueler} className="btn-nav">Schülerlogin</button>}
+        {window.location.pathname != "/schueler-login" && window.location.pathname != "/login" ? <button onClick={handleLogout} className="btn-nav">Logout</button> : <a></a>}
       </div>
 
     </div>

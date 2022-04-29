@@ -25,6 +25,8 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import Landing from "./pages/Landing";
 import { Nav } from "react-bootstrap";
 import Schueler from "./pages/Schueler";
+import Schuelertheorie from "./pages/Schuelertheorie";
+import SchuelerAufgaben from "./pages/SchuelerAufgaben";
 
 function App() {
   const [email, setEmail] = useState("");
@@ -32,6 +34,9 @@ function App() {
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState("");
   const [param, setParam] = useState();
+  const [username, setUsername] = useState("");
+  const [pin, setPin] = useState("");
+  const [grammatikthema, setGrammatikthema] = useState();
 
   const handleAction = (e) => {
     e.preventDefault();
@@ -73,8 +78,66 @@ function App() {
     }
   };
 
+  const handleSchueler = (e) => {
+    e.preventDefault();
+    console.log("Username: " + username + ", " + "Pin: " + pin);
+
+
+    fetch('http://localhost:3000/api/grammatikthema/pin/' + pin, {
+      method: 'GET'
+    })
+      .then(res => res.json())
+      .then((result) => {
+        console.log(result);
+        setGrammatikthema(result);
+
+      }
+      ).then(
+        //navigateSchueler(grammatikthema.id),
+        //navigate("/thema/" + grammatikthema.id),
+        console.log(grammatikthema.id),
+        navigate(`/grammartopic/${grammatikthema.id}`),
+        setGrammatikthema(""),
+      ).then(
+        sessionStorage.setItem("Auth Token", username),
+      )
+
+    /*
+
+  */
+    //setUsername(username);
+    //setPin(pin);
+  }
+
+  const navigateSchueler = (id, e) => {
+    console.log(id);
+    if (id) {
+      navigate("/thema/" + id);
+    }
+
+    /*else {
+      if (grammatikthema) {
+        //navigateSchueler(pin)
+        //setGrammatikthema("");
+      } else {
+        toast.error("Grammatikthema with this pin doesn't exist!", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      }
+    }
+    */
+  }
+
+
   const RemoveParam = (param, e) => {
-    console.log("Remove Param param: ")
+    console.log("Remove Param: ")
     console.log(param);
   };
 
@@ -90,13 +153,15 @@ function App() {
         <Route path="/student" element={<Student />} />
         <Route path="/thema" element={<Kategorie />} />
         <Route path="/kapitel" element={<Kapitel />} />
+        <Route path="/grammartopic/:ide" element={<Schuelertheorie />} />
+        <Route path="/grammartopic/:ide/exercise/:task" element={<SchuelerAufgaben />} />
         <Route path="/schueler-login" element={<Schueler
-          title="Login"
-          setEmail={setEmail}
-          setPassword={setPassword}
-          handleAction={(e) => handleAction(e)} />} />
-        <Route path="/thema/:ide" element={<KategorieInhalt param={param} removeParam={(e) => RemoveParam(e)} />} />
-        <Route path="/thema/:ide/aufgabe/:aufgabe" element={<Aufgabe param={param} removeParam={(e) => RemoveParam(e)} />} />
+          title="Schüler-Login"
+          setUsername={setUsername}
+          setPin={setPin}
+          handleSchueler={(e) => handleSchueler(e)} />} />
+        <Route path="/thema/:ide" element={<KategorieInhalt />} />
+        <Route path="/thema/:ide/aufgabe/:aufgabe" element={<Aufgabe />} />
         <Route
           path="/login"
           element={

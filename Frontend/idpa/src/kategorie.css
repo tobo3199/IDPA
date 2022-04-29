@@ -44,7 +44,7 @@
     display: inline-block;
     padding: 10px 20px;
     color: #fff;
-    background: #1976D2;
+    background: #4E4EEC;
     font-size: 16px;
     text-decoration: none;
     overflow: hidden;
@@ -55,15 +55,65 @@
   }
   
   .cat-button:hover {
-    background: #fcef3a;
-    color: #1976D2;
+    background: #FADB61;
+    color: #4E4EEC;
     border-radius: 15px;
-    box-shadow: 0 0 2px #f8df79,
-                0 0 4px #f8df79,
-                0 0 8px #f8df79,
-                0 0 16px #f8df79;
+    box-shadow: 0 0 2px #FADB61,
+                0 0 4px #FADB61,
+                0 0 8px #FADB61,
+                0 0 16px #FADB61;
   }
 
   .table {
       margin-left: 40px;
+  }
+
+  .btn-delete {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    background: #EC4E4E;
+    font-size: 16px;
+    text-decoration: none;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 5px;
+    border-radius: 5rem;
+    border: none;
+  }
+  
+  .btn-delete:hover {
+    background: #fff;
+    color: #EC4E4E;
+    border-radius: 15px;
+    box-shadow: 0 0 2px #fff,
+                0 0 4px #fff,
+                0 0 8px #fff,
+                0 0 16px #fff;
+  }
+
+  .btn-add {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    background: #3FB73D;
+    font-size: 16px;
+    text-decoration: none;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 5px;
+    border-radius: 5rem;
+    border: none;
+  }
+  
+  .btn-add:hover {
+    background: #fff;
+    color: #3FB73D;
+    border-radius: 15px;
+    box-shadow: 0 0 2px #fff,
+                0 0 4px #fff,
+                0 0 8px #fff,
+                0 0 16px #fff;
   }
