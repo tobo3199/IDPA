@@ -9,6 +9,7 @@
 
 html {
     height: 100%;
+    font-family: Poppins, sans-serif;
     /*overflow: hidden;*/
 }
 
@@ -85,6 +86,7 @@ html {
   
   .left-container .button-landing:hover {
       color: #4E4EEC;
+      cursor: pointer;
       background: #FADB61;
       box-shadow: 0 0 2px #FADB61,
                   0 0 8px #FADB61,
@@ -142,18 +144,20 @@ html {
     background: #4E4EEC;
     color: #fff;
     border-radius: 5rem;
-    transition: .5s;
+    transition: .6s;
     outline: none;
     border: none;
     margin-right: 20px;
     font-size: 18px;
+    font-weight: 500;
     
 }
 
 .btn-nav:hover {
-    background: #fff;
     color: var(--main-color);
+    font-weight: 700;
     background: var(--second-color);
+    cursor: pointer;
     box-shadow: 0 0 2px #FADB61,
                 0 0 8px #FADB61,
                 0 0 16px #FADB61,
@@ -163,4 +167,5 @@ html {
 .second-container {
     display: flex;
     justify-content: space-between;
+    margin-right: 20px;
 }

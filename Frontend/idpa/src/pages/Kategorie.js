@@ -7,6 +7,7 @@ import { indigo } from '@mui/material/colors';
 import { Link } from 'react-router-dom';
 import { useNavigate, useParams } from "react-router";
 import "../kategorie.css";
+import '../App.css';
 
 
 export default function Kategorie({ param, RemoveParam }) {
@@ -117,17 +118,17 @@ export default function Kategorie({ param, RemoveParam }) {
             <label className='custom-field two'>
                 <input type="text" placeholder="Add Category" value={name} name="category" className="cat-input" onChange={handleChange}></input>
             </label>
-            <label className='custom-field two'>
+            {/* <label className='custom-field two'>
                 <input type="text" placeholder="New Pin" value={pin} name="category" className="cat-input" onChange={handlePin}></input>            
-            </label>
+            </label> */}
             <button className='btn-add'>Add Category</button>
         </form>
                 <div>
                     <table className="table">
 
                         <tr>
-                            <th>Category:</th>
-                            <th>PIN:</th>
+                            <th className='texth'>Category:</th>
+                            <th className='texth'>PIN:</th>
                             <th></th>
                         </tr>
                         {categorys.map((cat, index) => (
