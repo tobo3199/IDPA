@@ -21,23 +21,13 @@ export default function Navbar() {
   const navigate = useNavigate();
   const [token, setToken] = useState("");
 
-  const navigateStudent = () => {
-    navigate("/student");
-  };
-
-  const navigateKategorie = () => {
-    navigate("/thema");
-  };
-
-  const navigateKapitel = () => {
-    navigate("/kapitel");
-  };
-
   const navigateLogin = () => {
+    sessionStorage.removeItem("Auth Token");
     navigate("/login");
   };
 
   const navigateSchueler = () => {
+    sessionStorage.removeItem("Auth Token");
     navigate("/schueler-login");
   }
 

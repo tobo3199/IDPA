@@ -66,7 +66,7 @@ export default function Kategorie({ param, RemoveParam }) {
     useEffect(() => {
         let authToken = sessionStorage.getItem("Auth Token");
 
-        if (!authToken) {
+        if (authToken !== "admin@kbw.ch") {
             navigate("/login");
         }
 

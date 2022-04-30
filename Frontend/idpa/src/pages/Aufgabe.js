@@ -11,7 +11,6 @@ import { DropdownButton } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import "../aufgabe.css";
 import "../kategorie.css";
-import '../App.css';
 import Edit from "./Edit";
 import MEdit from "./MEdit";
 
@@ -64,14 +63,6 @@ export default function Aufgabe(props) {
         setALoesung("");
         handleClose();
 
-        /*
-        const object = {
-            a: auf,
-            l: l1,
-            l2: l2
-        };
-        */
-
 
 
         const object = {
@@ -86,8 +77,6 @@ export default function Aufgabe(props) {
 
             }
         }
-
-        // ändern zu grammatikthema id -> und backend herausfinden wie machen
 
         addArr(object);
 
@@ -155,11 +144,6 @@ export default function Aufgabe(props) {
     }
 
     const addArr = (object) => {
-        /*
-        const newTask = [...tasks, object];
-        setTasks(newTask);
-        console.log(tasks);
-        */
     }
 
     const addArrM = (object) => {
@@ -212,13 +196,6 @@ export default function Aufgabe(props) {
     }
 
     const deleteTask = (id, e) => {
-        /*
-        var temp = tasks;
-        console.log(temp);
-        tasks.splice(index, 1);
-        setTasks(temp);
-        console.log(tasks);
-        */
         console.log(id);
 
         fetch('http://localhost:3000/api/sentenceTransformation/' + id, {
@@ -232,13 +209,6 @@ export default function Aufgabe(props) {
     }
 
     const deleteMTask = (id, e) => {
-        /*
-        var temp = tasks;
-        console.log(temp);
-        tasks.splice(index, 1);
-        setTasks(temp);
-        console.log(tasks);
-        */
         console.log(id);
 
         fetch('http://localhost:3000/api/multiplechoice/' + id, {
@@ -254,38 +224,6 @@ export default function Aufgabe(props) {
     const handleEdit = () => {
 
     }
-
-
-
-    //onClick={() => editTask(t)}
-
-    /*
-    function DisplayTasks() {
-        return (
-            tasks[0] ? tasks.map((t, index) => (
-                <div className="task" key={index}>
-                    <h4>Aufgabe {index + 1}</h4>
-                    <br />
-                    <h6>Aufgabenstellung</h6>
-                    <p>{t.aufgabenstellung}</p>
-                    <h6>Lösung:</h6>
-                    <p>{t.loesung1}</p>
-                    <h6>Alternative Lösung:</h6>
-                    <p>{t.loesung2}</p>
-                    <div className="centering">
-                        <Button className="editButton" onClick={handleEdit}>Edit</Button>
-                        <Button className="deleteButton" onClick={() => deleteMTask(t.id)}>Delete</Button>
-                    </div>
-
-
-                </div>
-            )) :
-                <div className="task">
-                    <p>No Aufgabe yet</p>
-                </div>
-        );
-    }
-    */
 
 
 
@@ -344,12 +282,6 @@ export default function Aufgabe(props) {
                             <label htmlFor="recipient-name" className="col-form-label">Alternative solution: </label>
                             <input type="text" className="form-control" id="bem" onChange={(e) => handleChangeALoesung(e)}  ></input>
                         </div>
-                        {/*
-                        <div>
-                            <label htmlFor="recipient-name" className="col-form-label">Status: </label>
-                            <input type="text" value={" Status: " + (todo.status)} class="form-control"/>
-                        </div>
-                        */}
                     </form>
                     : number === 2 ?
                         <form onSubmit={handleAufgabe}>
@@ -363,12 +295,6 @@ export default function Aufgabe(props) {
                                 <label htmlFor="recipient-name" className="col-form-label">Lösung: </label>
                                 <input type="text" className="form-control" id="bem" onChange={handleChangeLoesung} value={loesung} ></input>
                             </div>
-                            {/*
-                        <div>
-                            <label htmlFor="recipient-name" className="col-form-label">Status: </label>
-                            <input type="text" value={" Status: " + (todo.status)} class="form-control"/>
-                        </div>
-                        */}
                         </form>
 
                         : number === 3 ?
@@ -388,24 +314,9 @@ export default function Aufgabe(props) {
                                     <input type="text" className="form-control" id="bem" onChange={handleChangeLoesung3} ></input>
                                     <label htmlFor="recipient-name" className="col-form-label">Correct answer: </label>
                                     <br />
+                                    <p>1, 2 or 3</p>
                                     <input type="number" id="bem" onChange={handleCheckLoesung} min="1" max="3" ></input>
-
-
-
-                                    {/*
-                                <input type="checkbox" className="form-control" id="bem" onChange={handleCheckers} checked={check} ></input>
-                                <input type="checkbox" className="form-control" id="bem" onChange={handleCheckers1} checked={check1} ></input>
-                                <input type="checkbox" className="form-control" id="bem" onChange={handleCheckers2} checked={check2} ></input>
-                                */}
-
-
                                 </div>
-                                {/*
-                                <div>
-                                    <label htmlFor="recipient-name" className="col-form-label">Status: </label>
-                                    <input type="text" value={" Status: " + (todo.status)} class="form-control"/>
-                                </div>
-                                */}
                             </form>
                             : number === 0 ?
                                 <p>Please select a excercise type</p>
@@ -439,9 +350,8 @@ export default function Aufgabe(props) {
                         <Modal.Title>Select task type</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <DropdownButton id="dropdown-basic-button" title="Aufgaben-Typ">
+                        <DropdownButton id="dropdown-basic-button" title="Exercise-Type">
                             <Dropdown.Item defaultChecked><button className="btn-add" onClick={() => setNumber(1)}>Sentence Transformation</button></Dropdown.Item>
-                            <Dropdown.Item><button className="btn-add" onClick={() => setNumber(2)}>Gap Text</button></Dropdown.Item>
                             <Dropdown.Item><button className="btn-add" onClick={() => setNumber(3)}>Multiple Choice</button></Dropdown.Item>
                         </DropdownButton>
                         <RenderSwitch />
@@ -450,27 +360,20 @@ export default function Aufgabe(props) {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>Close</Button>
-                        <Button type="submit" onClick={number === 1 ? handleAufgabe : handleMultipleChoice} variant="primary">Speichern</Button>
-
+                        <Button type="submit" onClick={number === 1 ? handleAufgabe : handleMultipleChoice} variant="primary">Save</Button>
                     </Modal.Footer>
                 </Modal>
             </>
         );
     }
 
-
-
-    //onClick={() => editTask(t)}
-    //<button className="btn-add" onClick={handleEdit}>Edit</button>
-    //                        <Button className="editButton" onClick={() => handleEdit(t.id)}>Edit</Button>
-
     function DisplayTasks() {
         return (
             tasks[0] ? tasks.map((t, index) => (
                 <div className="task" key={index}>
-                    <h4>Task {index + 1}</h4>
+                    <h4>Exercise {index + 1}</h4>
                     <br />
-                    <h6>Task definition</h6>
+                    <h6>Task definition:</h6>
                     <p>{t.aufgabenstellung}</p>
                     <h6>Solution:</h6>
                     <p>{t.loesung1}</p>
@@ -495,7 +398,7 @@ export default function Aufgabe(props) {
         return (
             mTasks[0] ? mTasks.map((t, index) => (
                 <div className="task" key={index}>
-                    <h4>Task {index + 1}</h4>
+                    <h4>Exercise {index + 1}</h4>
                     <br />
                     <h6>Task definition</h6>
                     <p>{t.aufgabenstellung}</p>
@@ -521,18 +424,6 @@ export default function Aufgabe(props) {
         );
     }
 
-    /*
-    <div className="task">
-              <p>Aufgabe</p>
-              <p>My name is _____________ .</p>
-              <p>Lösung:</p>
-              <input type="text"></input>
-              <br/>
-          </div>
-    */
-
-
-    // {number === 1 ? <DisplayTasks /> : number === 2 ? <DisplayMultipleChoices /> : <DisplayTasks />}
     return (
         <div className="body-aufgabe">
             <h1>Task</h1>
@@ -544,7 +435,7 @@ export default function Aufgabe(props) {
             <br />
             <div>
                 <br />
-                <h4>Mutlitple Choices: </h4>
+                <h4>Multiple Choices: </h4>
                 <DisplayMultipleChoices />
             </div>
             <br />

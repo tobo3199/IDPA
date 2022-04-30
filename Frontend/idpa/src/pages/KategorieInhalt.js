@@ -196,7 +196,7 @@ export default function KategorieInhalt(props, { param, RemoveParam }) {
       <div className="theorie">
         <form className='todo-form' onSubmit={handleSubmit}>
           <label className='custom-field two'>
-            <input type="text" placeholder="add aufgaben" value={aufg} name="theorie" className="cat-input" onChange={handleAufgabe}></input>
+            <input type="text" placeholder="add task" value={aufg} name="theorie" className="cat-input" onChange={handleAufgabe}></input>
           </label>
           <button className='btn-add'>Add Task</button>
         </form>

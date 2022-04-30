@@ -35,12 +35,13 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
-.file{
+.file {
   position: relative;
   width: 100%;
   height: 500px;
@@ -53,7 +54,7 @@
 
 }
 
-.task{
+.task {
   position: relative;
   width: 500px;
   border-style: solid;
@@ -62,34 +63,35 @@
   justify-content: center;
   margin: 50px;
   padding: 20px;
-  position:relative;
-  margin:0 auto;
+  position: relative;
+  margin: 0 auto;
   margin-top: 50px;
-  clear:left;
-  height:auto;
+  clear: left;
+  height: auto;
   z-index: 0;
   border-radius: 1rem;
 }
 
-.task-container{
+.task-container {
   width: 100%;
   height: 100%;
   position: absolute;
 }
 
-.button-center{
+.button-center {
   position: relative;
   display: flex;
-  flex-direction: column  ;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  position:relative;
-  margin:0 auto;
+  position: relative;
+  margin: 0 auto;
   margin-top: 50px;
-  clear:left;
-  height:auto;
+  clear: left;
+  height: auto;
   z-index: 0;
-  text-align:center;/* Add This*/
+  text-align: center;
+  /* Add This*/
   margin-bottom: 20px;
 }
 
@@ -102,23 +104,24 @@
 }
 */
 
-.checkbox{
+.checkbox {
   float: right;
 }
 
-.border{
+.border {
   border: solid;
-  position:relative;
-    margin:0 auto;
-    margin-top: 10px;
-    clear:left;
-    height:auto;
-    z-index: 0;
-    text-align:center;/* Add This*/
-    width: 100%;
+  position: relative;
+  margin: 0 auto;
+  margin-top: 10px;
+  clear: left;
+  height: auto;
+  z-index: 0;
+  text-align: center;
+  /* Add This*/
+  width: 100%;
 }
 
-.text{
+.text {
   left: 0px;
   margin-left: 0px;
   color: #4E4EEC;
@@ -141,7 +144,7 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .text:hover::before{
+  .text:hover::before {
     left: 0;
     right: auto;
     width: 100%;
@@ -152,43 +155,45 @@
   }
 }
 
-.btn btn-danger{
+.btn btn-danger {
   padding: 50px;
 }
 
-.pin{
+.pin {
   position: relative;
   padding: 10px;
   margin-right: 100px;
-    clear:left;
-    height:auto;
-    z-index: 0;
-    text-align:left;/* Add This*/
-    border: none;
+  clear: left;
+  height: auto;
+  z-index: 0;
+  text-align: left;
+  /* Add This*/
+  border: none;
 }
 
-.button{
+.button {
   position: relative;
   padding-left: 100px;
   right: 0px;
 }
 
-.todo-form{
-  position:relative;
-    margin:0 auto;
-    margin-top: 50px;
-    clear:left;
-    height:auto;
-    z-index: 0;
-    text-align:center;/* Add This*/
-    margin-bottom: 20px;
+.todo-form {
+  position: relative;
+  margin: 0 auto;
+  margin-top: 50px;
+  clear: left;
+  height: auto;
+  z-index: 0;
+  text-align: center;
+  /* Add This*/
+  margin-bottom: 20px;
 }
 
-.right{
+.right {
   right: 0px;
 }
 
-.deleteButton{
+.deleteButton {
   position: absolute;
   /*background-color: red;
   color: white;*/
@@ -196,7 +201,7 @@
   bottom: 10px;
 }
 
-.table{
+.table {
   overflow: scroll;
   margin-left: 20px;
   margin-right: 20px;
@@ -209,3 +214,4 @@
 .texth {
   font-size: 22px;
 }
+

@@ -76,6 +76,7 @@ export default function SchuelerAufgaben(props) {
     const [lnumber, setLNumber] = useState(0);
     const [Mnumber, setMNumber] = useState(0);
     const [checknumber, setChecknumber] = useState(0);
+    const [answerS, setAnswerS] = useState("");
 
     const [checkloesung, setCheckLosesung] = useState();
 
@@ -539,25 +540,32 @@ keyboard={false}
         console.log(prozent);
     }
 
+    function checkSentence(){
+        setLNumber(2);
+        setAnswerS(l1);
+    }
+
 
     function DisplayTasks() {
         return (
             tasks[0] ? tasks.map((t, index) => (
                 <div className="task" key={index}>
-                    <h4>Aufgabe {index + 1}</h4>
+                    <h4>Exercise {index + 1}</h4>
                     <br />
-                    <h6>Aufgabenstellung:</h6>
+                    <h6>Task definition</h6>
                     <p>{t.aufgabenstellung}</p>
                     <br />
-                    <h6>Lösung:</h6>
+                    <h6>Solution:</h6>
                     <input type="text" className="form-control" id="bem" onChange={(e) => handleChangeLoesung(e)}></input>
                     {lnumber === 2 ?
                         <div>
+                            <br/>
+                            <h6>Your answer was: {answerS}</h6>
                             <br />
-                            <h6>Richtige Lösung:</h6>
+                            <h6>Correct answer:</h6>
                             <p>{t.loesung1}</p>
                             <br />
-                            <h6>Alternative Lösung:</h6>
+                            <h6>Alternative solution:</h6>
                             <p>{t.loesung2}</p>
                             <br />
                         </div>
@@ -639,7 +647,7 @@ keyboard={false}
     // {number === 1 ? <DisplayTasks /> : number === 2 ? <DisplayMultipleChoices /> : <DisplayTasks />}
     return (
         <div>
-            <h1>Aufgabe</h1>
+            <h1>Task</h1>
             <div>
                 <br />
                 <h4>Sentence Transformations: </h4>
@@ -647,7 +655,7 @@ keyboard={false}
             </div>
             <br />
             <div>
-                <button className="button-check" onClick={() => setLNumber(2)}>Überprüfen</button>
+                {tasks[0] ? <button className="button-check" onClick={checkSentence}>Check</button> : <div></div>}
                 <br />
             </div>
             <br />
@@ -658,7 +666,7 @@ keyboard={false}
             </div>
             <br />
             <div>
-                {checknumber === 0 ? <div><button className="button-check" onClick={checkMultipleChoice}>Überprüfen</button></div> :
+                {checknumber === 0 && mTasks[0]? <div><button className="button-check" onClick={checkMultipleChoice}>Check</button></div> :
                     <div>
                         <Auswertung />
                     </div>}
