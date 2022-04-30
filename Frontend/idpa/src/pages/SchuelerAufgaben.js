@@ -10,6 +10,8 @@ import { Dropdown } from "react-bootstrap";
 import { DropdownButton } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import "../aufgabe.css";
+import Popup from "reactjs-popup";
+import 'reactjs-popup/dist/index.css';
 
 
 
@@ -36,7 +38,6 @@ export default function SchuelerAufgaben(props) {
     var ml2 = "";
     var ml3 = "";
     var l = 0;
-
     /*
     const r1 = false;
     const r2 = false;
@@ -57,6 +58,7 @@ export default function SchuelerAufgaben(props) {
     const [isCorrect, setIsCorrect] = useState([]);
     const [submit, setSubmit] = useState(false);
     var counter = 0;
+    const [prozent, setProzent] = useState(0);
 
     const [check, setCheck] = useState(false);
     const handleCheck = () => setCheck(true);
@@ -73,6 +75,7 @@ export default function SchuelerAufgaben(props) {
     const [number, setNumber] = useState(0);
     const [lnumber, setLNumber] = useState(0);
     const [Mnumber, setMNumber] = useState(0);
+    const [checknumber, setChecknumber] = useState(0);
 
     const [checkloesung, setCheckLosesung] = useState();
 
@@ -476,6 +479,34 @@ keyboard={false}
 
 
     //onClick={() => editTask(t)}
+    function Auswertung() {
+        return (
+            <>
+                <div>
+                    <Button className="button-center" variant="success" onClick={handleShow}>
+                        Auswertung anzeigen
+                    </Button>
+
+                    <Modal
+                        show={show}
+                        onHide={handleClose}
+                        backdrop="static"
+                        keyboard={false}
+                    >
+                        <Modal.Header closeButton>
+                            <Modal.Title>Auswertung:</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <p>{prozent}% korrekt gelöst</p>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={handleClose}>Schliessen</Button>
+                        </Modal.Footer>
+                    </Modal>
+                </div>
+            </>
+        );
+    }
 
 
     const checkMultipleChoice = (e) => {
@@ -490,19 +521,22 @@ keyboard={false}
         setIsCorrect(temp);
         console.log(temp);
         countCorrect();
+        setChecknumber(4);
     }
 
     const countCorrect = (e) => {
         console.log("Antworten korrigiert:")
         console.log(isCorrect);
-        for(let i = 0; i < isCorrect.length; i ++){
-            {isCorrect[i] === true ? counter= counter + 1 : counter = counter + 0}
+        for (let i = 0; i < isCorrect.length; i++) {
+            { isCorrect[i] === true ? counter = counter + 1 : counter = counter + 0 }
         }
         console.log("Counter");
         console.log(counter);
 
         //counter und auth_token ins backend pushen mit exercise id
         //
+        setProzent((100 / mTasks.length) * counter);
+        console.log(prozent);
     }
 
 
@@ -561,8 +595,8 @@ keyboard={false}
                         <br />
                         <br />
                         <input type="checkbox" onChange={(e) => answerChangeHandler(3, index)} value={userAntwort}></input>{t.antwort3}
-                        <br/>
-                        <br/>
+                        <br />
+                        <br />
                         <p>{submit ? isCorrect[index] ? `Deine Antwort ${answers[index]} war richtig` : `Deine Antwort ${answers[index]} war falsch - Die korrekte Antwort war ${t.korrekteAntwort}` : ""}</p>
                     </div>
                     {Mnumber === 3 ?
@@ -624,9 +658,12 @@ keyboard={false}
             </div>
             <br />
             <div>
-                <button className="button-check" onClick={checkMultipleChoice}>Überprüfen</button>
-                <br />
+                {checknumber === 0 ? <div><button className="button-check" onClick={checkMultipleChoice}>Überprüfen</button></div> :
+                    <div>
+                        <Auswertung />
+                    </div>}
             </div>
         </div>
+
     );
 }
