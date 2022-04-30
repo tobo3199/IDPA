@@ -185,7 +185,7 @@ export default function Schuelertheorie(props) {
       <div className="file">
         <Container>
           <Row>
-            <SchuelerFiles id={ide}/>
+          <SchuelerFiles id={ide}/>
           </Row>
         </Container>
       </div>

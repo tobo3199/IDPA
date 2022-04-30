@@ -9,13 +9,16 @@ function SchuelerFiles(ide) {
 
     const [images, setImages] = useState([]);
     const [status, setStatus] = useState('');
+    const [imageId, setImageId] = useState(0);
 
     useEffect(() => {
         handleGetFiles();
     }, [])
 
     const handleGetFiles = () => {
-        fetch("http://localhost:3000/api/fileData/files")
+        console.log("Grammatikthema");
+        console.log(ide);
+        fetch("http://localhost:3000/api/fileData/" + ide.id)
             .then(res => res.json())
             .then((result) => {
                 setImages(result);
@@ -37,12 +40,12 @@ function SchuelerFiles(ide) {
 
     return (
         <div className='get-container'>
-            {images.map(image =>
+            {images[0] ?  images.map(image =>
                 <div key={image.id}>
                     <img className='get-img' src={`http://localhost:3000/api/fileData/files/${image.id}`} />
                 </div>
 
-            )}
+            ) : <div></div>}
         </div>
 
     );

@@ -5,7 +5,7 @@ import "../kategorie.css";
 import '../App.css';
 import "./CSS/getfiles.css";
 
-function GetFiles() {
+function GetFiles(ide) {
 
     const [images, setImages] = useState([]);
     const [status, setStatus] = useState('');
@@ -15,9 +15,11 @@ function GetFiles() {
     }, [])
 
     const handleGetFiles = () => {
-        fetch("http://localhost:3000/api/fileData/files")
+        fetch("http://localhost:3000/api/fileData/" + ide.id)
             .then(res => res.json())
             .then((result) => {
+                console.log("Result:");
+                console.log(result);
                 setImages(result);
             })
 
@@ -37,7 +39,7 @@ function GetFiles() {
 
     return (
         <div className='get-container'>
-            {images.map(image =>
+            {images [0] ? images.map(image =>
                 <div key={image.id}>
                     <p >{image.id}</p>
                     <p>{image.fileDataName}</p>
@@ -45,7 +47,7 @@ function GetFiles() {
                     <button className="btn-delete" onClick={() => handleDelete(image.id)}>Delete</button>
                 </div>
 
-            )}
+            ) : <div></div>}
         </div>
 
     );

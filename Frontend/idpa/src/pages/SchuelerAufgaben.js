@@ -60,6 +60,8 @@ export default function SchuelerAufgaben(props) {
     var counter = 0;
     const [prozent, setProzent] = useState(0);
 
+    const [sentenceAnswers, setSentenceAnswers] = useState([]);
+
     const [check, setCheck] = useState(false);
     const handleCheck = () => setCheck(true);
     const unhandleCheck = () => setCheck(false);
@@ -207,9 +209,21 @@ export default function SchuelerAufgaben(props) {
 
     }
 
-    const handleChangeLoesung = (e) => {
+    const handleChangeLoesung = (idx, event) => {
         //setLoesung(e.target.value);
-        l1 = e.target.value;
+        //console.log(event);
+        l1 = event.target.value;
+        sentenceArray(l1, idx);
+        
+    }
+
+    const sentenceArray = (value, idx) => {
+        console.log("VALUE + IDX:")
+        console.log(value, idx);
+        let temp = sentenceAnswers;
+        temp[idx] = value;
+        setSentenceAnswers(temp);
+        console.log(sentenceAnswers);
     }
 
     const handleChangeALoesung = (e) => {
@@ -542,7 +556,6 @@ keyboard={false}
 
     function checkSentence(){
         setLNumber(2);
-        setAnswerS(l1);
     }
 
 
@@ -556,11 +569,10 @@ keyboard={false}
                     <p>{t.aufgabenstellung}</p>
                     <br />
                     <h6>Solution:</h6>
-                    <input type="text" className="form-control" id="bem" onChange={(e) => handleChangeLoesung(e)}></input>
+                    <input type="text" className="form-control" id="bem" onChange={(event) => handleChangeLoesung(index, event)}></input>
                     {lnumber === 2 ?
                         <div>
-                            <br/>
-                            <h6>Your answer was: {answerS}</h6>
+                            <h6>Your answer was: {sentenceAnswers[index]}</h6>
                             <br />
                             <h6>Correct answer:</h6>
                             <p>{t.loesung1}</p>
@@ -591,9 +603,9 @@ keyboard={false}
         return (
             mTasks[0] ? mTasks.map((t, index) => (
                 <div className="task" key={index}>
-                    <h4>Aufgabe {index + 1}</h4>
+                    <h4>Exercise {index + 1}</h4>
                     <br />
-                    <h6>Aufgabenstellung</h6>
+                    <h6>Task definition</h6>
                     <p>{t.aufgabenstellung}</p>
                     <div >
                         <input type="checkbox" onChange={(e) => answerChangeHandler(1, index)} value={userAntwort}></input>{t.antwort1}

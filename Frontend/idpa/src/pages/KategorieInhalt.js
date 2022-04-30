@@ -180,7 +180,7 @@ export default function KategorieInhalt(props, { param, RemoveParam }) {
     <div className="body-theorie">
       <div className="theorie-container">
         <h1 className="theorie-title">Theory</h1>
-        <UploadFile />
+        <UploadFile id={ide} />
       </div>
       <div className="file get-file">
         <Container>
@@ -188,7 +188,7 @@ export default function KategorieInhalt(props, { param, RemoveParam }) {
 
           </Row>
           <Row>
-            <GetFiles />
+            <GetFiles id={ide}/>
           </Row>
         </Container>
       </div>
