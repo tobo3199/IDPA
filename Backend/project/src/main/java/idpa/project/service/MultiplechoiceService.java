@@ -9,4 +9,5 @@ public interface MultiplechoiceService {
     public Multiplechoice saveMultiplechoice(Multiplechoice multiplechoice);
     public List<Multiplechoice> getAllMultiplechoice(Uebung uebung);
     public void deleteMultiplechoice(long id);
+    public Multiplechoice getById(long id);
 }
