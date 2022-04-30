@@ -12,6 +12,8 @@ import { useNavigate } from "react-router";
 import "../aufgabe.css";
 import "../kategorie.css";
 import '../App.css';
+import Edit from "./Edit";
+import MEdit from "./MEdit";
 
 
 
@@ -239,7 +241,7 @@ export default function Aufgabe(props) {
         */
         console.log(id);
 
-        fetch('http://localhost:3000/api/sentenceTransformation/' + id, {
+        fetch('http://localhost:3000/api/multiplechoice/' + id, {
             method: 'DELETE'
         })
             .then(() => {
@@ -250,7 +252,40 @@ export default function Aufgabe(props) {
     }
 
     const handleEdit = () => {
+
     }
+
+
+
+    //onClick={() => editTask(t)}
+
+    /*
+    function DisplayTasks() {
+        return (
+            tasks[0] ? tasks.map((t, index) => (
+                <div className="task" key={index}>
+                    <h4>Aufgabe {index + 1}</h4>
+                    <br />
+                    <h6>Aufgabenstellung</h6>
+                    <p>{t.aufgabenstellung}</p>
+                    <h6>Lösung:</h6>
+                    <p>{t.loesung1}</p>
+                    <h6>Alternative Lösung:</h6>
+                    <p>{t.loesung2}</p>
+                    <div className="centering">
+                        <Button className="editButton" onClick={handleEdit}>Edit</Button>
+                        <Button className="deleteButton" onClick={() => deleteMTask(t.id)}>Delete</Button>
+                    </div>
+
+
+                </div>
+            )) :
+                <div className="task">
+                    <p>No Aufgabe yet</p>
+                </div>
+        );
+    }
+    */
 
 
 
@@ -286,49 +321,6 @@ export default function Aufgabe(props) {
             }
             )
     }, []);
-
-    /*
-    const editTask = (task) => {
-        console.log(task);
-        handleShow(true);
-        setNumber(1);
-        auf = task.a,
-        l1 = task.l1,
-        l2 = task.l2
-    }
-    */
-
-    /*
-    //Checkbox 1
-    const handleCheckers = (e) => {
-        if (check === false) {
-            handleCheck();
-        } else if (check === true) {
-            unhandleCheck();
-        }
-    }
-    //Checkbox 2
-    const handleCheckers1 = (e) => {
-        if (check1 === false) {
-            handleCheck1();
-        } else if (check1 === true) {
-            unhandleCheck1();
-        }
-    }
-
-    //Checkbox 3
-    const handleCheckers2 = (e) => {
-        if (check2 === false) {
-            handleCheck2();
-        } else if (check2 === true) {
-            unhandleCheck2();
-        }
-    }
-    console.log("check1 : " + check);
-    console.log("check2 : " + check1);
-    console.log("check3 : " + check2);
-
-    */
 
     function RenderSwitch() {
 
@@ -428,20 +420,6 @@ export default function Aufgabe(props) {
 
     }
 
-
-    //
-    /*
-                 <DropdownButton id="dropdown-basic-button" title="Aufgaben-Typ">
-                            <Dropdown.Item><button onClick={renderSwitch(1)}>Sentence Transformation</button></Dropdown.Item>
-                            <Dropdown.Item><button onClick={renderSwitch(2)}>Gap Text</button></Dropdown.Item>
-                            <Dropdown.Item><button onClick={renderSwitch(3)}>Multiple Choice</button></Dropdown.Item>
-                        </DropdownButton>   
-    
-                        <button onClick={() => setNumber(1)}>Sentence Transformation</button>
-                        <button onClick={() => setNumber(2)}>Gap Text</button>
-                        <button onClick={() => setNumber(3)}>Multiple Choice</button>
-    */
-
     function AddAufgabe() {
         return (
             <>
@@ -480,7 +458,11 @@ export default function Aufgabe(props) {
         );
     }
 
+
+
     //onClick={() => editTask(t)}
+    //<button className="btn-add" onClick={handleEdit}>Edit</button>
+    //                        <Button className="editButton" onClick={() => handleEdit(t.id)}>Edit</Button>
 
     function DisplayTasks() {
         return (
@@ -495,7 +477,8 @@ export default function Aufgabe(props) {
                     <h6>Alternative solution:</h6>
                     <p>{t.loesung2}</p>
                     <div className="centering">
-                        <button className="btn-add" onClick={handleEdit}>Edit</button>
+
+                        <div><Edit id={t.id}/></div>
                         <button className="btn-delete" onClick={() => deleteTask(t.id)}>Delete</button>
                     </div>
 
@@ -524,9 +507,13 @@ export default function Aufgabe(props) {
                     <p>{t.antwort3}</p>
                     <h6>Correct answer:</h6>
                     <p>{t.korrekteAntwort}</p>
-                    <Button className="editButton" onClick={handleEdit}>Edit</Button>
+                    <div><MEdit mid={t.id}/></div>
                     <Button className="deleteButton" onClick={() => deleteMTask(t.id)}>Delete</Button>
+                    <br/>
+                    <p>{t.id}</p>
+                    
                 </div>
+                
             )) :
                 <div className="task">
                     <p>No task yet</p>
