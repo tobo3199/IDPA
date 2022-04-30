@@ -214,7 +214,7 @@ export default function SchuelerAufgaben(props) {
         //console.log(event);
         l1 = event.target.value;
         sentenceArray(l1, idx);
-        
+
     }
 
     const sentenceArray = (value, idx) => {
@@ -302,7 +302,6 @@ export default function SchuelerAufgaben(props) {
         if (!authToken) {
             navigate("/schueler-login");
         }
-
 
         fetch('http://localhost:3000/api/uebung/id/' + task, {
             method: 'GET'
@@ -495,6 +494,7 @@ keyboard={false}
 
     //onClick={() => editTask(t)}
     function Auswertung() {
+        
         return (
             <>
                 <div>
@@ -516,6 +516,7 @@ keyboard={false}
                         </Modal.Body>
                         <Modal.Footer>
                             <Button variant="secondary" onClick={handleClose}>Schliessen</Button>
+                            <Button variant="secondary" onClick={submitAuswertung}>Save</Button>
                         </Modal.Footer>
                     </Modal>
                 </div>
@@ -537,6 +538,8 @@ keyboard={false}
         console.log(temp);
         countCorrect();
         setChecknumber(4);
+
+        
     }
 
     const countCorrect = (e) => {
@@ -551,10 +554,37 @@ keyboard={false}
         //counter und auth_token ins backend pushen mit exercise id
         //
         setProzent((100 / mTasks.length) * counter);
+        console.log("PROZENT:");
         console.log(prozent);
+        
+
+        
     }
 
-    function checkSentence(){
+    const submitAuswertung = () => {
+
+        let authToken = sessionStorage.getItem("Auth Token");
+        const object = {
+            name: authToken,
+            zahl: prozent,
+            uebung: {
+                id: task
+            }
+        }
+
+        fetch("http://localhost:3000/api/auswertung/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(object)
+
+        }).then(() => {
+            console.log("New Auswertung added")
+        })
+
+        //window.location.reload();
+    }
+
+    function checkSentence() {
         setLNumber(2);
     }
 
@@ -678,7 +708,7 @@ keyboard={false}
             </div>
             <br />
             <div>
-                {checknumber === 0 && mTasks[0]? <div><button className="button-check" onClick={checkMultipleChoice}>Check</button></div> :
+                {checknumber === 0 && mTasks[0] ? <div><button className="button-check" onClick={checkMultipleChoice}>Check</button></div> :
                     <div>
                         <Auswertung />
                     </div>}
