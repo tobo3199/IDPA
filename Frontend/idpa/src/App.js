@@ -27,6 +27,7 @@ import { Nav } from "react-bootstrap";
 import Schueler from "./pages/Schueler";
 import Schuelertheorie from "./pages/Schuelertheorie";
 import SchuelerAufgaben from "./pages/SchuelerAufgaben";
+import Analyse from "./pages/Analyse";
 
 function App() {
   const [email, setEmail] = useState("");
@@ -153,6 +154,7 @@ function App() {
         <Route path="/student" element={<Student />} />
         <Route path="/thema" element={<Kategorie />} />
         <Route path="/kapitel" element={<Kapitel />} />
+        <Route path="/analyse" element={<Analyse />} />
         <Route path="/grammartopic/:ide" element={<Schuelertheorie />} />
         <Route path="/grammartopic/:ide/exercise/:task" element={<SchuelerAufgaben />} />
         <Route path="/schueler-login" element={<Schueler

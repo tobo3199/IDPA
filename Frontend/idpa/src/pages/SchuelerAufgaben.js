@@ -37,6 +37,27 @@ export default function SchuelerAufgaben(props) {
     var ml3 = "";
     var l = 0;
 
+    /*
+    const r1 = false;
+    const r2 = false;
+    const r3 = false;
+    */
+    var r1 = false;
+    var r2 = false;
+    var r3 = false;
+    /*
+    const [r1, setR1] = useState(false);
+    const [r2, setR2] = useState(false);
+    const [r3, setR3] = useState(false);
+    */
+    const [userInput, setUserInput] = useState([]);
+    //const [input, setInput] = useState();
+    var input;
+    const [answers, setAnswers] = useState([]);
+    const [isCorrect, setIsCorrect] = useState([]);
+    const [submit, setSubmit] = useState(false);
+    var counter = 0;
+
     const [check, setCheck] = useState(false);
     const handleCheck = () => setCheck(true);
     const unhandleCheck = () => setCheck(false);
@@ -50,8 +71,13 @@ export default function SchuelerAufgaben(props) {
     const unhandleCheck2 = () => setCheck2(false);
 
     const [number, setNumber] = useState(0);
+    const [lnumber, setLNumber] = useState(0);
+    const [Mnumber, setMNumber] = useState(0);
 
     const [checkloesung, setCheckLosesung] = useState();
+
+    //const [userAntwort, setUserAntwort] = useState();
+    var userAntwort = 0;
 
     const handleAufgabe = e => {
         e.preventDefault();
@@ -259,6 +285,7 @@ export default function SchuelerAufgaben(props) {
             navigate("/schueler-login");
         }
 
+
         fetch('http://localhost:3000/api/uebung/id/' + task, {
             method: 'GET'
         })
@@ -296,37 +323,6 @@ export default function SchuelerAufgaben(props) {
     }
     */
 
-    /*
-    //Checkbox 1
-    const handleCheckers = (e) => {
-        if (check === false) {
-            handleCheck();
-        } else if (check === true) {
-            unhandleCheck();
-        }
-    }
-    //Checkbox 2
-    const handleCheckers1 = (e) => {
-        if (check1 === false) {
-            handleCheck1();
-        } else if (check1 === true) {
-            unhandleCheck1();
-        }
-    }
-
-    //Checkbox 3
-    const handleCheckers2 = (e) => {
-        if (check2 === false) {
-            handleCheck2();
-        } else if (check2 === true) {
-            unhandleCheck2();
-        }
-    }
-    console.log("check1 : " + check);
-    console.log("check2 : " + check1);
-    console.log("check3 : " + check2);
-
-    */
 
     function RenderSwitch() {
 
@@ -478,7 +474,37 @@ keyboard={false}
 }
 */
 
+
     //onClick={() => editTask(t)}
+
+
+    const checkMultipleChoice = (e) => {
+        e.preventDefault();
+        setSubmit(true);
+        let temp = isCorrect;
+        console.log(mTasks);
+        console.log(answers);
+        for (let i = 0; i < mTasks.length; i++) {
+            temp[i] = mTasks[i].korrekteAntwort === answers[i]
+        }
+        setIsCorrect(temp);
+        console.log(temp);
+        countCorrect();
+    }
+
+    const countCorrect = (e) => {
+        console.log("Antworten korrigiert:")
+        console.log(isCorrect);
+        for(let i = 0; i < isCorrect.length; i ++){
+            {isCorrect[i] === true ? counter= counter + 1 : counter = counter + 0}
+        }
+        console.log("Counter");
+        console.log(counter);
+
+        //counter und auth_token ins backend pushen mit exercise id
+        //
+    }
+
 
     function DisplayTasks() {
         return (
@@ -491,12 +517,32 @@ keyboard={false}
                     <br />
                     <h6>Lösung:</h6>
                     <input type="text" className="form-control" id="bem" onChange={(e) => handleChangeLoesung(e)}></input>
+                    {lnumber === 2 ?
+                        <div>
+                            <br />
+                            <h6>Richtige Lösung:</h6>
+                            <p>{t.loesung1}</p>
+                            <br />
+                            <h6>Alternative Lösung:</h6>
+                            <p>{t.loesung2}</p>
+                            <br />
+                        </div>
+                        : <div>
+                        </div>}
                 </div>
             )) :
                 <div className="task">
                     <p>No Aufgabe yet</p>
                 </div>
         );
+    }
+
+
+    const answerChangeHandler = (value, idx, e) => {
+        console.log(value, idx);
+        let temp = answers;
+        temp[idx] = value;
+        setAnswers(temp);
     }
 
     function DisplayMultipleChoices() {
@@ -507,13 +553,33 @@ keyboard={false}
                     <br />
                     <h6>Aufgabenstellung</h6>
                     <p>{t.aufgabenstellung}</p>
-                    <h6> Mögliche Antwort 1:</h6>
-                    <div className="sameLine"><p>{t.antwort1}</p><input type="checkbox"></input></div>
-                    <h6>Mögliche Antwort 2:</h6>
-                    <div className="sameLine"><p>{t.antwort2}</p><input type="checkbox"></input></div>
-                    <h6>Mögliche Antwort 3:</h6>
-                    <div className="sameLine"><p>{t.antwort3}</p><input type="checkbox"></input></div>
+                    <div >
+                        <input type="checkbox" onChange={(e) => answerChangeHandler(1, index)} value={userAntwort}></input>{t.antwort1}
+                        <br />
+                        <br />
+                        <input type="checkbox" onChange={(e) => answerChangeHandler(2, index)} value={userAntwort}></input>{t.antwort2}
+                        <br />
+                        <br />
+                        <input type="checkbox" onChange={(e) => answerChangeHandler(3, index)} value={userAntwort}></input>{t.antwort3}
+                        <br/>
+                        <br/>
+                        <p>{submit ? isCorrect[index] ? `Deine Antwort ${answers[index]} war richtig` : `Deine Antwort ${answers[index]} war falsch - Die korrekte Antwort war ${t.korrekteAntwort}` : ""}</p>
+                    </div>
+                    {Mnumber === 3 ?
+                        <div>
+                            <br />
+                            <h6>Richtige Lösung:</h6>
+                            <p>{t.loesung1}</p>
+                            <br />
+                            <h6>Alternative Lösung:</h6>
+                            <p>{t.loesung2}</p>
+                            <br />
+                        </div>
+                        : <div>
+                        </div>}
                 </div>
+
+
             )) :
                 <div className="task">
                     <p>No Aufgabe yet</p>
@@ -547,15 +613,19 @@ keyboard={false}
             </div>
             <br />
             <div>
+                <button className="button-check" onClick={() => setLNumber(2)}>Überprüfen</button>
+                <br />
+            </div>
+            <br />
+            <div>
                 <br />
                 <h4>Mutlitple Choices: </h4>
                 <DisplayMultipleChoices />
             </div>
             <br />
             <div>
-                <button className="button-center">Überprüfen</button>
-                <button className="button-check">Überprüfen</button>
-                <br/>
+                <button className="button-check" onClick={checkMultipleChoice}>Überprüfen</button>
+                <br />
             </div>
         </div>
     );

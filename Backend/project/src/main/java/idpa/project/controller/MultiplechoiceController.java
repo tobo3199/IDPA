@@ -46,9 +46,9 @@ public class MultiplechoiceController {
     }
 
     @GetMapping("/check")
-    public boolean checkMultiplechoice(@RequestBody int antwort){
+    public boolean checkMultiplechoice( @PathVariable long id, @RequestBody int antwort){
 
-        Multiplechoice multiplechoice = new Multiplechoice(1);
+        Multiplechoice multiplechoice = new Multiplechoice(id);
         if(antwort == multiplechoice.getKorrekteAntwort()){
             return true;
         } else {
