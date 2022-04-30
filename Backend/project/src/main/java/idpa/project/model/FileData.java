@@ -1,9 +1,6 @@
 package idpa.project.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
 import java.util.Arrays;
 
@@ -28,28 +25,31 @@ public class FileData {
             strategy = SEQUENCE,
             generator = "file_sequence"
     )
-    private Long id;
+    private long id;
     private byte[] content;
     private long size;
     private String type;
     private String filename;
+    @ManyToOne
+    private GrammatikThema grammatikThema;
 
     public FileData(){
 
     };
-    public FileData(Long id, byte[] content, long size, String type, String filename) {
+    public FileData(long id, byte[] content, long size, String type, String filename, GrammatikThema grammatikThema) {
         this.id = id;
         this.content = content;
         this.size = size;
         this.type = type;
         this.filename = filename;
+        this.grammatikThema = grammatikThema;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -83,6 +83,14 @@ public class FileData {
 
     public void setFilename(String filename) {
         this.filename = filename;
+    }
+
+    public GrammatikThema getGrammatikThema() {
+        return grammatikThema;
+    }
+
+    public void setGrammatikThema(GrammatikThema grammatikThema) {
+        this.grammatikThema = grammatikThema;
     }
 
     @Override

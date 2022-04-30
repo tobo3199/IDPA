@@ -2,6 +2,7 @@ package idpa.project.controller;
 
 import idpa.project.model.FileData;
 import idpa.project.model.FileDataResponse;
+import idpa.project.model.GrammatikThema;
 import idpa.project.service.FileDataService;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,21 +48,22 @@ public class FileDataController {
         return "FileData is added";
     }
 
-    @GetMapping("/files")
-    public List<FileDataResponse> getAllFileData() {
-        List<FileData> fileDataList = fileDataService.getAllFileData();
+    @GetMapping("/{id}")
+    public List<FileDataResponse> getAllFileData(@PathVariable long id) {
+        GrammatikThema grammatikThema = new GrammatikThema(id);
+        List<FileData> fileDataList = fileDataService.getAllFileData(grammatikThema);
         return fileDataList.stream().map(it -> new FileDataResponse(it.getFilename(), it.getId()))
                 .collect(Collectors.toList());
     }
 
     @DeleteMapping("/files/{id}")
-    public String deleteFile(@PathVariable Long id){
+    public String deleteFile(@PathVariable long id){
         fileDataService.deleteFileData(id);
         return "File deleted";
     }
 
     @RequestMapping(path = "/files/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Resource> download(@PathVariable("id") Long id) throws IOException {
+    public ResponseEntity<Resource> download(@PathVariable("id") long id) throws IOException {
 
         FileData fileData = fileDataService.getFileData(id);
 
