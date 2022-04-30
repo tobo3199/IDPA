@@ -121,6 +121,35 @@
 .text{
   left: 0px;
   margin-left: 0px;
+  color: #4E4EEC;
+  font-size: 18px;
+  text-decoration: none;
+  position: relative;
+  cursor: pointer;
+  font-family: Poppins, sans-serif;
+}
+
+.text::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 2px;
+  background-color: #0074D9;
+  transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .text:hover::before{
+    left: 0;
+    right: auto;
+    width: 100%;
+    text-decoration: none;
+    color: #31898f;
+    cursor: pointer;
+    font-weight: 600;
+  }
 }
 
 .btn btn-danger{
@@ -169,5 +198,14 @@
 
 .table{
   overflow: scroll;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
+/* a {
+  color: #4E4EEC;
+} */
+
+.texth {
+  font-size: 22px;
+}

@@ -1,10 +1,17 @@
 .body-theorie{
     margin: 40px;
     margin-bottom: 50px;
+    /* max-width: 100%; */
 }
 
 .file {
     margin-bottom: 40px;
+}
+
+.get-file {
+  display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 #myFile .btn {
@@ -70,3 +77,15 @@
     .table{
       overflow: scroll;
     }
+
+.theorie-container {
+  display: flex;
+  /* background: green; */
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.theorie-title {
+  /* color: #4E4EEC; */
+  margin-right: 50px;
+}

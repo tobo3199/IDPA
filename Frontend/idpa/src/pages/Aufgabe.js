@@ -10,6 +10,8 @@ import { Dropdown } from "react-bootstrap";
 import { DropdownButton } from "react-bootstrap";
 import { useNavigate} from "react-router";
 import "../aufgabe.css";
+import "../kategorie.css";
+import '../App.css';
 
 
 
@@ -443,10 +445,12 @@ export default function Aufgabe(props) {
     function AddAufgabe() {
         return (
             <>
-                <Button className="button-center" variant="success" onClick={handleShow}>
+            <div className="centering">
+                <button className="btn-add" onClick={handleShow}>
                     Add Aufgabe
-                </Button>
-
+                </button>
+            </div>
+                
                 <Modal
                     show={show}
                     onHide={handleClose}
@@ -458,9 +462,9 @@ export default function Aufgabe(props) {
                     </Modal.Header>
                     <Modal.Body>
                         <DropdownButton id="dropdown-basic-button" title="Aufgaben-Typ">
-                            <Dropdown.Item defaultChecked><button onClick={() => setNumber(1)}>Sentence Transformation</button></Dropdown.Item>
-                            <Dropdown.Item><button onClick={() => setNumber(2)}>Gap Text</button></Dropdown.Item>
-                            <Dropdown.Item><button onClick={() => setNumber(3)}>Multiple Choice</button></Dropdown.Item>
+                            <Dropdown.Item defaultChecked><button className="btn-add" onClick={() => setNumber(1)}>Sentence Transformation</button></Dropdown.Item>
+                            <Dropdown.Item><button className="btn-add" onClick={() => setNumber(2)}>Gap Text</button></Dropdown.Item>
+                            <Dropdown.Item><button className="btn-add" onClick={() => setNumber(3)}>Multiple Choice</button></Dropdown.Item>
                         </DropdownButton>
                         <RenderSwitch />
 
@@ -490,8 +494,12 @@ export default function Aufgabe(props) {
                     <p>{t.loesung1}</p>
                     <h6>Alternative Lösung:</h6>
                     <p>{t.loesung2}</p>
-                    <Button className="editButton" onClick={handleEdit}>Edit</Button>
-                    <Button className="deleteButton" onClick={() => deleteTask(t.id)}>Delete</Button>
+                    <div className="centering">
+                        <button className="btn-add" onClick={handleEdit}>Edit</button>
+                        <button className="btn-delete" onClick={() => deleteTask(t.id)}>Delete</button>
+                    </div>
+                    
+                    
                 </div>
             )) :
                 <div className="task">
@@ -539,7 +547,7 @@ export default function Aufgabe(props) {
 
     // {number === 1 ? <DisplayTasks /> : number === 2 ? <DisplayMultipleChoices /> : <DisplayTasks />}
     return (
-        <div>
+        <div className="body-aufgabe">
             <h1>Aufgabe</h1>
             <div>
                 <br />

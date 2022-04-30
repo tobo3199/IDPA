@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { Container, Paper, Button } from '@material-ui/core';
 import FileUpload from "react-material-file-upload";
+import "./CSS/uploadfile.css";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -41,15 +42,16 @@ function UploadFile() {
             .catch((error) => {
                 console.error('Error', error)
             })
-
-
-    }
+            
+            window.location.reload();
+            
+        }
 
     return (
 
-        <div>
-            <input type="file" onChange={(e) => setSelectedFile(e.target.files[0])} />
-            <button onClick={fileUploadHandler}>Upload</button>
+        <div className='up-container'>
+            <input className='btn-datei btn-5' type="file" onChange={(e) => setSelectedFile(e.target.files[0])} />
+            <button className='btn-add' onClick={fileUploadHandler}>Upload</button>
         </div>
 
     );

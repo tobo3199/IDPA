@@ -8,6 +8,7 @@ import "../kategorieinhalt.css";
 import GetFiles from '../components/GetFiles';
 import UploadFile from '../components/UploadFile';
 import { Container, Row, Col } from "react-bootstrap";
+import "../kategorie.css";
 
 export default function KategorieInhalt(props, { param, RemoveParam }) {
   const { ide } = useParams();
@@ -177,11 +178,14 @@ export default function KategorieInhalt(props, { param, RemoveParam }) {
 
   return (
     <div className="body-theorie">
-      <h1>Theorie</h1>
-      <div className="file">
+      <div className="theorie-container">
+        <h1 className="theorie-title">Theorie</h1>
+        <UploadFile />
+      </div>
+      <div className="file get-file">
         <Container>
           <Row>
-            <UploadFile />
+            
           </Row>
           <Row>
             <GetFiles />
@@ -194,15 +198,15 @@ export default function KategorieInhalt(props, { param, RemoveParam }) {
           <label className='custom-field two'>
             <input type="text" placeholder="add aufgaben" value={aufg} name="theorie" className="cat-input" onChange={handleAufgabe}></input>
           </label>
-          <button className='cat-button'>Add Aufgabe</button>
+          <button className='btn-add'>Add Aufgabe</button>
         </form>
 
         <div>
           <table className="table">
 
             <tr>
-              <th>Übersicht</th>
-              <th>Aufgabe:</th>
+              <th className="texth">Übersicht</th>
+              <th className="texth">Aufgabe:</th>
               <th></th>
             </tr>
 
@@ -210,8 +214,8 @@ export default function KategorieInhalt(props, { param, RemoveParam }) {
               <>
                 <tr key={index}>
                   <td></td>
-                  <td><Link to={`/thema/${ide}/aufgabe/${t.id}`}>{t.name}</Link></td>
-                  <td><button className='button-border' type="button" class="btn btn-danger" onClick={() => handleDelete(t.id)}>Delete</button></td>
+                  <td><Link className="text" to={`/thema/${ide}/aufgabe/${t.id}`}>{t.name}</Link></td>
+                  <td><button className='btn-delete' onClick={() => handleDelete(t.id)}>Delete</button></td>
                 </tr>
 
 

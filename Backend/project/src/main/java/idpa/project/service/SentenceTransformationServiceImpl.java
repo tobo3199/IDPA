@@ -40,4 +40,9 @@ public class SentenceTransformationServiceImpl implements SentenceTransformation
     public void findSentenceTransformation(long id) {
         sentenceTransformationRepository.findById(id);
     }
+
+    @Override
+    public SentenceTransformation getById(long id) {
+        return sentenceTransformationRepository.getById(id);
+    }
 }

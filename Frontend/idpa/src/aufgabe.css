@@ -1,3 +1,10 @@
+.body-aufgabe {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
 .task-title {
     margin: 40px;
 }
@@ -24,4 +31,17 @@
     text-align: center;
     /* Add This*/
     margin-bottom: 20px;
+}
+
+.centering {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.centering .btn-add {
+    margin-right: 20px;
+    padding: 10px 35px;
 }

@@ -1,0 +1,76 @@
+.up-container {
+    /* background: red; */
+    display: flex;
+    /* justify-content: space-evenly; */
+    width: 100%;
+    /* position: relative;
+    overflow: hidden;
+    display: inline-block; */
+}
+
+.btn-datei {
+    /* border: 2px solid gray; */
+    color: gray;
+    /* background-color: white; */
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .btn-datei[type=file]::file-selector-button {
+    border: none;
+    padding: .2em .4em;
+    border-radius: .2em;
+    background-color: white;
+    text-align:center;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    transition: .8s;
+    
+  }
+  
+  /* .btn-datei[type=file]::file-selector-button:hover {
+    border: none;
+    
+  } */
+
+  /* .btn-5[type=file]::file-selector-button {
+    background: #000;
+    color: #fff;
+    line-height: 42px;
+    padding: 0;
+    border: none;
+  }
+  .btn-5[type=file]::file-selector-button:hover {
+    background: transparent;
+    color: #000;
+     box-shadow:
+     -7px -7px 20px 0px #fff9,
+     -4px -4px 5px 0px #fff9,
+     7px 7px 20px 0px #0002,
+     4px 4px 5px 0px #0001;
+  }
+  .btn-5[type=file]::file-selector-button:before,
+  .btn-5[type=file]::file-selector-button:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: #000;
+    transition:400ms ease all;
+  }
+  .btn-5[type=file]::file-selector-button:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+  .btn-5[type=file]::file-selector-button:hover:before,
+  .btn-5[type=file]::file-selector-button:hover:after{
+    width:100%;
+    transition:800ms ease all;
+  } */

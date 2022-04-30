@@ -66,6 +66,8 @@
 
   .table {
       margin-left: 40px;
+      margin-right: 40px;
+      margin-top: 20px;
   }
 
   .btn-delete {
@@ -87,6 +89,7 @@
     background: #fff;
     color: #EC4E4E;
     border-radius: 15px;
+    font-weight: 700;
     box-shadow: 0 0 2px #fff,
                 0 0 4px #fff,
                 0 0 8px #fff,
@@ -112,6 +115,7 @@
     background: #fff;
     color: #3FB73D;
     border-radius: 15px;
+    font-weight: 700;
     box-shadow: 0 0 2px #fff,
                 0 0 4px #fff,
                 0 0 8px #fff,

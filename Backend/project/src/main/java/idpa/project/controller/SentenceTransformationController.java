@@ -51,4 +51,14 @@ public class SentenceTransformationController {
         return antwortS.getEingabe().equals(sentenceTransformation.getLoesung1());
 
     }
+
+    @PutMapping("/{id}")
+    public String update (@RequestBody SentenceTransformation sentenceTransformation, @PathVariable long id){
+        SentenceTransformation updateSentence = sentenceTransformationService.getById(id);
+        updateSentence.setAufgabenstellung(sentenceTransformation.getAufgabenstellung());
+        updateSentence.setLoesung1(sentenceTransformation.getLoesung1());
+        updateSentence.setLoesung2(sentenceTransformation.getLoesung2());
+        sentenceTransformationService.saveSentenceTransformation(updateSentence);
+        return "New Sentence Transformation added";
+    }
 }

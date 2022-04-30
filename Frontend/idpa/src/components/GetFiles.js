@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Paper, Button } from '@material-ui/core';
+import "../kategorie.css";
+import '../App.css';
+import "./CSS/getfiles.css";
 
 function GetFiles() {
 
@@ -18,6 +21,7 @@ function GetFiles() {
                 setImages(result);
             })
 
+            // window.location.reload();
     }
 
     const handleDelete = (id) => {
@@ -32,15 +36,13 @@ function GetFiles() {
     }
 
     return (
-        <div>
+        <div className='get-container'>
             {images.map(image =>
                 <div key={image.id}>
                     <p >{image.id}</p>
                     <p>{image.fileDataName}</p>
-                    <img src={`http://localhost:3000/api/fileData/files/${image.id}`} />
-                    <Button variant="contained" color="secondary" onClick={() => handleDelete(image.id)}>
-                        Delete
-                    </Button>
+                    <img className='get-img' src={`http://localhost:3000/api/fileData/files/${image.id}`} />
+                    <button className="btn-delete" onClick={() => handleDelete(image.id)}>Delete</button>
                 </div>
 
             )}
