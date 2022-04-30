@@ -338,15 +338,15 @@ export default function SchuelerAufgaben(props) {
                         <div>
                             <label htmlFor="recipient-name" className="col-form-label">Sentence Transformation </label>
                             <br />
-                            <label htmlFor="recipient-name" className="col-form-label">Aufgabe: </label>
+                            <label htmlFor="recipient-name" className="col-form-label">Task: </label>
                             <input type="text" className="form-control" id="bem" onChange={(e) => handleChangeAufgabe(e)}></input>
                         </div>
                         <div>
-                            <label htmlFor="recipient-name" className="col-form-label">Lösung: </label>
+                            <label htmlFor="recipient-name" className="col-form-label">Solution: </label>
                             <input type="text" className="form-control" id="bem" onChange={(e) => handleChangeLoesung(e)}  ></input>
                         </div>
                         <div>
-                            <label htmlFor="recipient-name" className="col-form-label">Alternative Lösung: </label>
+                            <label htmlFor="recipient-name" className="col-form-label">Alternative solution: </label>
                             <input type="text" className="form-control" id="bem" onChange={(e) => handleChangeALoesung(e)}  ></input>
                         </div>
                         {/*
@@ -381,17 +381,17 @@ export default function SchuelerAufgaben(props) {
                                 <div>
                                     <label htmlFor="recipient-name" className="col-form-label">Multiple-Choice: </label>
                                     <br />
-                                    <label htmlFor="recipient-name" className="col-form-label">Aufgabenstellung: </label>
+                                    <label htmlFor="recipient-name" className="col-form-label">Task definition: </label>
                                     <input type="text" className="form-control" id="bem" onChange={handleChangeAufgaben} ></input>
                                 </div>
                                 <div>
-                                    <label htmlFor="recipient-name" className="col-form-label">Mögliche Antwort 1: </label>
+                                    <label htmlFor="recipient-name" className="col-form-label">Solution 1: </label>
                                     <input type="text" className="form-control" id="bem" onChange={handleChangeLoesung1}></input>
-                                    <label htmlFor="recipient-name" className="col-form-label">Mögliche Antwort 2: </label>
+                                    <label htmlFor="recipient-name" className="col-form-label">Solution 2: </label>
                                     <input type="text" className="form-control" id="bem" onChange={handleChangeLoesung2}></input>
-                                    <label htmlFor="recipient-name" className="col-form-label">Mögliche Antwort 3: </label>
+                                    <label htmlFor="recipient-name" className="col-form-label">Solution 3: </label>
                                     <input type="text" className="form-control" id="bem" onChange={handleChangeLoesung3} ></input>
-                                    <label htmlFor="recipient-name" className="col-form-label">Richtige Antwort: </label>
+                                    <label htmlFor="recipient-name" className="col-form-label">Correct answer: </label>
                                     <br />
                                     <input type="number" id="bem" onChange={handleCheckLoesung} min="1" max="3" ></input>
 

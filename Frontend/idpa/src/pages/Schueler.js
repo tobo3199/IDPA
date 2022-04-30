@@ -6,7 +6,7 @@ import "../login.css";
 import { useNavigate } from "react-router";
 
 export default function Schueler({ title, setUsername, setPin, handleSchueler }) {
-  
+
   /*<form onSubmit={handleAction}>
         <h2>Login:</h2>
         <input
@@ -26,56 +26,56 @@ export default function Schueler({ title, setUsername, setPin, handleSchueler })
         <button type="submit">Login</button>
       </form>*/
 
-      /*
-  const handleSchueler = (e) => {
-    e.preventDefault();
-    console.log("Username: " + username + ", " + "Pin: " + pin);
+  /*
+const handleSchueler = (e) => {
+e.preventDefault();
+console.log("Username: " + username + ", " + "Pin: " + pin);
 
-      if(thema){
-      navigate("/thema/" + thema.id);
-      } else {
-        console.log("Thema doesnt exist!")
-      }
+  if(thema){
+  navigate("/thema/" + thema.id);
+  } else {
+    console.log("Thema doesnt exist!")
   }
+}
 
-  const getThema = (pin, e) => {
-    e.preventDefault();
+const getThema = (pin, e) => {
+e.preventDefault();
 
-    fetch('http://localhost:3000/api/grammatikthema/pin/' + pin, {
-      method: 'GET'
-    })
-      .then(res => res.json())
-      .then((result) => {
-        console.log(result);
-        setThema(result);
+fetch('http://localhost:3000/api/grammatikthema/pin/' + pin, {
+  method: 'GET'
+})
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+    setThema(result);
 
-      }
-      )
   }
+  )
+}
 
-  const handleUsername = (e) => {
-    //setCheckLosesung(e.target.value);
-    setUsername(e.target.value);
-    console.log(username);
-  }
+const handleUsername = (e) => {
+//setCheckLosesung(e.target.value);
+setUsername(e.target.value);
+console.log(username);
+}
 
-  const handlePin = (e) => {
-    //setCheckLosesung(e.target.value);
-    setPin(e.target.value);
-    console.log(username);
-  }
+const handlePin = (e) => {
+//setCheckLosesung(e.target.value);
+setPin(e.target.value);
+console.log(username);
+}
 
-  useEffect(() => {
+useEffect(() => {
 
-    let authToken = sessionStorage.getItem("Auth Token");
+let authToken = sessionStorage.getItem("Auth Token");
 
-    if (pin !== null && pin.length === 6) {
-      getThema(pin);
-    }
+if (pin !== null && pin.length === 6) {
+  getThema(pin);
+}
 
-  }, []);
+}, []);
 
-  */
+*/
 
 
 
@@ -83,7 +83,7 @@ export default function Schueler({ title, setUsername, setPin, handleSchueler })
 
     <div className="login-box">
       <div className="login-container">
-        <h2>Schüler Login</h2>
+        <h2>Student Login</h2>
         <form onSubmit={handleSchueler}>
           <div className="user-box">
             <input type="text"
