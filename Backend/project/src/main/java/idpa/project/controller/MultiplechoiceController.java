@@ -55,4 +55,16 @@ public class MultiplechoiceController {
             return false;
         }
     }
+
+    @PutMapping("/{id}")
+    public String update (@RequestBody Multiplechoice multiplechoice, @PathVariable long id){
+        Multiplechoice updateMultiplechoice = multiplechoiceService.getById(id);
+        updateMultiplechoice.setAufgabenstellung(multiplechoice.getAufgabenstellung());
+        updateMultiplechoice.setAntwort1(multiplechoice.getAntwort1());
+        updateMultiplechoice.setAntwort2(multiplechoice.getAntwort2());
+        updateMultiplechoice.setAntwort3(multiplechoice.getAntwort3());
+        updateMultiplechoice.setKorrekteAntwort(multiplechoice.getKorrekteAntwort());
+        multiplechoiceService.saveMultiplechoice(updateMultiplechoice);
+        return "New Sentence Transformation added";
+    }
 }

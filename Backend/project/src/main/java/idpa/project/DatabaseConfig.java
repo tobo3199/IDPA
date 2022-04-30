@@ -14,10 +14,7 @@ import javax.sql.DataSource;
  * @author: Tobias Sauter
  * @version:
  */
-<<<<<<< HEAD
-=======
 
->>>>>>> d22187672b7bb18eeddccbdd528ae81d9ac3f7b6
 /*
 @Configuration
 public class DatabaseConfig {
@@ -33,7 +30,4 @@ public class DatabaseConfig {
     }
 <<<<<<< HEAD
 }*/
-=======
-}
- */
->>>>>>> d22187672b7bb18eeddccbdd528ae81d9ac3f7b6
+
