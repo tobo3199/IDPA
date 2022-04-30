@@ -124,7 +124,7 @@ export default function KategorieInhalt(props, { param, RemoveParam }) {
 
   useEffect(() => {
 
-    
+
     let authToken = sessionStorage.getItem("Auth Token");
 
     /*
@@ -132,7 +132,7 @@ export default function KategorieInhalt(props, { param, RemoveParam }) {
       navigate("/login");
     }
     */
-    
+
 
     const getUebungen = () => {
 
@@ -179,34 +179,34 @@ export default function KategorieInhalt(props, { param, RemoveParam }) {
   return (
     <div className="body-theorie">
       <div className="theorie-container">
-        <h1 className="theorie-title">Theorie</h1>
+        <h1 className="theorie-title">Theory</h1>
         <UploadFile />
       </div>
       <div className="file get-file">
         <Container>
           <Row>
-            
+
           </Row>
           <Row>
             <GetFiles />
           </Row>
         </Container>
       </div>
-      <h1>Aufgaben</h1>
+      <h1>Tasks</h1>
       <div className="theorie">
         <form className='todo-form' onSubmit={handleSubmit}>
           <label className='custom-field two'>
             <input type="text" placeholder="add aufgaben" value={aufg} name="theorie" className="cat-input" onChange={handleAufgabe}></input>
           </label>
-          <button className='btn-add'>Add Aufgabe</button>
+          <button className='btn-add'>Add Task</button>
         </form>
 
         <div>
           <table className="table">
 
             <tr>
-              <th className="texth">Übersicht</th>
-              <th className="texth">Aufgabe:</th>
+              <th className="texth">Overview</th>
+              <th className="texth">Task:</th>
               <th></th>
             </tr>
 

@@ -333,15 +333,15 @@ export default function Aufgabe(props) {
                         <div>
                             <label htmlFor="recipient-name" className="col-form-label">Sentence Transformation </label>
                             <br />
-                            <label htmlFor="recipient-name" className="col-form-label">Aufgabe: </label>
+                            <label htmlFor="recipient-name" className="col-form-label">Task: </label>
                             <input type="text" className="form-control" id="bem" onChange={(e) => handleChangeAufgabe(e)}></input>
                         </div>
                         <div>
-                            <label htmlFor="recipient-name" className="col-form-label">Lösung: </label>
+                            <label htmlFor="recipient-name" className="col-form-label">Solution: </label>
                             <input type="text" className="form-control" id="bem" onChange={(e) => handleChangeLoesung(e)}  ></input>
                         </div>
                         <div>
-                            <label htmlFor="recipient-name" className="col-form-label">Alternative Lösung: </label>
+                            <label htmlFor="recipient-name" className="col-form-label">Alternative solution: </label>
                             <input type="text" className="form-control" id="bem" onChange={(e) => handleChangeALoesung(e)}  ></input>
                         </div>
                         {/*
@@ -376,17 +376,17 @@ export default function Aufgabe(props) {
                                 <div>
                                     <label htmlFor="recipient-name" className="col-form-label">Multiple-Choice: </label>
                                     <br />
-                                    <label htmlFor="recipient-name" className="col-form-label">Aufgabenstellung: </label>
+                                    <label htmlFor="recipient-name" className="col-form-label">Task: </label>
                                     <input type="text" className="form-control" id="bem" onChange={handleChangeAufgaben} ></input>
                                 </div>
                                 <div>
-                                    <label htmlFor="recipient-name" className="col-form-label">Mögliche Antwort 1: </label>
+                                    <label htmlFor="recipient-name" className="col-form-label">Solution 1: </label>
                                     <input type="text" className="form-control" id="bem" onChange={handleChangeLoesung1}></input>
-                                    <label htmlFor="recipient-name" className="col-form-label">Mögliche Antwort 2: </label>
+                                    <label htmlFor="recipient-name" className="col-form-label">Solution 2: </label>
                                     <input type="text" className="form-control" id="bem" onChange={handleChangeLoesung2}></input>
-                                    <label htmlFor="recipient-name" className="col-form-label">Mögliche Antwort 3: </label>
+                                    <label htmlFor="recipient-name" className="col-form-label">Solution 3: </label>
                                     <input type="text" className="form-control" id="bem" onChange={handleChangeLoesung3} ></input>
-                                    <label htmlFor="recipient-name" className="col-form-label">Richtige Antwort: </label>
+                                    <label htmlFor="recipient-name" className="col-form-label">Correct answer: </label>
                                     <br />
                                     <input type="number" id="bem" onChange={handleCheckLoesung} min="1" max="3" ></input>
 
@@ -425,7 +425,7 @@ export default function Aufgabe(props) {
             <>
                 <div className="centering">
                     <button className="btn-add" onClick={handleShow}>
-                        Add Aufgabe
+                        Add Task
                     </button>
                 </div>
 
@@ -436,7 +436,7 @@ export default function Aufgabe(props) {
                     keyboard={false}
                 >
                     <Modal.Header closeButton>
-                        <Modal.Title>Aufgaben-Typ wählen</Modal.Title>
+                        <Modal.Title>Select task type</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <DropdownButton id="dropdown-basic-button" title="Aufgaben-Typ">
@@ -449,7 +449,7 @@ export default function Aufgabe(props) {
 
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>Schliessen</Button>
+                        <Button variant="secondary" onClick={handleClose}>Close</Button>
                         <Button type="submit" onClick={number === 1 ? handleAufgabe : handleMultipleChoice} variant="primary">Speichern</Button>
 
                     </Modal.Footer>
@@ -468,26 +468,25 @@ export default function Aufgabe(props) {
         return (
             tasks[0] ? tasks.map((t, index) => (
                 <div className="task" key={index}>
-                    <h4>Aufgabe {index + 1}</h4>
+                    <h4>Task {index + 1}</h4>
                     <br />
-                    <h6>Aufgabenstellung</h6>
+                    <h6>Task definition</h6>
                     <p>{t.aufgabenstellung}</p>
-                    <h6>Lösung:</h6>
+                    <h6>Solution:</h6>
                     <p>{t.loesung1}</p>
-                    <h6>Alternative Lösung:</h6>
+                    <h6>Alternative solution:</h6>
                     <p>{t.loesung2}</p>
                     <div className="centering">
 
                         <div><Edit id={t.id}/></div>
                         <button className="btn-delete" onClick={() => deleteTask(t.id)}>Delete</button>
                     </div>
-                    <p>{t.id}</p>
 
 
                 </div>
             )) :
                 <div className="task">
-                    <p>No Aufgabe yet</p>
+                    <p>No task yet</p>
                 </div>
         );
     }
@@ -496,18 +495,17 @@ export default function Aufgabe(props) {
         return (
             mTasks[0] ? mTasks.map((t, index) => (
                 <div className="task" key={index}>
-                    <h4>Aufgabe {index + 1}</h4>
+                    <h4>Task {index + 1}</h4>
                     <br />
-                    <h6>Aufgabenstellung</h6>
+                    <h6>Task definition</h6>
                     <p>{t.aufgabenstellung}</p>
-                    <h6>Antwort 1:</h6>
+                    <h6>Solution 1:</h6>
                     <p>{t.antwort1}</p>
-                    
-                    <h6>Antwort 2:</h6>
+                    <h6>Solution 2:</h6>
                     <p>{t.antwort2}</p>
-                    <h6>Antwort 3:</h6>
+                    <h6>Solution 3:</h6>
                     <p>{t.antwort3}</p>
-                    <h6>Richtige Antwort:</h6>
+                    <h6>Correct answer:</h6>
                     <p>{t.korrekteAntwort}</p>
                     <div><MEdit mid={t.id}/></div>
                     <Button className="deleteButton" onClick={() => deleteMTask(t.id)}>Delete</Button>
@@ -518,7 +516,7 @@ export default function Aufgabe(props) {
                 
             )) :
                 <div className="task">
-                    <p>No Aufgabe yet</p>
+                    <p>No task yet</p>
                 </div>
         );
     }
@@ -537,7 +535,7 @@ export default function Aufgabe(props) {
     // {number === 1 ? <DisplayTasks /> : number === 2 ? <DisplayMultipleChoices /> : <DisplayTasks />}
     return (
         <div className="body-aufgabe">
-            <h1>Aufgabe</h1>
+            <h1>Task</h1>
             <div>
                 <br />
                 <h4>Sentence Transformations: </h4>

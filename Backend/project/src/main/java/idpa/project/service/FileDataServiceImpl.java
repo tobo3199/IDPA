@@ -1,6 +1,7 @@
 package idpa.project.service;
 
 import idpa.project.model.FileData;
+import idpa.project.model.GrammatikThema;
 import idpa.project.repository.FileDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,20 +24,25 @@ public class FileDataServiceImpl implements FileDataService {
     public FileData saveFileData(FileData fileData) {
         return fileDataRepository.save(fileData);
     }
-
+/*
     @Override
     public List<FileData> getAllFileData(){
         return fileDataRepository.findAll();
-    }
+    }*/
 
     @Override
-    public FileData getFileData(Long id) {
+    public FileData getFileData(long id) {
         return fileDataRepository.getById(id);
     }
 
     @Override
-    public void deleteFileData(Long id) {
+    public void deleteFileData(long id) {
         fileDataRepository.deleteById(id);
+    }
+
+    @Override
+    public List<FileData> getAllFileData(GrammatikThema thema) {
+        return fileDataRepository.findAllByGrammatikThema(thema);
     }
 
 
