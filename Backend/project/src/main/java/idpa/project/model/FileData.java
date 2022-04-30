@@ -1,17 +1,8 @@
 package idpa.project.model;
-
 import javax.persistence.*;
-
 import java.util.Arrays;
-
 import static javax.persistence.GenerationType.SEQUENCE;
 
-/**
- * Klasse:
- *
- * @author: Tobias Sauter
- * @version:19.03.2022
- */
 @Entity(name = "file")
 public class FileData {
 

@@ -7,12 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Klasse:
- *
- * @author: Tobias Sauter
- * @version:
- */
 @Service
 public class GrammatikThemaServiceImpl implements GrammatikThemaService {
 
@@ -48,5 +42,10 @@ public class GrammatikThemaServiceImpl implements GrammatikThemaService {
     public void deleteGrammatikThema(long id) {
         grammatikThemaRepository.deleteById(id);
     }
+
+   /* @Override
+    public List<Integer> findAllPin() {
+        return grammatikThemaRepository.findAllPin();
+    }*/
 
 }

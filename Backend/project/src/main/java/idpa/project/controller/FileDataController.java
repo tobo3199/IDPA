@@ -20,13 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Klasse:FileDataController
- *
- *
- * @author: Tobias Sauter
- * @version:19.03.2022
- */
 @RestController
 @RequestMapping("/api/fileData")
 @CrossOrigin
@@ -35,15 +28,17 @@ public class FileDataController {
     @Autowired
     private FileDataService fileDataService;
 
-    @PostMapping("/uploadFile")
-    public String add(@RequestParam MultipartFile file) throws IOException {
+    @PostMapping("/uploadFile/{id}")
+    public String add(@RequestParam MultipartFile file, @PathVariable long id) throws IOException {
        // fileDataService.saveFileData(file);
+        GrammatikThema grammatikThema = new GrammatikThema(id);
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         FileData fileData = new FileData();
         fileData.setContent(file.getBytes());
         fileData.setFilename(fileName);
         fileData.setType(file.getContentType());
         fileData.setSize(file.getSize());
+        fileData.setGrammatikThema(grammatikThema);
         fileDataService.saveFileData(fileData);
         return "FileData is added";
     }

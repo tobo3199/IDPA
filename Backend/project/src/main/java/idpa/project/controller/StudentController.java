@@ -4,15 +4,9 @@ import idpa.project.model.Student;
 import idpa.project.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
-/**
- * Klasse:StudentController
- *
- * @author: Tobias Sauter
- * @version:10.03.2022
- */
+
 
 @RestController
 @RequestMapping("/student")

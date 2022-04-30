@@ -8,12 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Klasse:
- *
- * @author: Tobias Sauter
- * @version:
- */
 @Service
 public class UebungServiceImpl implements UebungService {
 

@@ -4,13 +4,6 @@ import javax.persistence.*;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
-/**
- * Klasse:Student
- *
- * @author: Tobias Sauter
- * @version:28.02.2022
- */
-
 @Entity(name = "Student")
 @Table(
         name = "student",

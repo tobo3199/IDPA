@@ -4,12 +4,6 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Klasse:
- *
- * @author: Tobias Sauter
- * @version:
- */
 @Entity
 public class GrammatikThema {
 
