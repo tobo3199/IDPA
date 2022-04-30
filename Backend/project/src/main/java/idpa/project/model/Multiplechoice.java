@@ -83,4 +83,12 @@ public class Multiplechoice {
     public void setUebung(Uebung uebung) {
         this.uebung = uebung;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }
