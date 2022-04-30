@@ -8,12 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Klasse:FileDataServiceImpl
- *
- * @author: Tobias Sauter
- * @version:21.03.2022
- */
 @Service
 public class FileDataServiceImpl implements FileDataService {
 

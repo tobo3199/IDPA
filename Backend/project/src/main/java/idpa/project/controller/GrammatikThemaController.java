@@ -8,12 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Random;
 
-/**
- * Klasse:
- *
- * @author: Tobias Sauter
- * @version:
- */
 @RestController
 @RequestMapping("/api/grammatikthema")
 @CrossOrigin
@@ -25,11 +19,17 @@ public class GrammatikThemaController {
     @PostMapping("/")
     public GrammatikThema add(@RequestBody GrammatikThema grammatikThema) {
         //GrammatikThema thema = grammatikThemaService.saveGrammatikThema(grammatikThema);
+        List<GrammatikThema> themaPins = grammatikThemaService.getAllGrammatikThema();
         GrammatikThema thema = new GrammatikThema();
         Random random = new Random();
         thema.setName(grammatikThema.getName());
         thema.setPin(random.nextInt(1000000-1000)+1000);
         grammatikThemaService.saveGrammatikThema(thema);
+        for (GrammatikThema pin : themaPins) {
+            if (pin.getPin()==thema.getPin()){
+
+            }
+        }
         return thema;
     }
 

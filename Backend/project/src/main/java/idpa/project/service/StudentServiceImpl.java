@@ -7,12 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Klasse:StudentServiceImpl
- *
- * @author: Tobias Sauter
- * @version:10.03.2022
- */
 @Service
 public class StudentServiceImpl implements StudentService {
 

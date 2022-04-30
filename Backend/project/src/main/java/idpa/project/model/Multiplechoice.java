@@ -2,12 +2,6 @@ package idpa.project.model;
 
 import javax.persistence.*;
 
-/**
- * Klasse:
- *
- * @author: Tobias Sauter
- * @version:
- */
 @Entity
 public class Multiplechoice {
 

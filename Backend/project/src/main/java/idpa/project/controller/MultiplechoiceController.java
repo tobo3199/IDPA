@@ -9,12 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * Klasse:
- *
- * @author: Tobias Sauter
- * @version:
- */
+
 @RestController
 @RequestMapping("/api/multiplechoice")
 @CrossOrigin
@@ -65,6 +60,6 @@ public class MultiplechoiceController {
         updateMultiplechoice.setAntwort3(multiplechoice.getAntwort3());
         updateMultiplechoice.setKorrekteAntwort(multiplechoice.getKorrekteAntwort());
         multiplechoiceService.saveMultiplechoice(updateMultiplechoice);
-        return "New Sentence Transformation added";
+        return "Multiplechoice updated";
     }
 }

@@ -4,15 +4,8 @@ import idpa.project.model.*;
 import idpa.project.service.SentenceTransformationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
-/**
- * Klasse:
- *
- * @author: Tobias Sauter
- * @version:
- */
 @RestController
 @RequestMapping("/api/sentenceTransformation")
 @CrossOrigin
@@ -59,6 +52,6 @@ public class SentenceTransformationController {
         updateSentence.setLoesung1(sentenceTransformation.getLoesung1());
         updateSentence.setLoesung2(sentenceTransformation.getLoesung2());
         sentenceTransformationService.saveSentenceTransformation(updateSentence);
-        return "New Sentence Transformation added";
+        return "SentenceTransformation updated";
     }
 }

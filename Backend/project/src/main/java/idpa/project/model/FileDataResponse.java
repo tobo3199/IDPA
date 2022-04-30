@@ -7,13 +7,6 @@ import javax.persistence.SequenceGenerator;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
-/**
- * Klasse:FileDataResponse
- *
- * @author: Tobias Sauter
- * @version:21.03.2022
- */
-
 public class FileDataResponse {
 
     private String fileDataName;

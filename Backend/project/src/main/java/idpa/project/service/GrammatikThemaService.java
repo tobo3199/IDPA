@@ -11,4 +11,5 @@ public interface GrammatikThemaService {
     public GrammatikThema getGrammatikThemaById(long id);
     public GrammatikThema getGrammatikThemaByPin(int pin);
     public void deleteGrammatikThema(long id);
+    //public List<Integer> findAllPin();
 }
