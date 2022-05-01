@@ -41,18 +41,6 @@ export default function Aufgabe(props) {
     var ml3 = "";
     var l = 0;
 
-    const [check, setCheck] = useState(false);
-    const handleCheck = () => setCheck(true);
-    const unhandleCheck = () => setCheck(false);
-
-    const [check1, setCheck1] = useState(false);
-    const handleCheck1 = () => setCheck1(true);
-    const unhandleCheck1 = () => setCheck1(false);
-
-    const [check2, setCheck2] = useState(false);
-    const handleCheck2 = () => setCheck2(true);
-    const unhandleCheck2 = () => setCheck2(false);
-
     const [number, setNumber] = useState(0);
 
     const [checkloesung, setCheckLosesung] = useState();
@@ -63,8 +51,6 @@ export default function Aufgabe(props) {
         setLoesung("");
         setALoesung("");
         handleClose();
-
-
 
         const object = {
             aufgabenstellung: auf,
@@ -347,7 +333,7 @@ export default function Aufgabe(props) {
                     keyboard={false}
                 >
                     <Modal.Header closeButton>
-                        <Modal.Title>Select task type</Modal.Title>
+                        <Modal.Title>Task Type</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <DropdownButton id="dropdown-basic-button" title="Exercise-Type">

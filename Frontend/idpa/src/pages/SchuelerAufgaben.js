@@ -649,18 +649,6 @@ keyboard={false}
                         <br />
                         <p>{submit ? isCorrect[index] ? `Deine Antwort ${answers[index]} war richtig` : `Deine Antwort ${answers[index]} war falsch - Die korrekte Antwort war ${t.korrekteAntwort}` : ""}</p>
                     </div>
-                    {Mnumber === 3 ?
-                        <div>
-                            <br />
-                            <h6>Richtige Lösung:</h6>
-                            <p>{t.loesung1}</p>
-                            <br />
-                            <h6>Alternative Lösung:</h6>
-                            <p>{t.loesung2}</p>
-                            <br />
-                        </div>
-                        : <div>
-                        </div>}
                 </div>
 
 
