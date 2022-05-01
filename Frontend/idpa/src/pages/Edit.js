@@ -34,15 +34,10 @@ export default function Edit(id) {
         l2 = e.target.value;
     }
 
-    console.log("Edit ID:");
-    console.log(eid);
-
 
     const handleEdit = (idx, e) => {
         handleClose();
-        
-        console.log("ID:")
-        console.log(idx);
+    
 
 
 
@@ -90,7 +85,6 @@ export default function Edit(id) {
         })
             .then(res => res.json())
             .then((result) => {
-                console.log(result);
                 setUebungO(result);
 
             }

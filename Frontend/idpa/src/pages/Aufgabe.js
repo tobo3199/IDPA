@@ -13,6 +13,7 @@ import "../aufgabe.css";
 import "../kategorie.css";
 import Edit from "./Edit";
 import MEdit from "./MEdit";
+import Analyse from "./Analyse";
 
 
 
@@ -239,7 +240,6 @@ export default function Aufgabe(props) {
         })
             .then(res => res.json())
             .then((result) => {
-                console.log(result);
                 setUebungO(result);
 
             }
@@ -442,6 +442,8 @@ export default function Aufgabe(props) {
             <div>
                 <div className="ce"><AddAufgabe /></div>
             </div>
+            <br/>
+            <Analyse aufgabe={aufgabe}/>
         </div>
     );
 }

@@ -19,9 +19,6 @@ export default function MEdit(mid) {
     var ml3 = "";
     var l = 0;
 
-    console.log("Edit ID:");
-    console.log(mid);
-
     const handleMedit = (idx, e) => {
 
         const object = {
@@ -57,7 +54,6 @@ export default function MEdit(mid) {
         })
             .then(res => res.json())
             .then((result) => {
-                console.log(result);
                 setUebungO(result);
 
             }
