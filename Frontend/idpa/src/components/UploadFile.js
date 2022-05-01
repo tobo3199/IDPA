@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-function UploadFile() {
+function UploadFile(ide) {
 
     const [selectedFile, setSelectedFile] = useState('')
 
@@ -25,10 +25,13 @@ function UploadFile() {
         setSelectedFile(event.target.files[0])
     }
 
+    console.log("UPLOAD ID:");
+    console.log(ide);
+
     const fileUploadHandler = () => {
         const fd = new FormData();
         fd.append('file', selectedFile, selectedFile.name);
-        fetch('http://localhost:3000/api/fileData/uploadFile',
+        fetch('http://localhost:3000/api/fileData/uploadFile/' + ide.id,
             {
                 method: 'POST',
                 body: fd,

@@ -9,14 +9,17 @@ public class Auswertung {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
     private String name;
-    private double zahl;
+    private int zahl;
     @ManyToOne
     private Uebung uebung;
 
     public Auswertung(){}
 
-    public Auswertung(long id, String name, double zahl, Uebung uebung) {
+    public Auswertung(long id){
         this.id = id;
+    }
+
+    public Auswertung(String name, int zahl, Uebung uebung) {
         this.name = name;
         this.zahl = zahl;
         this.uebung = uebung;
@@ -42,7 +45,7 @@ public class Auswertung {
         return zahl;
     }
 
-    public void setZahl(double zahl) {
+    public void setZahl(int zahl) {
         this.zahl = zahl;
     }
 

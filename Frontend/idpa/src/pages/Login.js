@@ -7,35 +7,6 @@ import { useNavigate } from "react-router";
 
 export default function Login({ title, setEmail, setPassword, handleAction }) {
   const navigate = useNavigate();
-  /*<form onSubmit={handleAction}>
-        <h2>Login:</h2>
-        <input
-          type="text"
-          id="email"
-          placeholder="Enter Email"
-          onChange={(e) => setEmail(e.target.value)}
-        ></input>
-        <br />
-        <input
-          type="password"
-          id="password"
-          placeholder="Enter Password"
-          onChange={(e) => setPassword(e.target.value)}
-        ></input>
-        <br />
-        <button type="submit">Login</button>
-      </form>*/
-
-      useEffect(() => {
-        let authToken = sessionStorage.getItem("Auth Token");
-
-        /*
-        if(authToken && authToken === "admin@kbw.ch"){
-          navigate("/kategorie")
-        }
-        */
-  
-      }, []);
   return (
 
         <div className="login-box">

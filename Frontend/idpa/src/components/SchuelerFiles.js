@@ -5,21 +5,22 @@ import "../kategorie.css";
 import '../App.css';
 import "./CSS/getfiles.css";
 
-function GetFiles(ide) {
+function SchuelerFiles(ide) {
 
     const [images, setImages] = useState([]);
     const [status, setStatus] = useState('');
+    const [imageId, setImageId] = useState(0);
 
     useEffect(() => {
         handleGetFiles();
     }, [])
 
     const handleGetFiles = () => {
+        console.log("Grammatikthema");
+        console.log(ide);
         fetch("http://localhost:3000/api/fileData/" + ide.id)
             .then(res => res.json())
             .then((result) => {
-                console.log("Result:");
-                console.log(result);
                 setImages(result);
             })
 
@@ -39,12 +40,9 @@ function GetFiles(ide) {
 
     return (
         <div className='get-container'>
-            {images [0] ? images.map(image =>
+            {images[0] ?  images.map(image =>
                 <div key={image.id}>
-                    <p >{image.id}</p>
-                    <p>{image.fileDataName}</p>
                     <img className='get-img' src={`http://localhost:3000/api/fileData/files/${image.id}`} />
-                    <button className="btn-delete" onClick={() => handleDelete(image.id)}>Delete</button>
                 </div>
 
             ) : <div></div>}
@@ -53,4 +51,4 @@ function GetFiles(ide) {
     );
 }
 
-export default GetFiles;
+export default SchuelerFiles;

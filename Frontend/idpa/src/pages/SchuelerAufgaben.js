@@ -60,6 +60,8 @@ export default function SchuelerAufgaben(props) {
     var counter = 0;
     const [prozent, setProzent] = useState(0);
 
+    const [sentenceAnswers, setSentenceAnswers] = useState([]);
+
     const [check, setCheck] = useState(false);
     const handleCheck = () => setCheck(true);
     const unhandleCheck = () => setCheck(false);
@@ -76,6 +78,7 @@ export default function SchuelerAufgaben(props) {
     const [lnumber, setLNumber] = useState(0);
     const [Mnumber, setMNumber] = useState(0);
     const [checknumber, setChecknumber] = useState(0);
+    const [answerS, setAnswerS] = useState("");
 
     const [checkloesung, setCheckLosesung] = useState();
 
@@ -206,9 +209,21 @@ export default function SchuelerAufgaben(props) {
 
     }
 
-    const handleChangeLoesung = (e) => {
+    const handleChangeLoesung = (idx, event) => {
         //setLoesung(e.target.value);
-        l1 = e.target.value;
+        //console.log(event);
+        l1 = event.target.value;
+        sentenceArray(l1, idx);
+
+    }
+
+    const sentenceArray = (value, idx) => {
+        console.log("VALUE + IDX:")
+        console.log(value, idx);
+        let temp = sentenceAnswers;
+        temp[idx] = value;
+        setSentenceAnswers(temp);
+        console.log(sentenceAnswers);
     }
 
     const handleChangeALoesung = (e) => {
@@ -287,7 +302,6 @@ export default function SchuelerAufgaben(props) {
         if (!authToken) {
             navigate("/schueler-login");
         }
-
 
         fetch('http://localhost:3000/api/uebung/id/' + task, {
             method: 'GET'
@@ -480,6 +494,7 @@ keyboard={false}
 
     //onClick={() => editTask(t)}
     function Auswertung() {
+        
         return (
             <>
                 <div>
@@ -501,6 +516,7 @@ keyboard={false}
                         </Modal.Body>
                         <Modal.Footer>
                             <Button variant="secondary" onClick={handleClose}>Schliessen</Button>
+                            <Button variant="secondary" onClick={submitAuswertung}>Save</Button>
                         </Modal.Footer>
                     </Modal>
                 </div>
@@ -522,6 +538,8 @@ keyboard={false}
         console.log(temp);
         countCorrect();
         setChecknumber(4);
+
+        
     }
 
     const countCorrect = (e) => {
@@ -536,7 +554,38 @@ keyboard={false}
         //counter und auth_token ins backend pushen mit exercise id
         //
         setProzent((100 / mTasks.length) * counter);
+        console.log("PROZENT:");
         console.log(prozent);
+        
+
+        
+    }
+
+    const submitAuswertung = () => {
+
+        let authToken = sessionStorage.getItem("Auth Token");
+        const object = {
+            name: authToken,
+            zahl: prozent,
+            uebung: {
+                id: task
+            }
+        }
+
+        fetch("http://localhost:3000/api/auswertung/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(object)
+
+        }).then(() => {
+            console.log("New Auswertung added")
+        })
+
+        //window.location.reload();
+    }
+
+    function checkSentence() {
+        setLNumber(2);
     }
 
 
@@ -544,20 +593,21 @@ keyboard={false}
         return (
             tasks[0] ? tasks.map((t, index) => (
                 <div className="task" key={index}>
-                    <h4>Aufgabe {index + 1}</h4>
+                    <h4>Exercise {index + 1}</h4>
                     <br />
-                    <h6>Aufgabenstellung:</h6>
+                    <h6>Task definition</h6>
                     <p>{t.aufgabenstellung}</p>
                     <br />
-                    <h6>Lösung:</h6>
-                    <input type="text" className="form-control" id="bem" onChange={(e) => handleChangeLoesung(e)}></input>
+                    <h6>Solution:</h6>
+                    <input type="text" className="form-control" id="bem" onChange={(event) => handleChangeLoesung(index, event)}></input>
                     {lnumber === 2 ?
                         <div>
+                            <h6>Your answer was: {sentenceAnswers[index]}</h6>
                             <br />
-                            <h6>Richtige Lösung:</h6>
+                            <h6>Correct answer:</h6>
                             <p>{t.loesung1}</p>
                             <br />
-                            <h6>Alternative Lösung:</h6>
+                            <h6>Alternative solution:</h6>
                             <p>{t.loesung2}</p>
                             <br />
                         </div>
@@ -583,9 +633,9 @@ keyboard={false}
         return (
             mTasks[0] ? mTasks.map((t, index) => (
                 <div className="task" key={index}>
-                    <h4>Aufgabe {index + 1}</h4>
+                    <h4>Exercise {index + 1}</h4>
                     <br />
-                    <h6>Aufgabenstellung</h6>
+                    <h6>Task definition</h6>
                     <p>{t.aufgabenstellung}</p>
                     <div >
                         <input type="checkbox" onChange={(e) => answerChangeHandler(1, index)} value={userAntwort}></input>{t.antwort1}
@@ -599,18 +649,6 @@ keyboard={false}
                         <br />
                         <p>{submit ? isCorrect[index] ? `Deine Antwort ${answers[index]} war richtig` : `Deine Antwort ${answers[index]} war falsch - Die korrekte Antwort war ${t.korrekteAntwort}` : ""}</p>
                     </div>
-                    {Mnumber === 3 ?
-                        <div>
-                            <br />
-                            <h6>Richtige Lösung:</h6>
-                            <p>{t.loesung1}</p>
-                            <br />
-                            <h6>Alternative Lösung:</h6>
-                            <p>{t.loesung2}</p>
-                            <br />
-                        </div>
-                        : <div>
-                        </div>}
                 </div>
 
 
@@ -639,7 +677,7 @@ keyboard={false}
     // {number === 1 ? <DisplayTasks /> : number === 2 ? <DisplayMultipleChoices /> : <DisplayTasks />}
     return (
         <div>
-            <h1>Aufgabe</h1>
+            <h1>Task</h1>
             <div>
                 <br />
                 <h4>Sentence Transformations: </h4>
@@ -647,7 +685,7 @@ keyboard={false}
             </div>
             <br />
             <div>
-                <button className="button-check" onClick={() => setLNumber(2)}>Überprüfen</button>
+                {tasks[0] ? <button className="button-check" onClick={checkSentence}>Check</button> : <div></div>}
                 <br />
             </div>
             <br />
@@ -658,7 +696,7 @@ keyboard={false}
             </div>
             <br />
             <div>
-                {checknumber === 0 ? <div><button className="button-check" onClick={checkMultipleChoice}>Überprüfen</button></div> :
+                {checknumber === 0 && mTasks[0] ? <div><button className="button-check" onClick={checkMultipleChoice}>Check</button></div> :
                     <div>
                         <Auswertung />
                     </div>}

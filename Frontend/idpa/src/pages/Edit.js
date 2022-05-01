@@ -33,19 +33,7 @@ export default function Edit(id) {
     const handleChangeALoesung = (e) => {
         l2 = e.target.value;
     }
-
-    console.log("Edit ID:");
-    console.log(eid);
-
-
-    const handleEdit = (idx, e) => {
-        handleClose();
-        
-        console.log("ID:")
-        console.log(idx);
-
-
-
+    /*
         const object = {
             aufgabenstellung: auf,
             loesung1: l1,
@@ -59,6 +47,11 @@ export default function Edit(id) {
 
             }
         }
+    */
+
+
+    const handleEdit = (idx, e) => {
+        handleClose();
 
         const editObject = {
             aufgabenstellung: auf,
@@ -67,7 +60,7 @@ export default function Edit(id) {
         }
 
         console.log(editObject);
-        
+
 
         fetch("http://localhost:3000/api/sentenceTransformation/" + idx.id, {
             method: "PUT",
@@ -77,7 +70,7 @@ export default function Edit(id) {
         }).then(() => {
             console.log("Sentence Transformation updated")
         })
-        
+
 
         window.location.reload();
 
@@ -90,63 +83,62 @@ export default function Edit(id) {
         })
             .then(res => res.json())
             .then((result) => {
-                console.log(result);
                 setUebungO(result);
 
             }
             )
     }, []);
 
-                return (
-                    <>
-        
-                        <div className="centering">
-                            <button className="btn-add" onClick={handleShow}>
-                                Edit
-                            </button>
+    return (
+        <>
+
+            <div className="centering">
+                <button className="btn-add" onClick={handleShow}>
+                    Edit
+                </button>
+            </div>
+
+            <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>Edit</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <form onSubmit={() => handleEdit()}>
+                        <div>
+                            <label htmlFor="recipient-name" className="col-form-label">Sentence Transformation </label>
+                            <br />
+                            <label htmlFor="recipient-name" className="col-form-label">Aufgabe: </label>
+                            <input type="text" className="form-control" id="bem" onChange={(e) => handleChangeAufgabe(e)}></input>
                         </div>
-        
-                        <Modal
-                            show={show}
-                            onHide={handleClose}
-                            backdrop="static"
-                            keyboard={false}
-                        >
-                            <Modal.Header closeButton>
-                                <Modal.Title>Edit</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                <form onSubmit={() => handleEdit()}>
-                                    <div>
-                                        <label htmlFor="recipient-name" className="col-form-label">Sentence Transformation </label>
-                                        <br />
-                                        <label htmlFor="recipient-name" className="col-form-label">Aufgabe: </label>
-                                        <input type="text" className="form-control" id="bem" onChange={(e) => handleChangeAufgabe(e)}></input>
-                                    </div>
-                                    <div>
-                                        <label htmlFor="recipient-name" className="col-form-label">Lösung: </label>
-                                        <input type="text" className="form-control" id="bem" onChange={(e) => handleChangeLoesung(e)}  ></input>
-                                    </div>
-                                    <div>
-                                        <label htmlFor="recipient-name" className="col-form-label">Alternative Lösung: </label>
-                                        <input type="text" className="form-control" id="bem" onChange={(e) => handleChangeALoesung(e)}  ></input>
-                                    </div>
-                                    {/*
+                        <div>
+                            <label htmlFor="recipient-name" className="col-form-label">Lösung: </label>
+                            <input type="text" className="form-control" id="bem" onChange={(e) => handleChangeLoesung(e)}  ></input>
+                        </div>
+                        <div>
+                            <label htmlFor="recipient-name" className="col-form-label">Alternative Lösung: </label>
+                            <input type="text" className="form-control" id="bem" onChange={(e) => handleChangeALoesung(e)}  ></input>
+                        </div>
+                        {/*
                                 <div>
                                     <label htmlFor="recipient-name" className="col-form-label">Status: </label>
                                     <input type="text" value={" Status: " + (todo.status)} class="form-control"/>
                                 </div>
                                 */}
-                                </form>
-        
-        
-                            </Modal.Body>
-                            <Modal.Footer>
-                                <Button variant="secondary" onClick={handleClose}>Schliessen</Button>
-                                <Button type="submit" onClick={() => handleEdit(id)} variant="primary">Edit</Button>
-        
-                            </Modal.Footer>
-                        </Modal>
-                    </>
-                );
+                    </form >
+
+
+                </Modal.Body >
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>Schliessen</Button>
+                    <Button type="submit" onClick={() => handleEdit(id)} variant="primary">Edit</Button>
+
+                </Modal.Footer>
+            </Modal >
+        </>
+    );
 }

@@ -8,6 +8,7 @@ import "../kategorieinhalt.css";
 import GetFiles from '../components/GetFiles';
 import UploadFile from '../components/UploadFile';
 import { Container, Row, Col } from "react-bootstrap";
+import SchuelerFiles from "../components/SchuelerFiles";
 
 export default function Schuelertheorie(props) {
   const { ide } = useParams();
@@ -180,23 +181,23 @@ export default function Schuelertheorie(props) {
 
   return (
     <div className="body-theorie">
-      <h1>Theorie</h1>
+      <h1>Theory</h1>
       <div className="file">
         <Container>
           <Row>
-            <GetFiles />
+          <SchuelerFiles id={ide}/>
           </Row>
         </Container>
       </div>
-      <h1>Aufgaben</h1>
+      <h1>Tasks</h1>
       <div className="theorie">
         <br/>
         <div>
           <table className="table">
 
             <tr>
-              <th>Übersicht</th>
-              <th>Aufgabe:</th>
+              <th>Overview</th>
+              <th>Exercise</th>
             </tr>
 
             {theorieArray?.map((t, index) => (
