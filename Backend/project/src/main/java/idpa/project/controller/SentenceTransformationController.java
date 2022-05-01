@@ -36,15 +36,6 @@ public class SentenceTransformationController {
         return "Sentencetransformation gelöscht";
     }
 
-    @PostMapping ("/check")
-    public boolean checkSentenceTransformation(@RequestBody AntwortS antwortS){
-        SentenceTransformation sentenceTransformation = new SentenceTransformation(3);
-        String losung = "losung";
-        sentenceTransformationService.findSentenceTransformation(antwortS.getId());
-        return antwortS.getEingabe().equals(sentenceTransformation.getLoesung1());
-
-    }
-
     @PutMapping("/{id}")
     public String update (@RequestBody SentenceTransformation sentenceTransformation, @PathVariable long id){
         SentenceTransformation updateSentence = sentenceTransformationService.getById(id);
