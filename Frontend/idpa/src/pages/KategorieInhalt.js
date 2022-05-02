@@ -183,9 +183,7 @@ export default function KategorieInhalt(props, { param, RemoveParam }) {
         <UploadFile id={ide} />
       </div>
       <div className="file get-file">
-        <Container>
             <GetFiles id={ide}/>
-        </Container>
       </div>
       <h1>Tasks</h1>
       <div className="theorie">

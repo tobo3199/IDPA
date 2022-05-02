@@ -6,6 +6,8 @@ import "../kategorie.css";
 import '../App.css';
 import "./CSS/getfiles.css";
 //import { Row } from 'react-bootstrap';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
 function GetFiles(ide) {
 
@@ -39,19 +41,26 @@ function GetFiles(ide) {
         // empty dependency array means this effect will only run once (like componentDidMount in classes)
     }
 
-    return (
-        <div className='get-container'>
-            {images[0] ? images.map(image =>
-                <Col>
+    /*
                     <div key={image.id}>
                         <p >{image.id}</p>
                         <p>{image.fileDataName}</p>
                         <img className='get-img' src={`http://localhost:3000/api/fileData/files/${image.id}`} />
                         <button className="btn-delete" onClick={() => handleDelete(image.id)}>Delete</button>
                     </div>
-                </Col>
+
+                            <Carousel>
+            {images[0] ? images.map((image, index) =>
+                    <div key={index}>
+                        <img className='get-img' src={`http://localhost:3000/api/fileData/files/${image.id}`} />
+                        <p className='legend'>{image.fileDataName}</p>
+                    </div>
             ) : <div></div>}
-        </div>
+        </Carousel>
+    */
+
+    return (
+        <></>
 
     );
 }
