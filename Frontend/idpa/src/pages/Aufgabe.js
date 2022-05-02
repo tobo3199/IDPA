@@ -70,7 +70,7 @@ export default function Aufgabe(props) {
 
         console.log(object);
 
-        fetch("https://limitless-fortress-25619.herokuapp.com/api/sentenceTransformation/add", {
+        fetch("http://localhost:3000/api/sentenceTransformation/add", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(object)
@@ -116,7 +116,7 @@ export default function Aufgabe(props) {
 
         //addArrM(mobject)
 
-        fetch("https://limitless-fortress-25619.herokuapp.com/api/multiplechoice/add", {
+        fetch("http://localhost:3000/api/multiplechoice/add", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(object)
@@ -186,7 +186,7 @@ export default function Aufgabe(props) {
     const deleteTask = (id, e) => {
         console.log(id);
 
-        fetch('https://limitless-fortress-25619.herokuapp.com/api/sentenceTransformation/' + id, {
+        fetch('http://localhost:3000/api/sentenceTransformation/' + id, {
             method: 'DELETE'
         })
             .then(() => {
@@ -199,7 +199,7 @@ export default function Aufgabe(props) {
     const deleteMTask = (id, e) => {
         console.log(id);
 
-        fetch('https://limitless-fortress-25619.herokuapp.com/api/multiplechoice/' + id, {
+        fetch('http://localhost:3000/api/multiplechoice/' + id, {
             method: 'DELETE'
         })
             .then(() => {
@@ -222,7 +222,7 @@ export default function Aufgabe(props) {
             navigate("/login");
         }
 
-        fetch('https://limitless-fortress-25619.herokuapp.com/api/uebung/id/' + aufgabe, {
+        fetch('http://localhost:3000/api/uebung/id/' + aufgabe, {
             method: 'GET'
         })
             .then(res => res.json())
@@ -232,14 +232,14 @@ export default function Aufgabe(props) {
             }
             )
 
-        fetch("https://limitless-fortress-25619.herokuapp.com/api/sentenceTransformation/" + aufgabe)
+        fetch("http://localhost:3000/api/sentenceTransformation/" + aufgabe)
             .then(res => res.json())
             .then((result) => {
                 setTasks(result);
             }
             )
 
-        fetch("https://limitless-fortress-25619.herokuapp.com/api/multiplechoice/" + aufgabe)
+        fetch("http://localhost:3000/api/multiplechoice/" + aufgabe)
             .then(res => res.json())
             .then((result) => {
                 setMTasks(result);

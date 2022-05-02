@@ -74,7 +74,7 @@ export default function KategorieInhalt(props, { param, RemoveParam }) {
 
     addArray(uebung);
 
-    fetch("https://limitless-fortress-25619.herokuapp.com/api/uebung/", {
+    fetch("http://localhost:3000/api/uebung/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(uebung)
@@ -106,7 +106,7 @@ export default function KategorieInhalt(props, { param, RemoveParam }) {
 
   const handleDelete = (id, e) => {
 
-    fetch('https://limitless-fortress-25619.herokuapp.com/api/uebung/' + id, {
+    fetch('http://localhost:3000/api/uebung/' + id, {
       method: 'DELETE'
     })
       .then(() => {
@@ -141,7 +141,7 @@ export default function KategorieInhalt(props, { param, RemoveParam }) {
 
     //Umändern!!!
 
-    fetch('https://limitless-fortress-25619.herokuapp.com/api/grammatikthema/id/' + ide, {
+    fetch('http://localhost:3000/api/grammatikthema/id/' + ide, {
       method: 'GET'
     })
       .then(res => res.json())
@@ -151,7 +151,7 @@ export default function KategorieInhalt(props, { param, RemoveParam }) {
       }
       )
 
-    fetch("https://limitless-fortress-25619.herokuapp.com/api/uebung/" + ide)
+    fetch("http://localhost:3000/api/uebung/" + ide)
       .then(res => res.json())
       .then((result) => {
         setTheorieArray(result);

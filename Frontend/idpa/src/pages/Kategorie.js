@@ -33,10 +33,9 @@ export default function Kategorie({ param, RemoveParam }) {
         //addArr(object);
 
         e.preventDefault()
-        const grammatikthema = { name, pin }
+        const grammatikthema = { name}
         console.log(grammatikthema)
-
-        fetch("https://limitless-fortress-25619.herokuapp.com/api/grammatikthema/", {
+        fetch("http://localhost:3000/api/grammatikthema/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(grammatikthema)
@@ -71,7 +70,7 @@ export default function Kategorie({ param, RemoveParam }) {
             navigate("/login");
         }
 
-        fetch("https://limitless-fortress-25619.herokuapp.com/api/grammatikthema/")
+        fetch("http://localhost:3000/api/grammatikthema/")
             .then(res => res.json())
             .then((result) => {
                 setCategorys(result);
@@ -86,7 +85,7 @@ export default function Kategorie({ param, RemoveParam }) {
     const handleDelete = (id, e) => {
         window.location.reload();
         console.log("ID: " + id);
-        fetch('https://limitless-fortress-25619.herokuapp.com/api/grammatikthema/' + id, {
+        fetch('http://localhost:3000/api/grammatikthema/' + id, {
             method: 'DELETE'
         })
             .then(() => {

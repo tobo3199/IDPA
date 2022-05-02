@@ -76,7 +76,7 @@ export default function Schuelertheorie(props) {
 
     addArray(uebung);
 
-    fetch("https://limitless-fortress-25619.herokuapp.com/api/uebung/", {
+    fetch("http://localhost:3000/api/uebung/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(uebung)
@@ -152,7 +152,7 @@ export default function Schuelertheorie(props) {
       )
       */
 
-    fetch("https://limitless-fortress-25619.herokuapp.com/api/uebung/" + ide)
+    fetch("http://localhost:3000/api/uebung/" + ide)
       .then(res => res.json())
       .then((result) => {
         setTheorieArray(result);

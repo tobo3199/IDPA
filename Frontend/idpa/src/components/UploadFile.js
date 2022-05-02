@@ -31,7 +31,7 @@ function UploadFile(ide) {
     const fileUploadHandler = () => {
         const fd = new FormData();
         fd.append('file', selectedFile, selectedFile.name);
-        fetch('https://limitless-fortress-25619.herokuapp.com/api/fileData/uploadFile/' + ide.id,
+        fetch('http://localhost:3000/api/fileData/uploadFile/' + ide.id,
             {
                 method: 'POST',
                 body: fd,

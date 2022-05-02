@@ -33,7 +33,7 @@ export default function MEdit(mid) {
 
         //addArrM(mobject)
 
-        fetch("https://limitless-fortress-25619.herokuapp.com/api/multiplechoice/" + idx.mid, {
+        fetch("http://localhost:3000/api/multiplechoice/" + idx.mid, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(object)
@@ -49,7 +49,7 @@ export default function MEdit(mid) {
 
     useEffect(() => {
 
-        fetch('https://limitless-fortress-25619.herokuapp.com/api/uebung/id/' + aufgabe, {
+        fetch('http://localhost:3000/api/uebung/id/' + aufgabe, {
             method: 'GET'
         })
             .then(res => res.json())

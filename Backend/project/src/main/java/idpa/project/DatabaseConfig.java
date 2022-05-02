@@ -19,6 +19,7 @@ import javax.sql.DataSource;
 @Configuration
 public class DatabaseConfig {
 
+    /*
     @Value("${spring.datasource.url}")
     private String dbUrl;
 
@@ -28,6 +29,7 @@ public class DatabaseConfig {
         config.setJdbcUrl(dbUrl);
         return new HikariDataSource(config);
     }
+     */
 
 }
 

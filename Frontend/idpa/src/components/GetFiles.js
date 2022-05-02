@@ -19,7 +19,7 @@ function GetFiles(ide) {
     }, [])
 
     const handleGetFiles = () => {
-        fetch("https://limitless-fortress-25619.herokuapp.com/api/fileData/" + ide.id)
+        fetch("http://localhost:3000/api/fileData/" + ide.id)
             .then(res => res.json())
             .then((result) => {
                 console.log("Result:");
@@ -32,7 +32,7 @@ function GetFiles(ide) {
 
     const handleDelete = (id) => {
         // DELETE request using fetch inside useEffect React hook
-        fetch('https://limitless-fortress-25619.herokuapp.com/api/fileData/files/' + id, {
+        fetch('http://localhost:3000/api/fileData/files/' + id, {
             method: 'DELETE'
         })
             .then(() => setStatus('Delete successful'))
@@ -55,7 +55,8 @@ function GetFiles(ide) {
         <Carousel className='boxfile'>
             {images[0] ? images.map((image, index) =>
                     <div key={index}>
-                        <img className='get-img' src={`https://limitless-fortress-25619.herokuapp.com/api/fileData/files/${image.id}`} />
+                        <img className='get-img' src={`http://localhost:3000/api/fileData/files/${image.id}`} />
+                        <button className="btn-delete" onClick={() => handleDelete(image.id)}>Delete</button>
                     </div>
             ) : <div></div>}
         </Carousel>

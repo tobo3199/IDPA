@@ -95,7 +95,7 @@ function App() {
     setGrammatikthema("");
     sessionStorage.removeItem("Auth Token");
 
-    fetch('https://limitless-fortress-25619.herokuapp.com/api/grammatikthema/pin/' + pin, {
+    fetch('http://localhost:3000/api/grammatikthema/pin/' + pin, {
       method: 'GET'
     })
       .then(res => res.json())

@@ -4,6 +4,8 @@ import { Container, Paper, Button } from '@material-ui/core';
 import "../kategorie.css";
 import '../App.css';
 import "./CSS/getfiles.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
 function SchuelerFiles(ide) {
 
@@ -18,7 +20,7 @@ function SchuelerFiles(ide) {
     const handleGetFiles = () => {
         console.log("Grammatikthema");
         console.log(ide);
-        fetch("https://limitless-fortress-25619.herokuapp.com/api/fileData/" + ide.id)
+        fetch("http://localhost:3000/api/fileData/" + ide.id)
             .then(res => res.json())
             .then((result) => {
                 setImages(result);
@@ -29,7 +31,7 @@ function SchuelerFiles(ide) {
 
     const handleDelete = (id) => {
         // DELETE request using fetch inside useEffect React hook
-        fetch('https://limitless-fortress-25619.herokuapp.com/api/fileData/files/' + id, {
+        fetch('http://localhost:3000/api/fileData/files/' + id, {
             method: 'DELETE'
         })
             .then(() => setStatus('Delete successful'))
@@ -39,14 +41,13 @@ function SchuelerFiles(ide) {
     }
 
     return (
-        <div className='get-container'>
-            {images[0] ?  images.map(image =>
-                <div key={image.id}>
-                    <img className='get-img' src={`https://limitless-fortress-25619.herokuapp.com/api/fileData/files/${image.id}`} />
+        <Carousel className='boxfile'>
+        {images[0] ? images.map((image, index) =>
+                <div key={index}>
+                    <img className='get-img' src={`http://localhost:3000/api/fileData/files/${image.id}`} />
                 </div>
-
-            ) : <div></div>}
-        </div>
+        ) : <div></div>}
+    </Carousel>
 
     );
 }
