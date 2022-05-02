@@ -40,17 +40,6 @@ public class MultiplechoiceController {
         return "Multiplechoice gelöscht";
     }
 
-    @GetMapping("/check")
-    public boolean checkMultiplechoice( @PathVariable long id, @RequestBody int antwort){
-
-        Multiplechoice multiplechoice = new Multiplechoice(id);
-        if(antwort == multiplechoice.getKorrekteAntwort()){
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     @PutMapping("/{id}")
     public String update (@RequestBody Multiplechoice multiplechoice, @PathVariable long id){
         Multiplechoice updateMultiplechoice = multiplechoiceService.getById(id);
