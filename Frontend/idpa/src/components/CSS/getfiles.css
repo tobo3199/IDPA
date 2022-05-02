@@ -8,3 +8,18 @@
     border: solid;
     color: blue;
 }
+
+/*
+.get-img{
+    position: absolute;
+    width: auto;
+    height: 500px;
+}
+*/
+
+.get-img{
+    width: auto;
+    max-height: 400px;
+    max-width: 900px;
+    margin-top: 10px;
+}

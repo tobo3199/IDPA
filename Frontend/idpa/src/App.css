@@ -54,6 +54,26 @@
 
 }
 
+.inner-file {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  /*background: blue;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2rem;
+  max-height: 500px;
+}
+
+.boxfile{
+  width: auto;
+  height: auto;
+  top: 0px;
+  bottom: 100px;
+
+}
+
 .task {
   position: relative;
   width: 500px;

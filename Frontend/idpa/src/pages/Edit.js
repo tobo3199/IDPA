@@ -64,7 +64,7 @@ export default function Edit(id) {
         console.log(editObject);
 
 
-        fetch("http://localhost:3000/api/sentenceTransformation/" + idx.id, {
+        fetch("https://limitless-fortress-25619.herokuapp.com/api/sentenceTransformation/" + idx.id, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(editObject)
@@ -80,7 +80,7 @@ export default function Edit(id) {
 
     useEffect(() => {
 
-        fetch('http://localhost:3000/api/uebung/id/' + aufgabe, {
+        fetch('https://limitless-fortress-25619.herokuapp.com/api/uebung/id/' + aufgabe, {
             method: 'GET'
         })
             .then(res => res.json())

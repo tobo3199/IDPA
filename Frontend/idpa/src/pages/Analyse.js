@@ -19,7 +19,7 @@ export default function Analyse() {
             navigate("/login");
         }
 
-        fetch('http://localhost:3000/api/auswertung/' + aufgabe, {
+        fetch('https://limitless-fortress-25619.herokuapp.com/api/auswertung/' + aufgabe, {
             method: 'GET'
         })
             .then(res => res.json())

@@ -74,7 +74,7 @@ export default function KategorieInhalt(props, { param, RemoveParam }) {
 
     addArray(uebung);
 
-    fetch("http://localhost:3000/api/uebung/", {
+    fetch("https://limitless-fortress-25619.herokuapp.com/api/uebung/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(uebung)
@@ -106,7 +106,7 @@ export default function KategorieInhalt(props, { param, RemoveParam }) {
 
   const handleDelete = (id, e) => {
 
-    fetch('http://localhost:3000/api/uebung/' + id, {
+    fetch('https://limitless-fortress-25619.herokuapp.com/api/uebung/' + id, {
       method: 'DELETE'
     })
       .then(() => {
@@ -141,7 +141,7 @@ export default function KategorieInhalt(props, { param, RemoveParam }) {
 
     //Umändern!!!
 
-    fetch('http://localhost:3000/api/grammatikthema/id/' + ide, {
+    fetch('https://limitless-fortress-25619.herokuapp.com/api/grammatikthema/id/' + ide, {
       method: 'GET'
     })
       .then(res => res.json())
@@ -151,7 +151,7 @@ export default function KategorieInhalt(props, { param, RemoveParam }) {
       }
       )
 
-    fetch("http://localhost:3000/api/uebung/" + ide)
+    fetch("https://limitless-fortress-25619.herokuapp.com/api/uebung/" + ide)
       .then(res => res.json())
       .then((result) => {
         setTheorieArray(result);
@@ -183,7 +183,9 @@ export default function KategorieInhalt(props, { param, RemoveParam }) {
         <UploadFile id={ide} />
       </div>
       <div className="file get-file">
+          <div className="inner-file">
             <GetFiles id={ide}/>
+            </div>
       </div>
       <h1>Tasks</h1>
       <div className="theorie">

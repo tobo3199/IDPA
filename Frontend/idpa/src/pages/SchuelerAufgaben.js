@@ -121,7 +121,7 @@ export default function SchuelerAufgaben(props) {
 
         console.log(object);
 
-        fetch("http://localhost:3000/api/sentenceTransformation/add", {
+        fetch("https://limitless-fortress-25619.herokuapp.com/api/sentenceTransformation/add", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(object)
@@ -167,7 +167,7 @@ export default function SchuelerAufgaben(props) {
 
         //addArrM(mobject)
 
-        fetch("http://localhost:3000/api/multiplechoice/add", {
+        fetch("https://limitless-fortress-25619.herokuapp.com/api/multiplechoice/add", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(object)
@@ -261,7 +261,7 @@ export default function SchuelerAufgaben(props) {
         */
         console.log(id);
 
-        fetch('http://localhost:3000/api/sentenceTransformation/' + id, {
+        fetch('https://limitless-fortress-25619.herokuapp.com/api/sentenceTransformation/' + id, {
             method: 'DELETE'
         })
             .then(() => {
@@ -281,7 +281,7 @@ export default function SchuelerAufgaben(props) {
         */
         console.log(id);
 
-        fetch('http://localhost:3000/api/sentenceTransformation/' + id, {
+        fetch('https://limitless-fortress-25619.herokuapp.com/api/sentenceTransformation/' + id, {
             method: 'DELETE'
         })
             .then(() => {
@@ -303,7 +303,7 @@ export default function SchuelerAufgaben(props) {
             navigate("/schueler-login");
         }
 
-        fetch('http://localhost:3000/api/uebung/id/' + task, {
+        fetch('https://limitless-fortress-25619.herokuapp.com/api/uebung/id/' + task, {
             method: 'GET'
         })
             .then(res => res.json())
@@ -314,14 +314,14 @@ export default function SchuelerAufgaben(props) {
             }
             )
 
-        fetch("http://localhost:3000/api/sentenceTransformation/" + task)
+        fetch("https://limitless-fortress-25619.herokuapp.com/api/sentenceTransformation/" + task)
             .then(res => res.json())
             .then((result) => {
                 setTasks(result);
             }
             )
 
-        fetch("http://localhost:3000/api/multiplechoice/" + task)
+        fetch("https://limitless-fortress-25619.herokuapp.com/api/multiplechoice/" + task)
             .then(res => res.json())
             .then((result) => {
                 console.log('mArray:')
@@ -573,7 +573,7 @@ keyboard={false}
             }
         }
 
-        fetch("http://localhost:3000/api/auswertung/", {
+        fetch("https://limitless-fortress-25619.herokuapp.com/api/auswertung/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(object)
