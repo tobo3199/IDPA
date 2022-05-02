@@ -1,8 +1,8 @@
 .body-aufgabe {
     margin-top: 50px;
-    margin-bottom: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-bottom: 50px;
+    margin-left: 80px;
+    margin-right: 80px;
 }
 
 .task-title {
@@ -15,16 +15,14 @@
     border-radius: 5rem;
     transition: .8s;
     margin-top: 40px;
-    font-size: 25px;
+    font-size: 18px;
     padding: 5px 30px 5px 30px;
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: relative;
     margin: 0 auto;
-    margin-top: 50px;
     clear: left;
     height: auto;
     z-index: 0;
@@ -45,3 +43,41 @@
     margin-right: 20px;
     padding: 10px 35px;
 }
+
+.check-marg {
+    margin-right: 20px;
+}
+
+.cat-btn-aufgabe {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 10px 20px;
+    color: #fff;
+    background: #4E4EEC;
+    font-size: 16px;
+    text-decoration: none;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 20px;
+    border-radius: 5rem;
+    border: none;
+    clear: left;
+    z-index: 0;
+    text-align: center;
+    /* Add This*/
+    margin-bottom: 20px;
+    margin: 0 auto;
+  }
+  
+  .cat-btn-aufgabe:hover {
+    background: #FADB61;
+    color: #4E4EEC;
+    border-radius: 15px;
+    box-shadow: 0 0 2px #FADB61,
+                0 0 4px #FADB61,
+                0 0 8px #FADB61,
+                0 0 16px #FADB61;
+  }

@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import { Container, Paper, Button } from '@material-ui/core';
 import { useParams } from 'react-router';
 import { useNavigate } from "react-router";
+import "../analyse.css";
 
 
 export default function Analyse() {
@@ -23,6 +24,7 @@ export default function Analyse() {
         })
             .then(res => res.json())
             .then((result) => {
+                console.log('aArray:')
                 console.log(result);
                 setBewertungen(result);
 
@@ -81,7 +83,7 @@ export default function Analyse() {
                     )) :
                         <div>
                             <br />
-                            <p>No Student has solved this exercise</p>
+                            <p className="p-marg">No Student has solved this exercise</p>
                         </div>
                     }
                 </table>

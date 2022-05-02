@@ -11,6 +11,7 @@ import { DropdownButton } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import "../aufgabe.css";
 import "../kategorie.css";
+import "../kategorieinhalt.css";
 import Edit from "./Edit";
 import MEdit from "./MEdit";
 import Analyse from "./Analyse";
@@ -366,8 +367,7 @@ export default function Aufgabe(props) {
                     <h6>Alternative solution:</h6>
                     <p>{t.loesung2}</p>
                     <div className="centering">
-
-                        <div><Edit id={t.id}/></div>
+                        <Edit id={t.id}/>
                         <button className="btn-delete" onClick={() => deleteTask(t.id)}>Delete</button>
                     </div>
 
@@ -396,8 +396,10 @@ export default function Aufgabe(props) {
                     <p>{t.antwort3}</p>
                     <h6>Correct answer:</h6>
                     <p>{t.korrekteAntwort}</p>
-                    <div><MEdit mid={t.id}/></div>
-                    <Button className="deleteButton" onClick={() => deleteMTask(t.id)}>Delete</Button>
+                    <div className="centering">
+                        <MEdit mid={t.id}/>
+                        <button className="btn-delete" onClick={() => deleteMTask(t.id)}>Delete</button>
+                    </div>
                     <br/>
                     <p>{t.id}</p>
                     
@@ -412,7 +414,7 @@ export default function Aufgabe(props) {
 
     return (
         <div className="body-aufgabe">
-            <h1>Task</h1>
+            <h1 className="h1-marg">Task</h1>
             <div>
                 <br />
                 <h4>Sentence Transformations: </h4>

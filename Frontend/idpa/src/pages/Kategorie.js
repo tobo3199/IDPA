@@ -113,7 +113,7 @@ export default function Kategorie({ param, RemoveParam }) {
 
     return (
         <>
-        <div>
+        <div className='body-theorie'>
         <form className='todo-form' onSubmit={handleSubmit}>
             <label className='custom-field two'>
                 <input type="text" placeholder="Add Category" value={name} name="category" className="cat-input" onChange={handleChange}></input>

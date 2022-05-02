@@ -9,6 +9,8 @@ import { AddAlarmRounded, LocalSeeSharp } from "@mui/icons-material";
 import { Dropdown } from "react-bootstrap";
 import { DropdownButton } from "react-bootstrap";
 import { useNavigate } from "react-router";
+
+import "../aufgabe.css";
 import "../kategorie.css";
 
 export default function Edit(id) {
@@ -92,11 +94,11 @@ export default function Edit(id) {
     return (
         <>
 
-            <div className="centering">
+            {/* <div className="centering"> */}
                 <button className="btn-add" onClick={handleShow}>
                     Edit
                 </button>
-            </div>
+            {/* </div> */}
 
             <Modal
                 show={show}

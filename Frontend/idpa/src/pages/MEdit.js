@@ -87,11 +87,11 @@ export default function MEdit(mid) {
     return (
         <>
 
-            <div className="centering">
+            {/* <div className="centering"> */}
                 <button className="btn-add" onClick={handleShow}>
                     Edit
                 </button>
-            </div>
+            {/* </div> */}
 
             <Modal
                 show={show}

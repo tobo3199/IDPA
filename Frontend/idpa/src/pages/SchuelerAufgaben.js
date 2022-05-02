@@ -324,6 +324,7 @@ export default function SchuelerAufgaben(props) {
         fetch("http://localhost:3000/api/multiplechoice/" + task)
             .then(res => res.json())
             .then((result) => {
+                console.log('mArray:')
                 setMTasks(result);
             }
             )
@@ -638,13 +639,13 @@ keyboard={false}
                     <h6>Task definition</h6>
                     <p>{t.aufgabenstellung}</p>
                     <div >
-                        <input type="checkbox" onChange={(e) => answerChangeHandler(1, index)} value={userAntwort}></input>{t.antwort1}
+                        <input className="check-marg" type="checkbox" onChange={(e) => answerChangeHandler(1, index)} value={userAntwort}></input>{t.antwort1}
                         <br />
                         <br />
-                        <input type="checkbox" onChange={(e) => answerChangeHandler(2, index)} value={userAntwort}></input>{t.antwort2}
+                        <input className="check-marg" type="checkbox" onChange={(e) => answerChangeHandler(2, index)} value={userAntwort}></input>{t.antwort2}
                         <br />
                         <br />
-                        <input type="checkbox" onChange={(e) => answerChangeHandler(3, index)} value={userAntwort}></input>{t.antwort3}
+                        <input className="check-marg" type="checkbox" onChange={(e) => answerChangeHandler(3, index)} value={userAntwort}></input>{t.antwort3}
                         <br />
                         <br />
                         <p>{submit ? isCorrect[index] ? `Deine Antwort ${answers[index]} war richtig` : `Deine Antwort ${answers[index]} war falsch - Die korrekte Antwort war ${t.korrekteAntwort}` : ""}</p>
@@ -676,7 +677,7 @@ keyboard={false}
 
     // {number === 1 ? <DisplayTasks /> : number === 2 ? <DisplayMultipleChoices /> : <DisplayTasks />}
     return (
-        <div>
+        <div className="body-aufgabe">
             <h1>Task</h1>
             <div>
                 <br />
@@ -685,7 +686,7 @@ keyboard={false}
             </div>
             <br />
             <div>
-                {tasks[0] ? <button className="button-check" onClick={checkSentence}>Check</button> : <div></div>}
+                {tasks[0] ? <button className="cat-btn-aufgabe" onClick={checkSentence}>Check</button> : <div></div>}
                 <br />
             </div>
             <br />
@@ -696,7 +697,7 @@ keyboard={false}
             </div>
             <br />
             <div>
-                {checknumber === 0 && mTasks[0] ? <div><button className="button-check" onClick={checkMultipleChoice}>Check</button></div> :
+                {checknumber === 0 && mTasks[0] ? <div><button className="cat-btn-aufgabe" onClick={checkMultipleChoice}>Check</button></div> :
                     <div>
                         <Auswertung />
                     </div>}

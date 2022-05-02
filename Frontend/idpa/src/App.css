@@ -203,8 +203,8 @@
 
 .table {
   overflow: scroll;
-  margin-left: 20px;
-  margin-right: 20px;
+  /* margin-left: 20px; */
+  /* margin-right: 20px; */
 }
 
 /* a {

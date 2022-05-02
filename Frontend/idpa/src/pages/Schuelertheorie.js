@@ -196,15 +196,15 @@ export default function Schuelertheorie(props) {
           <table className="table">
 
             <tr>
-              <th>Overview</th>
-              <th>Exercise</th>
+              <th className='texth'>Overview</th>
+              <th className='texth'>Exercise</th>
             </tr>
 
             {theorieArray?.map((t, index) => (
               <>
                 <tr key={index}>
                   <td></td>
-                  <td><Link to={`/grammartopic/${ide}/exercise/${t.id}`}>{t.name}</Link></td>
+                  <td><Link className="text" to={`/grammartopic/${ide}/exercise/${t.id}`}>{t.name}</Link></td>
                 </tr>
               </>
             ))}
