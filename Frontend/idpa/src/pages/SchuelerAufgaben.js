@@ -494,7 +494,7 @@ keyboard={false}
 
     //onClick={() => editTask(t)}
     function Auswertung() {
-        
+
         return (
             <>
                 <div>
@@ -539,7 +539,7 @@ keyboard={false}
         countCorrect();
         setChecknumber(4);
 
-        
+
     }
 
     const countCorrect = (e) => {
@@ -556,9 +556,9 @@ keyboard={false}
         setProzent((100 / mTasks.length) * counter);
         console.log("PROZENT:");
         console.log(prozent);
-        
 
-        
+
+
     }
 
     const submitAuswertung = () => {
@@ -638,13 +638,13 @@ keyboard={false}
                     <h6>Task definition</h6>
                     <p>{t.aufgabenstellung}</p>
                     <div >
-                        <input type="checkbox" onChange={(e) => answerChangeHandler(1, index)} value={userAntwort}></input>{t.antwort1}
+                        <input className="check-marg" type="checkbox" onChange={(e) => answerChangeHandler(1, index)} value={userAntwort}></input>{t.antwort1}
                         <br />
                         <br />
-                        <input type="checkbox" onChange={(e) => answerChangeHandler(2, index)} value={userAntwort}></input>{t.antwort2}
+                        <input className="check-marg" type="checkbox" onChange={(e) => answerChangeHandler(2, index)} value={userAntwort}></input>{t.antwort2}
                         <br />
                         <br />
-                        <input type="checkbox" onChange={(e) => answerChangeHandler(3, index)} value={userAntwort}></input>{t.antwort3}
+                        <input className="check-marg" type="checkbox" onChange={(e) => answerChangeHandler(3, index)} value={userAntwort}></input>{t.antwort3}
                         <br />
                         <br />
                         <p>{submit ? isCorrect[index] ? `Deine Antwort ${answers[index]} war richtig` : `Deine Antwort ${answers[index]} war falsch - Die korrekte Antwort war ${t.korrekteAntwort}` : ""}</p>
