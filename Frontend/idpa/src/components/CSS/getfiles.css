@@ -1,4 +1,10 @@
 .get-container {
+    position: absolute;
     display: flex;
     /* align-items: center; */
+}
+
+.border{
+    border: solid;
+    color: blue;
 }

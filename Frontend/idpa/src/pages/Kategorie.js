@@ -7,6 +7,7 @@ import { indigo } from '@mui/material/colors';
 import { Link } from 'react-router-dom';
 import { useNavigate, useParams } from "react-router";
 import "../kategorie.css";
+import "../kategorieinhalt.css";
 import '../App.css';
 
 
@@ -113,7 +114,7 @@ export default function Kategorie({ param, RemoveParam }) {
 
     return (
         <>
-        <div>
+        <div className="body-theorie">
         <form className='todo-form' onSubmit={handleSubmit}>
             <label className='custom-field two'>
                 <input type="text" placeholder="Add Category" value={name} name="category" className="cat-input" onChange={handleChange}></input>

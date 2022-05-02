@@ -184,12 +184,7 @@ export default function KategorieInhalt(props, { param, RemoveParam }) {
       </div>
       <div className="file get-file">
         <Container>
-          <Row>
-
-          </Row>
-          <Row>
             <GetFiles id={ide}/>
-          </Row>
         </Container>
       </div>
       <h1>Tasks</h1>
