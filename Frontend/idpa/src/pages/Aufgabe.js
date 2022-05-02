@@ -367,7 +367,7 @@ export default function Aufgabe(props) {
                     <p>{t.loesung2}</p>
                     <div className="centering">
 
-                        <div><Edit id={t.id}/></div>
+                        <div><Edit id={t.id} /></div>
                         <button className="btn-delete" onClick={() => deleteTask(t.id)}>Delete</button>
                     </div>
 
@@ -396,13 +396,12 @@ export default function Aufgabe(props) {
                     <p>{t.antwort3}</p>
                     <h6>Correct answer:</h6>
                     <p>{t.korrekteAntwort}</p>
-                    <div><MEdit mid={t.id}/></div>
-                    <Button className="deleteButton" onClick={() => deleteMTask(t.id)}>Delete</Button>
-                    <br/>
-                    <p>{t.id}</p>
-                    
+                    <div className="centering">
+                        <div><MEdit mid={t.id} /></div>
+                        <button className="btn-delete" onClick={() => deleteMTask(t.id)}>Delete</button>
+                    </div>
                 </div>
-                
+
             )) :
                 <div className="task">
                     <p>No task yet</p>
@@ -428,8 +427,8 @@ export default function Aufgabe(props) {
             <div>
                 <div className="ce"><AddAufgabe /></div>
             </div>
-            <br/>
-            <Analyse aufgabe={aufgabe}/>
+            <br />
+            <Analyse aufgabe={aufgabe} />
         </div>
     );
 }
