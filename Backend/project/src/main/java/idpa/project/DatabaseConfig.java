@@ -15,7 +15,7 @@ import javax.sql.DataSource;
  * @version:
  */
 
-/*
+
 @Configuration
 public class DatabaseConfig {
 
@@ -28,6 +28,6 @@ public class DatabaseConfig {
         config.setJdbcUrl(dbUrl);
         return new HikariDataSource(config);
     }
-<<<<<<< HEAD
-}*/
+
+}
 

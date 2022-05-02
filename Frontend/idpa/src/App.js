@@ -38,6 +38,7 @@ function App() {
   const [username, setUsername] = useState("");
   const [pin, setPin] = useState("");
   const [grammatikthema, setGrammatikthema] = useState();
+  var g;
 
   const handleAction = (e) => {
     e.preventDefault();
@@ -60,12 +61,52 @@ function App() {
             draggable: true,
             progress: undefined,
             theme: "colored",
-          });
-        });
+          })
+        })
+        .catch((error) => {
+            toast.error("Wrong username!", {
+              position: "bottom-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
+          })
     } else {
-      console.log("Wrong email").catch((error) => {
-        console.log(error);
-        toast.error("Wrong username!", {
+      toast.error("Wrong email!", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+  }
+
+  const handleSchueler = (e) => {
+    e.preventDefault();
+    console.log("Username: " + username + ", " + "Pin: " + pin);
+    setGrammatikthema("");
+    sessionStorage.removeItem("Auth Token");
+
+    fetch('http://localhost:3000/api/grammatikthema/pin/' + pin, {
+      method: 'GET'
+    })
+      .then(res => res.json())
+      .then((result) => {
+        console.log(result);
+        console.log(result.id);
+        navigate(`/grammartopic/${result.id}`)
+        sessionStorage.setItem("Auth Token", username)
+      })
+      .catch(error => {
+        toast.error("Grammartopic with this PIN doesn't exist!", {
           position: "bottom-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -75,40 +116,16 @@ function App() {
           progress: undefined,
           theme: "colored",
         });
-      });
-    }
-  };
-
-  const handleSchueler = (e) => {
-    e.preventDefault();
-    console.log("Username: " + username + ", " + "Pin: " + pin);
-
-
-    fetch('http://localhost:3000/api/grammatikthema/pin/' + pin, {
-      method: 'GET'
-    })
-      .then(res => res.json())
-      .then((result) => {
-        console.log(result);
-        setGrammatikthema(result);
-
-      }
-      ).then(
-        //navigateSchueler(grammatikthema.id),
-        //navigate("/thema/" + grammatikthema.id),
-        console.log(grammatikthema.id),
-        navigate(`/grammartopic/${grammatikthema.id}`),
-        setGrammatikthema(""),
-      ).then(
-        sessionStorage.setItem("Auth Token", username),
-      )
-
-    /*
-
-  */
-    //setUsername(username);
-    //setPin(pin);
+      })
   }
+
+  useEffect(() => {
+    let authToken = sessionStorage.getItem("Auth Token");
+    if (window.location.pathname === "/schueler-login" && authToken) {
+      sessionStorage.removeItem("Auth Token");
+      window.location.reload();
+    }
+  }, []);
 
   const navigateSchueler = (id, e) => {
     console.log(id);

@@ -94,11 +94,10 @@ export default function Edit(id) {
     return (
         <>
 
-            {/* <div className="centering"> */}
+            
                 <button className="btn-add" onClick={handleShow}>
                     Edit
                 </button>
-            {/* </div> */}
 
             <Modal
                 show={show}

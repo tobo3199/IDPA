@@ -7,6 +7,7 @@ import { indigo } from '@mui/material/colors';
 import { Link } from 'react-router-dom';
 import { useNavigate, useParams } from "react-router";
 import "../kategorie.css";
+import "../kategorieinhalt.css";
 import '../App.css';
 
 

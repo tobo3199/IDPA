@@ -495,7 +495,7 @@ keyboard={false}
 
     //onClick={() => editTask(t)}
     function Auswertung() {
-        
+
         return (
             <>
                 <div>
@@ -540,7 +540,7 @@ keyboard={false}
         countCorrect();
         setChecknumber(4);
 
-        
+
     }
 
     const countCorrect = (e) => {
@@ -557,9 +557,9 @@ keyboard={false}
         setProzent((100 / mTasks.length) * counter);
         console.log("PROZENT:");
         console.log(prozent);
-        
 
-        
+
+
     }
 
     const submitAuswertung = () => {

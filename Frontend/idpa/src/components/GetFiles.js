@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Container, Paper, Button } from '@material-ui/core';
+//import { Container, Paper, Button } from '@material-ui/core';
+import { Container, Row, Col } from "react-bootstrap";
 import "../kategorie.css";
 import '../App.css';
 import "./CSS/getfiles.css";
+//import { Row } from 'react-bootstrap';
 
 function GetFiles(ide) {
 
@@ -23,7 +25,7 @@ function GetFiles(ide) {
                 setImages(result);
             })
 
-            // window.location.reload();
+        // window.location.reload();
     }
 
     const handleDelete = (id) => {
@@ -39,14 +41,15 @@ function GetFiles(ide) {
 
     return (
         <div className='get-container'>
-            {images [0] ? images.map(image =>
-                <div key={image.id}>
-                    <p >{image.id}</p>
-                    <p>{image.fileDataName}</p>
-                    <img className='get-img' src={`http://localhost:3000/api/fileData/files/${image.id}`} />
-                    <button className="btn-delete" onClick={() => handleDelete(image.id)}>Delete</button>
-                </div>
-
+            {images[0] ? images.map(image =>
+                <Col>
+                    <div key={image.id}>
+                        <p >{image.id}</p>
+                        <p>{image.fileDataName}</p>
+                        <img className='get-img' src={`http://localhost:3000/api/fileData/files/${image.id}`} />
+                        <button className="btn-delete" onClick={() => handleDelete(image.id)}>Delete</button>
+                    </div>
+                </Col>
             ) : <div></div>}
         </div>
 
