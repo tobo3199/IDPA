@@ -16,9 +16,6 @@ public class UebungController {
     @Autowired
     private UebungService uebungService;
 
-    @Autowired
-    private GrammatikThemaService grammatikThemaService;
-
     @PostMapping("/")
     public Uebung add(@RequestBody Uebung uebung) {
         Uebung u = uebungService.saveUebung(uebung);
