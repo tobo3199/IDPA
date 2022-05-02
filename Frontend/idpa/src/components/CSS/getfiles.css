@@ -1,10 +1,16 @@
-.get-container {
+/* .get-container {
     position: absolute;
     display: flex;
-    /* align-items: center; */
-}
+     align-items: center;
+} */
 
 .border{
     border: solid;
     color: blue;
+}
+
+.get-img {
+    width: auto;
+    height: 200px;
+    max-width: 500px;
 }
